@@ -90,6 +90,11 @@
 }
 .mp27-hero__note p { margin: 8px 0 6px; font-family: var(--mp27-serif); font-style: italic; font-size: 18px; line-height: 1.35; color: var(--mp26-ink); }
 .mp27-hero__note span { font-size: 13px; color: var(--mp26-muted); }
+@media (max-width: 989px) {
+  .mp27-hero__grid { padding-top: 16px; gap: 24px; }
+  .mp27-hero__media { order: -1; aspect-ratio: 4 / 3; }
+  .mp27-hero__note { display: none; }
+}
 @media (min-width: 990px) {
   .mp27-hero__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
@@ -120,8 +125,8 @@
 .mp27--forest .mp27-mani__sign { color: var(--mp26-signal-bright); }
 .mp27-mani__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
 .mp27-mani__media { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 760px; margin: clamp(36px, 5vw, 56px) auto 0; }
-.mp27-mani__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--mp26-radius); display: block; }
-.mp27-mani__media img:nth-child(2) { transform: translateY(-14px); }
+.mp27-mani__media img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--mp26-radius); display: block; }
+@media (min-width: 750px) { .mp27-mani__media img:nth-child(2) { transform: translateY(-14px); } }
 
 /* ---------- Ürün vitrini ---------- */
 .mp27-spots { display: grid; gap: clamp(56px, 8vw, 112px); }
@@ -187,7 +192,7 @@
   justify-content: space-between;
   gap: 24px;
 }
-.mp27-trust__pitch h2 { margin: 0; font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: clamp(28px, 3vw, 44px); line-height: 1.05; letter-spacing: -0.03em; }
+.mp27-trust__pitch h2 { color: var(--mp26-paper); margin: 0; font-family: var(--font-heading-family); font-weight: var(--font-heading-weight); font-size: clamp(28px, 3vw, 44px); line-height: 1.05; letter-spacing: -0.03em; }
 .mp27-trust__pitch p { margin: 14px 0 0; line-height: 1.6; color: rgba(242, 239, 230, 0.8); max-width: 42ch; }
 .mp27-trust__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .mp27-trust__item { padding: 20px 18px; border-radius: var(--mp26-radius); background: var(--mp27-card); border: 1px solid var(--mp26-line); }
