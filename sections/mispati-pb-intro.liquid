@@ -1,0 +1,53 @@
+{%- assign has_img = false -%}{%- if section.settings.image != blank or request.design_mode -%}{%- assign has_img = true -%}{%- endif -%}
+<section class="pb pb--green" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb-intro__grid{% unless has_img %} pb-intro__grid--noimg{% endunless %}">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="pb__title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="pb-pillars">
+            {%- for block in section.blocks -%}
+              <div class="pb-pillar" {{ block.shopify_attributes }}>
+                <span class="pb-icon">{% render 'mispati-icon', name: block.settings.icon %}</span>
+                <h3>{{ block.settings.title }}</h3>
+                <p>{{ block.settings.text }}</p>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if has_img -%}
+        <div class="pb-intro__media">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 45vw, 100vw' }}
+          {%- else -%}<div class="pb__ph" style="height:100%">Görsel ekleyin</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Giriş",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık (italik için I kullanın)", "default": "Bot değil, <em>yürüyüş özgürlüğü.</em>" },
+    { "type": "richtext", "id": "text", "label": "Metin" },
+    { "type": "image_picker", "id": "image", "label": "Görsel (opsiyonel)" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    { "type": "pillar", "name": "Sütun", "settings": [
+      { "type": "select", "id": "icon", "label": "İkon", "options": [{ "value": "strap", "label": "Askı" }, { "value": "drop", "label": "Su" }, { "value": "sole", "label": "Taban" }, { "value": "reflect", "label": "Reflektör" }, { "value": "leg", "label": "Bacak" }, { "value": "adjust", "label": "Ayar" }, { "value": "snow", "label": "Kar" }, { "value": "rain", "label": "Yağmur" }, { "value": "moon", "label": "Gece" }, { "value": "mountain", "label": "Doğa" }, { "value": "paw", "label": "Pati" }, { "value": "shield", "label": "Kalkan" }, { "value": "return", "label": "İade" }, { "value": "cash", "label": "Kapıda ödeme" }, { "value": "card", "label": "Kart" }, { "value": "truck", "label": "Kargo" }, { "value": "gift", "label": "Hediye" }, { "value": "check", "label": "Onay" }], "default": "strap" },
+      { "type": "text", "id": "title", "label": "Başlık", "default": "Başlık" },
+      { "type": "textarea", "id": "text", "label": "Metin" }
+    ] }
+  ],
+  "presets": [{ "name": "Premium Giriş", "blocks": [{ "type": "pillar" }, { "type": "pillar" }, { "type": "pillar" }] }]
+}
+{% endschema %}

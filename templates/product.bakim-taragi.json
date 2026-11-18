@@ -1,0 +1,614 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "custom_liquid_1": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-rating', rating: '4.8', label: '(4.8) 1000+ Mutlu Patiler' %}"
+          }
+        },
+        "title_2": {
+          "type": "title",
+          "settings": {
+            "title_size_dt": 30,
+            "title_size_mb": 24,
+            "title_line_height": 1.2
+          }
+        },
+        "custom_liquid_3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<ul class=\"mp-benefits\"><li>🐶 Kedi ve köpekler için uygundur</li><li>✨ Tüylü Dostlar İçin Nazik Bakım</li><li>🌟 Tüy yutma riskini azaltır.</li><li>🐾 Buhar desteğiyle tüyleri yumuşatır, çekiştirmeden daha rahat tarama sağlar.</li></ul>"
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "label_style": "body",
+            "font_size": 14,
+            "font_style": "bold",
+            "swatch_type": "variant_image",
+            "swatch_shape": "circle",
+            "swatch_size": 2.6,
+            "swatch_image_height": "square",
+            "swatch_image_custom_radius_value": 2,
+            "size_trigger": "",
+            "chart_id": "",
+            "size_page": "",
+            "size_icon": "hanger",
+            "spaced_size": false
+          }
+        },
+        "lumin_quantity_5": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": true,
+            "hide_variant": true,
+            "compare_price_type": "original",
+            "discount_type": "percentage",
+            "discount": 0,
+            "fixed_price": 0,
+            "qty": 1,
+            "color_scheme": "background-1",
+            "title": "<strong>Buharlı Bakım Tarağı</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Hem Tüylerini Toplayın Hemde Masaj Yapın</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "Tüyleri Artık Yerden Toplamayın",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": true,
+            "heading_title": "<strong>%40 İNDİRİM+ÜCRETSİZ KARGO</strong>",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": true,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "Yanında Sürpriz Hediyeler",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 16,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "lumin_quantity_6": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": false,
+            "hide_variant": true,
+            "compare_price_type": "calculated",
+            "discount_type": "fixed",
+            "discount": 0,
+            "fixed_price": 39900,
+            "qty": 2,
+            "color_scheme": "background-1",
+            "title": "<strong>Tarak+Tüy Toplama Eldiveni</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Olurda Koltuklarda Tüy Bulursanız</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "En Çok Tercih Edilen",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": true,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": false,
+            "heading_title": "",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": true,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "Tüyden Arınmış Bir Yuva",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 8,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b",
+            "qty_image": "shopify://shop_images/tuy_toplayici.jpg"
+          }
+        },
+        "buy_buttons_7": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "skip_cart": false,
+            "button_custom_style": true,
+            "button_font_size": 17,
+            "button_height": 54,
+            "lm_main_button": "#bda66c",
+            "lm_main_button_gr": "",
+            "lm_main_text": "#ffffff",
+            "lm_main_button_border_width": 0,
+            "lm_main_button_border_color": "#bda66c"
+          }
+        },
+        "custom_liquid_8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-avatars', files: '3.webp,1.webp,2_14d31cef-31ed-47ec-842c-ce52d44a4bce.jpg,5.webp,6_f6078493-93ce-4cb0-8bec-ae02669afb1a.jpg', line1: '100+ sipariş', line2: 'son 24 saatte' %}"
+          }
+        },
+        "custom_liquid_9": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-timeline', steps: 'Sipariş verildi~0~0;;Sipariş Hazır~1~2;;Teslim Edildi~2~4' %}"
+          }
+        },
+        "description_10": {
+          "type": "description",
+          "settings": {}
+        },
+        "custom_liquid_11": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-mini-reviews', data: 'e0a2b3d4faf9cecf4fee5c0529b8cc7c.jpg~Black’in tüyleri yatağımda ve koltuklarda çok oluyordu. Buharlı tarak sayesinde kendisi etrafa dökmeden ben topluyorum~Işıl ve Black;;images_1_8d755a88-f4c9-4e02-a0c7-661dc533642e.jpg~Kedim normal tarakları görünce hemen kaçıyordu ama bu buharlı tarakta daha sakin durdu. Tüyleri çekiştirmeden topluyor, buharı sayesinde tarama çok daha kolay oluyor. Evdeki dökülen tüyler de ciddi şekilde azaldı.~İrem ve İnci;;images_190007d1-4322-4b86-ad82-f4c18df800cf.jpg~Kedim çok tüylü olduğu için sürekli tüy yumağı kusuyordu. Bu tarağı düzenli kullanınca dökülen tüyleri çok daha kolay toplamaya başladım. Buharlı olması tüyleri yumuşatıyor, kedim de eskisi kadar kaçmıyor. Gerçekten çok işime yaradı.~Nihal ve Arven' %}"
+          }
+        },
+        "custom_liquid_12": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"mp-tabs\"><details><summary>Para İade Garantisi</summary><div class=\"mp-tabs__body\"><p>Mispati Buharlı Tarak dostunuzun tüylerini temizlemezse paranız anında iade!</p></div></details><details><summary>Teslimat</summary><div class=\"mp-tabs__body\"><p>Siparişiniz oluşturulduktan sonraki gün kargoda !</p></div></details></div>"
+          }
+        }
+      },
+      "block_order": [
+        "custom_liquid_1",
+        "title_2",
+        "custom_liquid_3",
+        "variant_picker_4",
+        "lumin_quantity_5",
+        "lumin_quantity_6",
+        "buy_buttons_7",
+        "custom_liquid_8",
+        "custom_liquid_9",
+        "description_10",
+        "custom_liquid_11",
+        "custom_liquid_12"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "no_scroll": false,
+        "color_scheme": "background-1",
+        "block_padding": 1.5,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "thumbnail_size": 54,
+        "thumbnail_radius": 10,
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "mobile_thumbnails": "show",
+        "show_full_image": true,
+        "first_image_size": 100,
+        "second_image_size": 0,
+        "show_container": false,
+        "container_bg": "#ffffff",
+        "container_radius": 10,
+        "container_padding": 20,
+        "container_border_color": "#fcf7f5",
+        "show_container_mb": false,
+        "container_bg_mb": "#ffffff",
+        "container_padding_mb": 20,
+        "container_radius_mb": 8,
+        "container_border_color_mb": "#fcf7f5",
+        "container_text": "",
+        "container_text_bg": "#104698",
+        "container_text_txt": "#ffffff",
+        "padding_top": 32,
+        "padding_top_mb": 0,
+        "padding_bottom": 48
+      }
+    },
+    "mp_columns_1": {
+      "type": "mispati-columns",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "columns": 4,
+        "style": "card",
+        "round": false,
+        "cream": false,
+        "pt": 56,
+        "pb": 56
+      },
+      "blocks": {
+        "b1": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Köpeğim veya Kedimin Canını Yakarmı?",
+            "text": "<p><strong>Hayır, çocuğunuzun tüy bakımında sert tarak hissi oluşturmaz.</strong></p><p>Çünkü bu tarak, sert metal uçlarla tüy çekiştirmek yerine <strong>yumuşak silikon başlığı ve buhar desteğiyle</strong> <strong>dostunuzun tarama sırasında daha rahat kalması, tüylerin daha kolay açılması ve bakımın daha konforlu hale gelmesi</strong> için tasarlandı.</p>"
+          }
+        },
+        "b2": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Yumuşak Silikon Başlık",
+            "text": "<p>Patili dostunuzun cildine nazikçe temas eder, tarama sırasında canını yakmadan bakım yapmanıza yardımcı olur.</p><p>Tüyleri nemlendirerek yumuşatır, çekiştirmeden daha kolay tarama sağlar.</p>"
+          }
+        },
+        "b3": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "",
+            "text": ""
+          }
+        },
+        "b4": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "360° Dönebilen Sap",
+            "text": "<p>Elinizi yormadan farklı açılardan rahat kullanım sunar.</p><p>Tarama sırasında kopmuş ve dökülmeye hazır tüyleri toplar, evdeki tüy dağınıklığını azaltmaya yardımcı olur.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Bunları da beğenebilirsiniz",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_no_crop": false,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_scroll_tags": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "mp_compare_2": {
+      "type": "mispati-compare",
+      "settings": {
+        "heading": "Tüy Dökülmesine Karşı Etkisi Büyükmü",
+        "text": "<p><strong>Öncesi</strong>: Evin heryerine dökülmüş tüyler ve midede tüy yumakları<br/><strong>Sonrası:</strong> Tüylerden arınmış bir ev ve okşayınca bile tüy dökmeyen dostumuz</p>",
+        "before_image": "shopify://shop_images/ChatGPT_Image_9_Tem_2026_20_18_06.png",
+        "after_image": "shopify://shop_images/ChatGPT_Image_9_Tem_2026_20_21_41.png",
+        "before_label": "Önce",
+        "after_label": "Sonra",
+        "cream": true,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_media_slider_3": {
+      "type": "mispati-media-slider",
+      "settings": {
+        "heading": "Evin Her Tarafına Dökülmüş Tüylerden Kurtulmuş Ebeveynler",
+        "per_view": 3,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      },
+      "blocks": {
+        "b1": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/kesit 1.mp4",
+            "caption": ""
+          }
+        },
+        "b2": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/kesit 2.mp4",
+            "caption": ""
+          }
+        },
+        "b3": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/kesit 3.mp4",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "mp_columns_4": {
+      "type": "mispati-columns",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "columns": 4,
+        "style": "card",
+        "round": false,
+        "cream": false,
+        "pt": 56,
+        "pb": 56
+      },
+      "blocks": {
+        "b1": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Dişin Her Noktasını Kolayca Temizleyin",
+            "text": "<p>Parmağınıza tam oturan yapısıyla dişlerin ön, arka ve zor ulaşılan bölgelerine rahatlıkla ulaşmanızı sağlar.</p><p>Düzenli kullanımda diş yüzeyi ve diş etlerinde biriken kalıntıları temizlemeye yardımcı olur. Kullanımdan sonraki saatlerde bile ferah bir his bırakır.</p>"
+          }
+        },
+        "b2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_29_May_2026_14_02_37.png",
+            "icon": "",
+            "title": "",
+            "text": ""
+          }
+        },
+        "b3": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Fırçasız, Pratik Kullanım",
+            "text": "<p>Pedi parmağınıza takıp diş ve diş etlerine nazikçe uygulamanız yeterli. Diş fırçasına alışamayan patili dostlar için daha kolay bir bakım sunar.</p><p>Saf su, yeşil çay polifenolleri, bitkisel polifenoller, Trabzon hurması taneni ve E vitamini içeren yapısıyla diş ve diş etlerini nazikçe temizlemeye yardımcı olur. Günlük kullanımda ferah ve temiz bir ağız hissi bırakır.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "disabled": true
+    },
+    "mp_reviews_5": {
+      "type": "mispati-reviews",
+      "settings": {
+        "heading": "Kullanıcı Değerlendirmeleri",
+        "show_summary": true,
+        "rating": "4.8",
+        "count": "1000+",
+        "verified": true,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      },
+      "blocks": {
+        "b1": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/9_82981bab-7f02-4945-8d7f-608d64d065e7.jpg",
+            "rating": 5,
+            "title": "Tüyleri Sildi Süpürdü",
+            "text": "<p>harika bir ürün beklediğimden de üstün çıktı herkese tavsiye ederim paketleme çok ozenliydi teşekkür ederim</p>",
+            "author": "Eren Taş"
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/3_a00214fa-1356-4de5-94ee-1ad7df9ca5ea.webp",
+            "rating": 5,
+            "title": "ÇOK ETKİLİ",
+            "text": "<p>aşırı tavsiye!!her türlü tarak fırça ve furminatörden kat kat iyi bir ürün. kedim de nemlenerek taranmaya bayıldı.</p>",
+            "author": "Ece Işık"
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/7_b335e491-3de2-467f-8622-c15c1fcfb25e.jpg",
+            "rating": 5,
+            "title": "Şarjı Uzun Dayanıyor",
+            "text": "<p>ürün gayet başarılı cok memnun kaldık kızımda sevdi şarj edilebilmesni sevdik<br/><br/></p>",
+            "author": "Ahmet Çiçek"
+          }
+        },
+        "b4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/8.webp",
+            "rating": 5,
+            "title": "Koku Koyunca ekstra güzel",
+            "text": "<p>Kedimi iki günde bir temizliyorum yumak yumak tüyler çıkıyor koku koyunca da mis oluyor alın bence</p>",
+            "author": "Bedirhan Çelik"
+          }
+        },
+        "b5": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/2_efcacec1-3d45-4e2f-b0b8-6895031a0d0c.jpg",
+            "rating": 5,
+            "title": "Çok etkilii",
+            "text": "<p>İnanılmaz tüy çıkartıyor kedim bayıldı bununla taramaya başladıktan sonra</p>",
+            "author": "Ceylan Gezmiş"
+          }
+        },
+        "b6": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/3_5817bd0d-73c4-4e9d-806b-cc3544f36a48.jpg",
+            "rating": 5,
+            "title": "Tavsiye ederim",
+            "text": "<p>harika ürün bugün geldi şarj doldurup hemen denedim sonuç Süper emeğinize sağlık</p>",
+            "author": "Mert Yıldırım"
+          }
+        },
+        "b7": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/5.jpg",
+            "rating": 5,
+            "title": "Beğendim",
+            "text": "<p>reklamlarında görüp aldım gerçekten göründüğü kadar iyi</p>",
+            "author": "Ahmet Yılmaz"
+          }
+        },
+        "b8": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/5_b29c66ec-7f99-473c-94ab-a794f57c33cd.jpg",
+            "rating": 5,
+            "title": "Kedim aşık oldu",
+            "text": "<p>Çok iyi bir ürün.Kedim de çok sevdi hep taranmak istiyor.</p>",
+            "author": "Ayşe Torun"
+          }
+        },
+        "b9": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/6_37844086-c356-4af5-8298-0477a06e0b0b.jpg",
+            "rating": 5,
+            "title": "memnunuz",
+            "text": "<p>Çok güzel geli şart kablosuyla beraber geli ben beğendim bu fiyata göre güzel bi ürün tercih ederim</p>",
+            "author": "Bengü Çiçek"
+          }
+        },
+        "b10": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/3.jpg",
+            "rating": 5,
+            "title": "Zahmetsiz",
+            "text": "<p>Asla rahatsız olmuyor sanki ona masaj yapıyormuşum gibi davranıyor artık devamlı müşterinizim 😂</p>",
+            "author": "Zeynep Işık"
+          }
+        },
+        "b11": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/6_37844086-c356-4af5-8298-0477a06e0b0b.jpg",
+            "rating": 5,
+            "title": "Hızlı Kargo",
+            "text": "<p>2 Günde elime ulaştı hızlı 👍</p>",
+            "author": "Yaren Ilım"
+          }
+        },
+        "b12": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/4_1c6488ef-f58a-409e-8f51-77f628552983.jpg",
+            "rating": 5,
+            "title": "Teşekkürler",
+            "text": "<p>Biz çok beğendik memnun kaldık uzun ömürlü kullanırız inşallah</p>",
+            "author": "Özge Şimşek"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12"
+      ]
+    },
+    "mp_products_6": {
+      "type": "mispati-products",
+      "settings": {
+        "heading": "Bakım Setlerimize Göz Atın",
+        "collection": "frontpage",
+        "limit": 4,
+        "columns": 3,
+        "hide_current": true,
+        "button_label": "Tümünü görüntüle",
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mp_columns_1",
+    "related-products",
+    "mp_compare_2",
+    "mp_media_slider_3",
+    "mp_columns_4",
+    "mp_reviews_5",
+    "mp_products_6"
+  ]
+}

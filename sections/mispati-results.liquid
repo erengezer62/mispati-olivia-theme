@@ -1,0 +1,61 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    <div class="mp-results{% if section.settings.image != blank or section.settings.video != blank %} mp-results--media{% endif %}">
+      {%- if section.settings.video != blank or section.settings.image != blank -%}
+        <div class="mp-results__media">
+          {%- if section.settings.video != blank -%}
+            {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, preload: 'metadata', image_size: '1000x' }}
+          {%- else -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="mp-results__body">
+        {%- if section.settings.heading != blank -%}<h2 class="mp-heading" style="text-align:left">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="mp-results__intro">{{ section.settings.text }}</div>{%- endif -%}
+        <ul class="mp-results__list">
+          {%- for block in section.blocks -%}
+            {%- assign pct = block.settings.percentage -%}
+            <li class="mp-result" {{ block.shopify_attributes }}>
+              <div class="mp-result__ring" style="--p: {{ pct }}"><span>%{{ pct }}</span></div>
+              <div>
+                {%- if block.settings.heading != blank -%}<strong class="mp-result__head">{{ block.settings.heading }}</strong>{%- endif -%}
+                <div class="mp-result__text">{{ block.settings.text }}</div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.caption != blank -%}<div class="mp-results__cap">{{ section.settings.caption }}</div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Sonuçlar",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "image_picker", "id": "image", "label": "Görsel" },
+    { "type": "video", "id": "video", "label": "Video" },
+    { "type": "richtext", "id": "caption", "label": "Alt not" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": true },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Sonuç",
+      "settings": [
+        { "type": "range", "id": "percentage", "label": "Yüzde", "min": 0, "max": 100, "step": 1, "default": 90 },
+        { "type": "text", "id": "heading", "label": "Başlık" },
+        { "type": "richtext", "id": "text", "label": "Metin", "default": "<p>Sonuç açıklaması</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Sonuçlar", "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }] }]
+}
+{% endschema %}

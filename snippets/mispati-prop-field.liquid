@@ -1,0 +1,9 @@
+{%- comment -%}
+  Siparişe yazılan kişiselleştirme alanı (line item property).
+  {% render 'mispati-prop-field', name: 'İsim', label: 'Köpeğinizin ismi', placeholder: 'Örn. Pamuk', type: 'text', required: false %}
+{%- endcomment -%}
+{%- assign fid = 'mp-prop-' | append: name | handleize -%}
+<div class="mp-prop">
+  <label class="mp-prop__label" for="{{ fid }}">{{ label | default: name }}{% if required %} *{% endif %}</label>
+  <input id="{{ fid }}" class="mp-prop__input" data-mp-prop type="{{ type | default: 'text' }}" name="properties[{{ name }}]" placeholder="{{ placeholder }}" maxlength="{{ maxlength | default: 40 }}"{% if required %} required{% endif %}>
+</div>

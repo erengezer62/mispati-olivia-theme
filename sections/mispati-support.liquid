@@ -1,0 +1,36 @@
+<section class="mp-section mp-support{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    <div class="mp-support__card">
+      <h2 class="mp-support__title">{{ section.settings.heading }}</h2>
+      <ul class="mp-support__list">
+        {%- if section.settings.email != blank -%}
+          <li><a href="mailto:{{ section.settings.email }}">{% render 'mispati-icon', name: 'mail' %}{{ section.settings.email }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.phone != blank -%}
+          <li><a href="tel:{{ section.settings.phone | remove: ' ' }}">{% render 'mispati-icon', name: 'phone' %}{{ section.settings.phone }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.whatsapp != blank -%}
+          {%- assign wa = section.settings.whatsapp | remove: ' ' | remove: '+' -%}
+          <li><a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">{% render 'mispati-icon', name: 'whatsapp' %}{{ section.settings.whatsapp }}</a></li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Destek Hattı",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Başlık", "default": "Müşteri Destek Hattı" },
+    { "type": "text", "id": "email", "label": "E-posta" },
+    { "type": "text", "id": "phone", "label": "Telefon" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": true },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "presets": [{ "name": "Mispati Destek Hattı" }]
+}
+{% endschema %}

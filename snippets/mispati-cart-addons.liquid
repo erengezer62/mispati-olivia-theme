@@ -1,0 +1,64 @@
+{%- comment -%}
+  Mispati sepet eklentileri: ek ürün anahtarları, hediye kutusu, garanti satırı.
+  Ayarlar: Tema ayarları > Mispati Sepet
+  part: 'upsells' (ürün listesi içinde) | 'footer' (alt bölüm)
+{%- endcomment -%}
+{%- if cart.item_count > 0 -%}
+  {%- if part == 'upsells' and settings.mp_upsell_enable and settings.mp_upsell_products != blank -%}
+    <div class="mp-addons">
+      {%- if settings.mp_upsell_title != blank -%}<p class="mp-addons__title">{{ settings.mp_upsell_title }}</p>{%- endif -%}
+      {%- for p in settings.mp_upsell_products -%}
+        {%- unless p.available -%}{%- continue -%}{%- endunless -%}
+        {%- assign v = p.selected_or_first_available_variant -%}
+        {%- assign in_cart = false -%}
+        {%- assign line_key = '' -%}
+        {%- for li in cart.items -%}
+          {%- if li.variant_id == v.id -%}{%- assign in_cart = true -%}{%- assign line_key = li.key -%}{%- endif -%}
+        {%- endfor -%}
+        <div class="mp-addon{% if in_cart %} is-on{% endif %}">
+          {%- if p.featured_image -%}
+            {{ p.featured_image | image_url: width: 120 | image_tag: class: 'mp-addon__img', loading: 'lazy', alt: p.title }}
+          {%- endif -%}
+          <div class="mp-addon__info">
+            <p class="mp-addon__name">{{ p.title }}</p>
+            <span class="mp-addon__price">{{ v.price | money }}{% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money }}</s>{% endif %}</span>
+          </div>
+          <label class="mp-switch">
+            <input type="checkbox" data-mp-addon data-variant="{{ v.id }}" data-key="{{ line_key }}" {% if in_cart %}checked{% endif %} aria-label="{{ p.title | escape }} ekle">
+            <span class="mp-switch__ui"></span>
+          </label>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if part == 'footer' -%}
+    {%- if settings.mp_gift_enable and settings.mp_gift_product != blank -%}
+      {%- assign gift = settings.mp_gift_product -%}
+      {%- assign threshold = settings.mp_gift_threshold | default: 0 | times: 100 -%}
+      <div class="mp-gift">
+        {%- if cart.total_price >= threshold -%}
+          <p class="mp-gift__title">{{ settings.mp_gift_title }}</p>
+          <div class="mp-gift__row">
+            {%- if gift.featured_image -%}{{ gift.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: gift.title }}{%- endif -%}
+            <div>
+              <p class="mp-gift__name">{{ gift.title }}</p>
+              <span class="mp-gift__free">{{ settings.mp_gift_label }}</span>
+            </div>
+          </div>
+        {%- else -%}
+          {%- assign remaining = threshold | minus: cart.total_price -%}
+          {%- assign pct = cart.total_price | times: 100 | divided_by: threshold -%}
+          <p class="mp-gift__progress">{{ remaining | money }} daha ekleyin, <strong>{{ gift.title }}</strong> hediye!</p>
+          <div class="mp-gift__bar"><span style="width: {{ pct }}%"></span></div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if settings.mp_guarantee_1 != blank or settings.mp_guarantee_2 != blank -%}
+      <div class="mp-guarantee">
+        {%- if settings.mp_guarantee_1 != blank -%}<div>{% render 'mispati-icon', name: 'return' %}<span>{{ settings.mp_guarantee_1 }}</span></div>{%- endif -%}
+        {%- if settings.mp_guarantee_2 != blank -%}<div>{% render 'mispati-icon', name: 'shield' %}<span>{{ settings.mp_guarantee_2 }}</span></div>{%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

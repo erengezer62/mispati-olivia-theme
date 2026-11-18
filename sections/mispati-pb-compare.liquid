@@ -1,0 +1,49 @@
+{%- capture ok -%}<span class="pb-cmp__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>{%- endcapture -%}
+{%- capture no -%}<span class="pb-cmp__no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>{%- endcapture -%}
+<section class="pb pb--cream" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="pb__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="pb-cmp">
+      <div class="pb-cmp__row pb-cmp__head">
+        <div class="pb-cmp__label"></div>
+        <div class="pb-cmp__us">{{ section.settings.us_label }}</div>
+        <div class="pb-cmp__them">{{ section.settings.them_label }}</div>
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="pb-cmp__row" {{ block.shopify_attributes }}>
+          <div class="pb-cmp__label">{{ block.settings.label }}</div>
+          <div class="pb-cmp__us">{{ ok }}<span>{{ block.settings.us }}</span></div>
+          <div class="pb-cmp__them">{{ no }}<span>{{ block.settings.them }}</span></div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Karşılaştırma",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Farkı yürüyüşte hissedin" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "us_label", "label": "Bizim sütun başlığı", "default": "Mispati Askılı Bot" },
+    { "type": "text", "id": "them_label", "label": "Diğer sütun başlığı", "default": "Klasik Köpek Botu" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Satır", "settings": [
+      { "type": "text", "id": "label", "label": "Konu", "default": "Konu" },
+      { "type": "text", "id": "us", "label": "Bizde" },
+      { "type": "text", "id": "them", "label": "Diğerlerinde" }
+    ] }
+  ],
+  "presets": [{ "name": "Premium Karşılaştırma", "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }] }]
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "main": {
+      "type": "mispati-track",
+      "settings": {
+        "heading": "Kargom Nerede?",
+        "subheading": "Kargo takip numaranızı girin, kargo firmanızı otomatik tanıyalım ve paketinizin tüm hareketlerini tek tıkla görün.",
+        "prep_text": "Siparişiniz özenle paketlenir ve genellikle 1 iş günü içinde kargoya verilir.",
+        "show_faq": true,
+        "whatsapp": "+90 539 926 6375",
+        "email": "mispatitr@hotmail.com"
+      },
+      "blocks": {
+        "surat": {
+          "type": "carrier",
+          "settings": {
+            "name": "Sürat Kargo",
+            "color": "#1b4f9c",
+            "pattern": "\\d{14}",
+            "url": "https://suratkargo.com.tr/KargoTakip/?kargotakipno={takip}",
+            "mode": "link",
+            "home_url": "https://suratkargo.com.tr/KargoTakip/",
+            "note": ""
+          }
+        },
+        "ptt": {
+          "type": "carrier",
+          "settings": {
+            "name": "PTT Kargo",
+            "color": "#e2a800",
+            "pattern": "KP\\d{11}|[A-Z]{2}\\d{9}TR",
+            "url": "",
+            "mode": "copy_open",
+            "home_url": "https://www.ptt.gov.tr/",
+            "note": "PTT güvenlik doğrulaması nedeniyle numaranın sitelerine elle yapıştırılması gerekiyor."
+          }
+        }
+      },
+      "block_order": [
+        "surat",
+        "ptt"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

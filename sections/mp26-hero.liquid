@@ -1,0 +1,192 @@
+{%- liquid
+  assign img = section.settings.image
+  assign mimg = section.settings.mobile_image | default: img
+  assign p = section.settings.product
+  assign is_first = false
+  if section.index == 1
+    assign is_first = true
+  endif
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign overlay = section.settings.overlay | divided_by: 100.0
+-%}
+<section
+  class="mp26-hero mp26-hero--{{ section.settings.align }}{% if section.settings.compact %} mp26-hero--compact{% endif %}"
+  style="--mp26-hero-h: {{ section.settings.height }}svh; --mp26-hero-ov: {{ overlay }};"
+  aria-label="{{ section.settings.heading | strip_html | escape }}"
+>
+  <div class="mp26-hero__media">
+    {%- if section.settings.video != blank -%}
+      <video
+        class="mp26-hero__video"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if img != blank %}poster="{{ img | image_url: width: 1920 }}"{% endif %}
+        data-mp26-video
+      >
+        {%- for source in section.settings.video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
+    {%- elsif img != blank -%}
+      <picture>
+        {%- if section.settings.mobile_image != blank -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ mimg | image_url: width: 600 }} 600w, {{ mimg | image_url: width: 900 }} 900w, {{ mimg | image_url: width: 1200 }} 1200w"
+            sizes="100vw"
+          >
+        {%- endif -%}
+        {%- if is_first -%}
+          {{ img | image_url: width: 2400 | image_tag: widths: '600, 900, 1200, 1600, 2000, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: img.alt, style: section.settings.position_style }}
+        {%- else -%}
+          {{ img | image_url: width: 2400 | image_tag: widths: '600, 900, 1200, 1600, 2000, 2400', sizes: '100vw', loading: 'lazy', alt: img.alt, style: section.settings.position_style }}
+        {%- endif -%}
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag }}
+    {%- endif -%}
+    <div class="mp26-hero__shade"></div>
+    {%- if section.settings.video != blank -%}
+      <button
+        type="button"
+        class="mp26-hero__pause"
+        data-mp26-pause
+        data-label-pause="{{ section.settings.pause_label | escape }}"
+        data-label-play="{{ section.settings.play_label | escape }}"
+        aria-label="{{ section.settings.pause_label | escape }}"
+      >
+        <svg data-icon-pause viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+        <svg data-icon-play hidden viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11a.6.6 0 0 0 .9.5l9-5.5a.6.6 0 0 0 0-1l-9-5.5a.6.6 0 0 0-.9.5z"/></svg>
+      </button>
+    {%- endif -%}
+  </div>
+
+  <div class="mp26-hero__content">
+    <div class="mp26-wrap">
+      <div class="mp26-hero__copy">
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="mp26-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="mp26-hero__sub">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank or section.settings.button2_label != blank -%}
+          <div class="mp26-hero__actions">
+            {%- if section.settings.button_label != blank -%}
+              <a class="mp26-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+                {{- section.settings.button_label -}}
+                {% render 'mispati-icon', name: 'arrow-right' %}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.button2_label != blank -%}
+              <a class="mp26-btn mp26-btn--ghost" href="{{ section.settings.button2_link | default: routes.all_products_collection_url }}">
+                {{- section.settings.button2_label -}}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if p != blank -%}
+          <a class="mp26-chip" href="{{ p.url }}">
+            <span class="mp26-chip__img">
+              {%- if p.featured_media -%}
+                {{ p.featured_media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '', width: 64, height: 64 }}
+              {%- endif -%}
+            </span>
+            <span>
+              {%- if section.settings.chip_label != blank -%}
+                <span class="mp26-chip__label">{{ section.settings.chip_label }}</span>
+              {%- endif -%}
+              <span class="mp26-chip__title">{{ p.title }}</span>
+              <span class="mp26-chip__meta">
+                {%- if section.settings.rating != blank -%}
+                  {% render 'mispati-stars', rating: section.settings.rating %}
+                  {%- if section.settings.rating_label != blank -%}<span>{{ section.settings.rating_label }}</span>{%- endif -%}
+                {%- endif -%}
+                <span class="mp26-chip__price">{{ p.price_min | money }}</span>
+              </span>
+            </span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.video != blank -%}
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      if (!root) return;
+      var video = root.querySelector('[data-mp26-video]');
+      var btn = root.querySelector('[data-mp26-pause]');
+      if (!video || !btn) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var userPaused = reduce;
+      function sync() {
+        var playing = !video.paused;
+        btn.setAttribute('aria-label', playing ? btn.dataset.labelPause : btn.dataset.labelPlay);
+        btn.querySelector('[data-icon-pause]').hidden = !playing;
+        btn.querySelector('[data-icon-play]').hidden = playing;
+      }
+      video.addEventListener('play', sync);
+      video.addEventListener('pause', sync);
+      if (!reduce) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      sync();
+      btn.addEventListener('click', function () {
+        if (video.paused) { userPaused = false; video.play(); } else { userPaused = true; video.pause(); }
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { video.pause(); } else if (!userPaused) { video.play(); }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mispati 2026 Hero",
+  "tag": "div",
+  "class": "mp26-hero-section",
+  "settings": [
+    { "type": "header", "content": "Görsel" },
+    { "type": "image_picker", "id": "image", "label": "Görsel (masaüstü)" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Görsel (mobil)", "info": "Boş bırakılırsa masaüstü görseli kullanılır." },
+    { "type": "video", "id": "video", "label": "Video (isteğe bağlı)", "info": "Eklenirse görselin yerine sessiz, döngüde oynar. Görsel kapak olarak kullanılır." },
+    {
+      "type": "select", "id": "position_style", "label": "Görsel odağı",
+      "options": [
+        { "value": "object-position: 50% 50%", "label": "Orta" },
+        { "value": "object-position: 50% 30%", "label": "Üst" },
+        { "value": "object-position: 50% 70%", "label": "Alt" },
+        { "value": "object-position: 30% 50%", "label": "Sol" },
+        { "value": "object-position: 70% 50%", "label": "Sağ" }
+      ],
+      "default": "object-position: 50% 50%"
+    },
+    { "type": "range", "id": "height", "label": "Masaüstü yükseklik", "min": 60, "max": 100, "step": 2, "unit": "%", "default": 88 },
+    { "type": "range", "id": "overlay", "label": "Metin tarafı karartma", "min": 20, "max": 90, "step": 5, "unit": "%", "default": 65 },
+    { "type": "select", "id": "align", "label": "Metin konumu (masaüstü)", "options": [{ "value": "left", "label": "Sol" }, { "value": "right", "label": "Sağ" }], "default": "right" },
+    { "type": "checkbox", "id": "compact", "label": "Kompakt (sayfa sonu bandı)", "default": false },
+    { "type": "header", "content": "Metin" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Yağmur yağsın, yürüyüş kısalmasın." },
+    { "type": "select", "id": "heading_tag", "label": "Başlık etiketi", "options": [{ "value": "h1", "label": "H1 (sayfanın ilk bölümü)" }, { "value": "h2", "label": "H2" }], "default": "h1" },
+    { "type": "text", "id": "subheading", "label": "Alt başlık" },
+    { "type": "text", "id": "button_label", "label": "Ana buton metni", "default": "Ceketi incele" },
+    { "type": "url", "id": "button_link", "label": "Ana buton bağlantısı" },
+    { "type": "text", "id": "button2_label", "label": "İkinci buton metni", "default": "Tüm ürünler" },
+    { "type": "url", "id": "button2_link", "label": "İkinci buton bağlantısı" },
+    { "type": "header", "content": "Görseldeki ürün kartı" },
+    { "type": "product", "id": "product", "label": "Ürün", "info": "Fiyatıyla birlikte ilk ekranda gösterilir." },
+    { "type": "text", "id": "chip_label", "label": "Kart üst yazısı", "default": "Fotoğraftaki ceket" },
+    { "type": "text", "id": "rating", "label": "Puan (ör. 4.7)", "info": "Boş bırakılırsa yıldızlar gizlenir. Yalnızca gerçek müşteri puanınızı yazın." },
+    { "type": "text", "id": "rating_label", "label": "Puan yanındaki metin", "default": "4,7 · 367 değerlendirme" },
+    { "type": "header", "content": "Erişilebilirlik" },
+    { "type": "text", "id": "pause_label", "label": "Video durdur etiketi", "default": "Videoyu duraklat" },
+    { "type": "text", "id": "play_label", "label": "Video oynat etiketi", "default": "Videoyu oynat" }
+  ],
+  "presets": [{ "name": "Mispati 2026 Hero" }]
+}
+{% endschema %}

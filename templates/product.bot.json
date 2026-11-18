@@ -1,0 +1,1145 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "pb_kicker": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<span class=\"pb-kicker\">Dört mevsim yürüyüş botu</span>"
+          }
+        },
+        "title_2": {
+          "type": "title",
+          "settings": {
+            "title_size_dt": 30,
+            "title_size_mb": 24,
+            "title_line_height": 1.2
+          }
+        },
+        "review_wExm9Y": {
+          "type": "review",
+          "settings": {
+            "lrw_text": "4.8 Değerlendirme",
+            "text_size": 14,
+            "star_style": "star",
+            "star_size": 1,
+            "star_rating": 4.5,
+            "lrw_star_color": "#F1CB0B",
+            "lrw_star_color_disable": "#eeeeee",
+            "lrw_color": "#000000",
+            "margin_top": 10,
+            "margin_bottom": 10
+          }
+        },
+        "price_7": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "hide_tax_shipping": true,
+            "reverse_price": false,
+            "save_text_size": 12,
+            "price_weight": "bold",
+            "price_text_size": 22,
+            "price_text_size_mb": 20,
+            "compare_price": "#9a968c",
+            "original_price": "#1f1e1b",
+            "show_save_price": true,
+            "save_text": "#ffffff",
+            "save_bg": "#bda66c",
+            "save_border": "#bda66c",
+            "save_border_thickness": 0,
+            "save_corner_radius": 6,
+            "save_shadow_opacity": 0,
+            "save_shadow_horizontal_offset": 2,
+            "save_shadow_vertical_offset": 2,
+            "save_shadow_blur": 5
+          }
+        },
+        "pb_lead": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p class=\"pb-lead\">Botları sırttan geçen ayarlanabilir askılarla birbirine bağlayan tasarım, yürüyüş boyunca yerinde kalmalarına yardımcı olur. Su geçirmez <strong>TPE dış yüzey</strong> ve <strong>kauçuk taban</strong>; yağmurda, karda ve çamurda patileri kuru ve temiz tutar.</p><ul class=\"pb-usp\"><li>Askı sistemi botların çıkıp kaybolmasının önüne geçer</li><li>Su geçirmez dış yüzey, kaymaz kauçuk taban</li><li>Gece yürüyüşleri için reflektörlü detaylar</li><li>XS bedenden 2XL bedene altı seçenek</li></ul>"
+          }
+        },
+        "pb_note": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"pb-buy-note\"><span>Bedeninizden emin değil misiniz?</span><a href=\"#beden-bulucu\">Beden bulucu</a></div>"
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "label_style": "body",
+            "font_size": 14,
+            "font_style": "bold",
+            "swatch_type": "variant_image",
+            "swatch_shape": "circle",
+            "swatch_size": 2.6,
+            "swatch_image_height": "square",
+            "swatch_image_custom_radius_value": 2,
+            "size_trigger": "",
+            "chart_id": "",
+            "size_page": "",
+            "size_icon": "hanger",
+            "spaced_size": false
+          }
+        },
+        "lumin_quantity_5": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": true,
+            "hide_variant": true,
+            "compare_price_type": "original",
+            "discount_type": "percentage",
+            "discount": 0,
+            "fixed_price": 0,
+            "qty": 1,
+            "color_scheme": "background-1",
+            "title": "<strong>1× Askılı Köpek Botu</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 299 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "Ücretsiz Kargo",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": true,
+            "heading_title": "<strong>KAPIDA ÖDEME • VADE FARKSIZ TAKSİT</strong>",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 16,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "lumin_quantity_6": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": false,
+            "hide_variant": true,
+            "compare_price_type": "calculated",
+            "discount_type": "fixed",
+            "discount": 0,
+            "fixed_price": 80000,
+            "qty": 2,
+            "color_scheme": "background-1",
+            "title": "<strong>2×Askılı Köpek Botu</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 598 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "2 Al Daha Az Öde",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": false,
+            "heading_title": "",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 8,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "buy_buttons_9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "skip_cart": false,
+            "button_padding_top": 20,
+            "button_padding_bottom": 20,
+            "button_custom_style": true,
+            "button_font_size": 17,
+            "button_height": 54,
+            "lm_main_button": "#bda66c",
+            "lm_main_button_gr": "",
+            "lm_main_text": "#ffffff",
+            "lm_main_button_border_width": 0,
+            "lm_main_button_border_color": "#bda66c"
+          }
+        },
+        "custom_liquid_8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-trust-row', items: 'shield:1 Yıl Garanti|paw:Tüm Irklara Uygun|return:30 Gün Değişim, İade|card:Taksit İmkanı|cash:Kapıda Ödeme' %}"
+          }
+        },
+        "custom_liquid_10": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-ship-line', title: 'Bugün Sipariş Ver, Yarın Kargoda!', min_days: 1, max_days: 9 %}"
+          }
+        },
+        "pb_kombin": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-kombin-mini', handle: 'termal-su-gecirmez-kopek-ceketi', text: 'Botlar patileri korur, ceket gövdeyi. Yağmurda ve ayazda baştan aşağı kuru, sıcacık bir yürüyüş.' %}"
+          }
+        },
+        "description_11": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "pb_kicker",
+        "title_2",
+        "review_wExm9Y",
+        "price_7",
+        "pb_lead",
+        "pb_note",
+        "variant_picker_4",
+        "lumin_quantity_5",
+        "lumin_quantity_6",
+        "buy_buttons_9",
+        "custom_liquid_8",
+        "custom_liquid_10",
+        "pb_kombin",
+        "description_11"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "no_scroll": false,
+        "color_scheme": "background-1",
+        "block_padding": 1.5,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "thumbnail_size": 54,
+        "thumbnail_radius": 10,
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "mobile_thumbnails": "show",
+        "show_full_image": true,
+        "first_image_size": 100,
+        "second_image_size": 0,
+        "show_container": false,
+        "container_bg": "#ffffff",
+        "container_radius": 10,
+        "container_padding": 20,
+        "container_border_color": "#fcf7f5",
+        "show_container_mb": false,
+        "container_bg_mb": "#ffffff",
+        "container_padding_mb": 20,
+        "container_radius_mb": 8,
+        "container_border_color_mb": "#fcf7f5",
+        "container_text": "",
+        "container_text_bg": "#104698",
+        "container_text_txt": "#ffffff",
+        "padding_top": 32,
+        "padding_top_mb": 0,
+        "padding_bottom": 48
+      }
+    },
+    "pb_kombin": {
+      "type": "mispati-kombin",
+      "settings": {
+        "pair_product": "termal-su-gecirmez-kopek-ceketi",
+        "eyebrow": "Bu kış kombinini tamamla",
+        "heading": "Patiler kuru, <em>şimdi sıra gövdede.</em>",
+        "text": "<p>Bot patileri çamurdan ve kardan koruyor, ama yağmur sırttan, ayaz göğüsten vurur. Islanan tüyler soğuğu içeride tutar; köpeğiniz birkaç dakika sonra titremeye başlar ve yürüyüş daha tadına varılmadan biter.</p><p>Termal su geçirmez ceket, botun yarım bıraktığı işi tamamlıyor. Yağmuru tüylere ulaştırmıyor, vücut ısısını içeride tutuyor ve sırttaki tasma çıkışı sayesinde göğüs tasmasıyla birlikte rahatça kullanılıyor. Baştan aşağı korunan bir köpekle, hava durumuna bakıp yürüyüş planlamayı bırakıyorsunuz.</p>",
+        "tile_main": "Patiler için bot",
+        "tile_pair": "Gövde için ceket",
+        "main_tag": "Bu ürün",
+        "pair_tag": "Kombini tamamlar",
+        "total_label": "Kombin toplamı",
+        "button_label": "Kombini sepete ekle",
+        "button_single": "Sepete ekle",
+        "button_done": "Sepete eklendi",
+        "note": "Kapıda ödeme • Vade farksız taksit • 30 gün değişim ve iade",
+        "cream": true,
+        "pt": 72,
+        "pb": 72
+      }
+    },
+    "pb_intro": {
+      "type": "mispati-pb-intro",
+      "blocks": {
+        "pl1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "strap",
+            "title": "Düşmeyen tasarım",
+            "text": "Botlar ayarlanabilir askılarla birbirine bağlanır; yürürken, koşarken ya da zıplarken yerinde kalır."
+          }
+        },
+        "pl2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "drop",
+            "title": "Su geçirmez dış yüzey",
+            "text": "TPE dış yüzey yağmurlu kaldırımda, karda ve çamurda patileri kuru ve temiz tutar."
+          }
+        },
+        "pl3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "sole",
+            "title": "Kaymaz kauçuk taban",
+            "text": "Tırtıklı kauçuk taban ıslak ve kaygan zeminde tutunmayı artırır."
+          }
+        }
+      },
+      "block_order": [
+        "pl1",
+        "pl2",
+        "pl3"
+      ],
+      "settings": {
+        "eyebrow": "Mispati Askılı Bot",
+        "heading": "Bot değil, <em>yürüyüş özgürlüğü.</em>",
+        "text": "<p>Köpek botlarıyla ilgili en sık duyduğumuz şikâyet aynı: birkaç adım sonra çıkıp gidiyorlar. Askılı bot bu sorunu kökünden ele alır. Botları köpeğinizin sırtından geçen yumuşak askılarla birbirine bağlar, böylece yürüyüş boyunca yerinde kalır ve köpeğiniz botu düşünmek yerine yürüyüşün tadını çıkarır.</p>",
+        "image": "shopify://shop_images/golden_retriever_winter_gear_realistic.png",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_video": {
+      "type": "mispati-video",
+      "settings": {
+        "video": "shopify://files/videos/ana sayfa kesit  bot.mp4",
+        "heading": "Askılı botu yakından görün",
+        "text": "<p>Takması kolay, yürürken rahat.</p>",
+        "full_width": false,
+        "controls": false,
+        "cream": false,
+        "pt": 48,
+        "pb": 48
+      }
+    },
+    "pb_steps": {
+      "type": "mispati-pb-steps",
+      "blocks": {
+        "st1": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_xj1g8vxj1g8vxj1g.jpg",
+            "title": "Botları giydirin",
+            "text": "Patiyi botun içine yerleştirin ve bilek kapamasını rahat ama sıkı olacak şekilde kapatın."
+          }
+        },
+        "st2": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_sd6aj7sd6aj7sd6a.jpg",
+            "title": "Askıyı sırttan geçirin",
+            "text": "Sağ ve sol botları birleştiren askıyı köpeğinizin sırtından geçirin; askı vücudu sıkmadan botları yukarıda tutar."
+          }
+        },
+        "st3": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/5555.jpg",
+            "title": "Uzunluğu ayarlayın",
+            "text": "Toka ile askının boyunu köpeğinize göre ayarlayın. Askı ile sırt arasında iki parmak boşluk kalması idealdir."
+          }
+        }
+      },
+      "block_order": [
+        "st1",
+        "st2",
+        "st3"
+      ],
+      "settings": {
+        "eyebrow": "Kullanımı",
+        "heading": "Üç adımda <em>hazır.</em>",
+        "text": "<p>İlk denemede birkaç dakika sürebilir, birkaç kullanımdan sonra yürüyüş öncesi alışkanlığınız olur.</p>",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_features": {
+      "type": "mispati-pb-features",
+      "blocks": {
+        "ft1": {
+          "type": "feature",
+          "settings": {
+            "icon": "strap",
+            "title": "Ayarlanabilir askı sistemi",
+            "text": "Botları birbirine bağlayan askı, boyu tokayla ayarlanarak farklı vücut tiplerine uyum sağlar."
+          }
+        },
+        "ft2": {
+          "type": "feature",
+          "settings": {
+            "icon": "adjust",
+            "title": "Ayarlanabilir bilek",
+            "text": "Bileği saran kapama botu patiye sabitler, yürüyüş sonrası kolayca çıkarılır."
+          }
+        },
+        "ft3": {
+          "type": "feature",
+          "settings": {
+            "icon": "sole",
+            "title": "Kauçuk taban",
+            "text": "Tırtıklı kauçuk taban ıslak kaldırımda ve zorlu zeminde tutunmayı artırır."
+          }
+        },
+        "ft4": {
+          "type": "feature",
+          "settings": {
+            "icon": "drop",
+            "title": "Su geçirmez TPE",
+            "text": "Yırtılma ve aşınmaya dayanıklı TPE dış yüzey, yağmurda ve karda patileri kuru tutar."
+          }
+        },
+        "ft5": {
+          "type": "feature",
+          "settings": {
+            "icon": "reflect",
+            "title": "Reflektörlü detaylar",
+            "text": "Akşam yürüyüşlerinde araç farlarında parlayan detaylar köpeğinizi daha görünür kılar."
+          }
+        },
+        "ft6": {
+          "type": "feature",
+          "settings": {
+            "icon": "leg",
+            "title": "Patiyi saran kalıp",
+            "text": "Patinin tamamını saran kalıp, çamurun ve suyun içeri girmesini zorlaştırır."
+          }
+        }
+      },
+      "block_order": [
+        "ft1",
+        "ft2",
+        "ft3",
+        "ft4",
+        "ft5",
+        "ft6"
+      ],
+      "settings": {
+        "eyebrow": "Detaylar",
+        "heading": "Her detay <em>bir sebeple</em> var",
+        "text": "<p>Askılı bot, köpek sahiplerinin en çok yaşadığı sorunlar düşünülerek tasarlandı.</p>",
+        "image": "shopify://shop_images/s.jpg",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_compare": {
+      "type": "mispati-pb-compare",
+      "blocks": {
+        "cr1": {
+          "type": "row",
+          "settings": {
+            "label": "Yürürken yerinde kalma",
+            "us": "Askılar sayesinde yerinde kalır",
+            "them": "Sık sık çıkabilir"
+          }
+        },
+        "cr2": {
+          "type": "row",
+          "settings": {
+            "label": "Kaybolma riski",
+            "us": "Botlar birbirine bağlı",
+            "them": "Tek tek düşüp kaybolabilir"
+          }
+        },
+        "cr3": {
+          "type": "row",
+          "settings": {
+            "label": "Ayarlanabilirlik",
+            "us": "Askı ve bilek ayarlı",
+            "them": "Genellikle yalnızca bilek"
+          }
+        },
+        "cr4": {
+          "type": "row",
+          "settings": {
+            "label": "Islak zemin",
+            "us": "Kaymaz tırtıklı taban",
+            "them": "Modele göre değişir"
+          }
+        },
+        "cr5": {
+          "type": "row",
+          "settings": {
+            "label": "Gece görünürlüğü",
+            "us": "Reflektörlü detaylar",
+            "them": "Çoğunda yok"
+          }
+        }
+      },
+      "block_order": [
+        "cr1",
+        "cr2",
+        "cr3",
+        "cr4",
+        "cr5"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Neden askılı?",
+        "heading": "Farkı <em>yürüyüşte</em> hissedin",
+        "text": "",
+        "us_label": "Mispati Askılı Bot",
+        "them_label": "Klasik Köpek Botu",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_uses": {
+      "type": "mispati-pb-uses",
+      "blocks": {
+        "us1": {
+          "type": "use",
+          "settings": {
+            "image": "shopify://shop_images/s.jpg",
+            "tag": "Kış",
+            "title": "Kar ve buz",
+            "text": "Karlı yollarda ve yol tuzu dökülen kaldırımlarda patiler ile zemin arasına bir katman koyar."
+          }
+        },
+        "us2": {
+          "type": "use",
+          "settings": {
+            "image": "shopify://shop_images/dog_boots_legs_only_rain_closeup.png",
+            "tag": "Yağmur",
+            "title": "Çamurlu günler",
+            "text": "Yürüyüş dönüşü pati yıkama faslını kısaltır, evin zemini temiz kalır."
+          }
+        },
+        "us3": {
+          "type": "use",
+          "settings": {
+            "image": "shopify://shop_images/eee.jpg",
+            "tag": "Şehir",
+            "title": "Park ve kaldırım",
+            "text": "Islak kaldırımda ve parkta kaymaz taban sayesinde güvenle adım atar, eve temiz patilerle döner."
+          }
+        },
+        "us4": {
+          "type": "use",
+          "settings": {
+            "image": "shopify://shop_images/golden_retriever_winter_gear_realistic.png",
+            "tag": "Doğa",
+            "title": "Orman ve patika",
+            "text": "Islak yaprak, taşlı patika ya da engebeli zeminde patileri korumaya yardımcı olur."
+          }
+        }
+      },
+      "block_order": [
+        "us1",
+        "us2",
+        "us3",
+        "us4"
+      ],
+      "settings": {
+        "eyebrow": "Kullanım alanları",
+        "heading": "Dört mevsim, <em>dört pati</em>",
+        "text": "",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_size": {
+      "type": "mispati-size-finder",
+      "blocks": {
+        "sz1": {
+          "type": "size",
+          "settings": {
+            "size": "XS",
+            "w_min": "2.5",
+            "w_max": "3.8",
+            "l_min": "3.5",
+            "l_max": "4.6",
+            "body": "72 – 84 cm",
+            "breeds": "Toy Poodle, Küçük Japon Spitz"
+          }
+        },
+        "sz2": {
+          "type": "size",
+          "settings": {
+            "size": "S",
+            "w_min": "3.5",
+            "w_max": "4.6",
+            "l_min": "4.5",
+            "l_max": "6.0",
+            "body": "82 – 100 cm",
+            "breeds": "Minyatür Schnauzer, Bedlington Terrier, Bichon Frise"
+          }
+        },
+        "sz3": {
+          "type": "size",
+          "settings": {
+            "size": "M",
+            "w_min": "5.1",
+            "w_max": "6.3",
+            "l_min": "6.0",
+            "l_max": "7.0",
+            "body": "98 – 116 cm",
+            "breeds": "Minyatür Bulldog, Whippet"
+          }
+        },
+        "sz4": {
+          "type": "size",
+          "settings": {
+            "size": "L",
+            "w_min": "6.3",
+            "w_max": "7.2",
+            "l_min": "7.0",
+            "l_max": "8.5",
+            "body": "114 – 136 cm",
+            "breeds": "Bulldog, Pitbull, Portekiz Su Köpeği"
+          }
+        },
+        "sz5": {
+          "type": "size",
+          "settings": {
+            "size": "XL",
+            "w_min": "7.2",
+            "w_max": "8.2",
+            "l_min": "8.6",
+            "l_max": "9.4",
+            "body": "132 – 155 cm",
+            "breeds": "Alman Çoban Köpeği, Labrador, Husky"
+          }
+        },
+        "sz6": {
+          "type": "size",
+          "settings": {
+            "size": "2XL",
+            "w_min": "8.2",
+            "w_max": "9.5",
+            "l_min": "9.5",
+            "l_max": "10.5",
+            "body": "152 – 172 cm",
+            "breeds": "Doberman, Golden Retriever, Akita"
+          }
+        }
+      },
+      "block_order": [
+        "sz1",
+        "sz2",
+        "sz3",
+        "sz4",
+        "sz5",
+        "sz6"
+      ],
+      "settings": {
+        "eyebrow": "Beden Bulucu",
+        "heading": "Doğru beden, <em>bir dakikada.</em>",
+        "text": "<p>Pati ölçünüzü yazın ya da köpeğinizin ırkını seçin, size uygun bedeni hemen önerelim.</p>",
+        "note": "<p>Ölçüler santimetre cinsindendir. İki beden arasında kalırsanız büyük bedeni seçmenizi öneririz; beden uymazsa 30 gün içinde değiştirebilirsiniz.</p>",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_adapt": {
+      "type": "mispati-pb-adapt",
+      "blocks": {
+        "dy1": {
+          "type": "day",
+          "settings": {
+            "title": "Evde tanışma",
+            "text": "Botları koklamasına izin verin, ödül maması verin. Sadece bir iki dakika giydirip hemen çıkarın."
+          }
+        },
+        "dy2": {
+          "type": "day",
+          "settings": {
+            "title": "Ev içinde kısa turlar",
+            "text": "Botlar ve askı takılıyken evde birkaç dakika dolaşın, her adımı ödüllendirin. İlk adımların komik görünmesi çok normal."
+          }
+        },
+        "dy3": {
+          "type": "day",
+          "settings": {
+            "title": "Kısa dış yürüyüş",
+            "text": "Kapının önünde ya da sokakta 5-10 dakikalık kısa bir yürüyüş yapın, oyun ve ödülle olumlu bir deneyim haline getirin."
+          }
+        },
+        "dy4": {
+          "type": "day",
+          "settings": {
+            "title": "Normal rutine geçiş",
+            "text": "Köpeğiniz rahat yürüyorsa süreyi kademeli olarak uzatın. Çoğu köpek birkaç gün içinde botlara alışır."
+          }
+        }
+      },
+      "block_order": [
+        "dy1",
+        "dy2",
+        "dy3",
+        "dy4"
+      ],
+      "settings": {
+        "eyebrow": "Alışma rehberi",
+        "heading": "İlk adımlar <em>komik</em> olabilir",
+        "text": "<p>Köpekler patilerinde bir şey hissetmeye alışkın değildir; ilk denemelerde bacaklarını yüksek kaldırarak yürümeleri tamamen normaldir. Sabırla ve ödülle birkaç günde alışırlar.</p>",
+        "unit": "Gün",
+        "tip": "<p>Köpeğiniz botları ısırmaya çalışırsa dikkatini oyuncakla dağıtın ve süreyi kısaltın. Bir adım geriye gitmek, alışmayı hızlandırır.</p>",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_reviews": {
+      "type": "mispati-review-wall",
+      "blocks": {
+        "review_8CUrGP": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Çok rahat botlar dostum rahat etti</p>",
+            "name": "Ceren O.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_CFPGrU": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>BAYILDIKK</p>",
+            "name": "Büşra I.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_6EQmJQ": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Asla kaymıyor</p>",
+            "name": "Hatice E.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_G7GFzj": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Benim botlarımdan daha kaliteli :))</p>",
+            "name": "Nursena Ö.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_RbCpQa": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Goretex gibi baya kaliteli</p>",
+            "name": "Nur K.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_gH4CU3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Yağmurlu havalarda ilk tercihimiz&nbsp;</p>",
+            "name": "Işıl Ç.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_98gpjb": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Köyde yaşıyoruz &nbsp;karlı günlerde artık köpeğimle çıkabiliyoruz</p>",
+            "name": "Nurettin E.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_HRBG4t": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Kesinlikle kayma yapmıyor benim botumdan daha iyi</p>",
+            "name": "Mehmet Z.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_Bq68km": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Botlarımıza bayıldık&nbsp;</p>",
+            "name": "Ayça U.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_U7QQ9T": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Su geçirmeme olayı baya iyi utanmasam ben giyicem :))</p>",
+            "name": "Ali T.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_yPKjgM": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Büyük ırklar içinde olması çok iyi</p>",
+            "name": "Lale D.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_XtpAiP": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Askılı olması gerçekten çok farkediyor, asla botlar ayagından çıkmıyor</p>",
+            "name": "Ahmet Z.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_itqFDj": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Süper ötesi kesinlikle fiyatına değer</p>",
+            "name": "Pelin Y.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_KHp6eg": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "title": "",
+            "text": "<p>Asla rahatsız olmuyor&nbsp;</p>",
+            "name": "Deniz E.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_YbmPaa": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "text": "<p>Şuana kadar giydiğimiz en iyi bott</p>",
+            "name": "Buse  F.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_FcXcCm": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "title": "",
+            "text": "<p>Kesinlikle süper, artık çamurlu patileri yıkama derdimiz yok&nbsp;</p>",
+            "name": "Ayşe K.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        },
+        "review_YVhkVe": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "title": "",
+            "text": "<p>Evde temizleme seansları bitti</p>",
+            "name": "Süleyman T.",
+            "city": "",
+            "date": "",
+            "verified": false
+          }
+        }
+      },
+      "block_order": [
+        "review_8CUrGP",
+        "review_CFPGrU",
+        "review_6EQmJQ",
+        "review_G7GFzj",
+        "review_RbCpQa",
+        "review_gH4CU3",
+        "review_98gpjb",
+        "review_HRBG4t",
+        "review_Bq68km",
+        "review_U7QQ9T",
+        "review_yPKjgM",
+        "review_XtpAiP",
+        "review_itqFDj",
+        "review_KHp6eg",
+        "review_YbmPaa",
+        "review_FcXcCm",
+        "review_YVhkVe"
+      ],
+      "settings": {
+        "eyebrow": "Müşteri Yorumları",
+        "heading": "Patiler <em>ne diyor?</em>",
+        "initial": 6,
+        "empty_title": "İlk yorumu siz yazın",
+        "empty_text": "Askılı botu kullandıysanız deneyiminizi paylaşın; sizin yorumunuz başka köpek sahiplerinin doğru seçimi yapmasına yardımcı olur.",
+        "pt": 88,
+        "pb": 88
+      }
+    },
+    "pb_faq": {
+      "type": "mispati-faq",
+      "blocks": {
+        "fq1": {
+          "type": "question",
+          "settings": {
+            "question": "Hangi bedeni almalıyım?",
+            "answer": "<p>Köpeğiniz ayaktayken ön patisini kâğıda bastırıp çevresini çizin ve en geniş yerini ölçün. Sayfadaki beden bulucuya ölçüyü yazmanız yeterli. İki beden arasında kalırsanız büyük bedeni öneririz.</p>"
+          }
+        },
+        "fq2": {
+          "type": "question",
+          "settings": {
+            "question": "Askılar köpeğimi rahatsız eder mi?",
+            "answer": "<p>Askı yumuşak ve ayarlanabilirdir. Sırt ile askı arasında iki parmak boşluk kalacak şekilde ayarladığınızda vücudu sıkmadan botları yukarıda tutar.</p>"
+          }
+        },
+        "fq3": {
+          "type": "question",
+          "settings": {
+            "question": "Köpeğim botlarla tuhaf yürüyor, normal mi?",
+            "answer": "<p>Evet, ilk denemelerde çok normal. Sayfadaki alışma rehberini takip ederek kısa sürelerle ve ödülle başlayın; çoğu köpek birkaç gün içinde alışır.</p>"
+          }
+        },
+        "fq4": {
+          "type": "question",
+          "settings": {
+            "question": "Botlar su geçirir mi?",
+            "answer": "<p>Dış yüzey su geçirmez TPE malzemedendir; yağmurlu ve karlı havalarda patileri kuru tutar. Derin su birikintisinde uzun süre beklemek gibi durumlarda bilek kısmından su girebilir.</p>"
+          }
+        },
+        "fq5": {
+          "type": "question",
+          "settings": {
+            "question": "Nasıl temizlerim?",
+            "answer": "<p>Çamurlu botları ılık su ve hafif sabunla elde yıkayıp gölgede kurutun. Kalorifer ya da doğrudan güneş üzerinde kurutmayın.</p>"
+          }
+        },
+        "fq6": {
+          "type": "question",
+          "settings": {
+            "question": "Beden uymazsa ne yapabilirim?",
+            "answer": "<p>14 gün içinde iade, 30 gün içinde değişim hakkınız var. Bize yazmanız yeterli, doğru bedeni birlikte bulup en hızlı şekilde değiştirelim.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "fq1",
+        "fq2",
+        "fq3",
+        "fq4",
+        "fq5",
+        "fq6"
+      ],
+      "settings": {
+        "heading": "Sıkça sorulan sorular",
+        "text": "",
+        "open_first": true,
+        "cta": "<p>Başka bir sorunuz mu var? <a href=\"/pages/contact\">Bize yazın</a></p>",
+        "schema_markup": true,
+        "cream": true,
+        "pt": 80,
+        "pb": 80
+      }
+    },
+    "pb_guarantee": {
+      "type": "mispati-pb-guarantee",
+      "blocks": {
+        "gu1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Ücretsiz kargo",
+            "text": "Siparişiniz özenle paketlenir, genellikle 1 iş günü içinde kargoya verilir."
+          }
+        },
+        "gu2": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30 gün değişim ve iade",
+            "text": "Beden uymazsa ya da beğenmezseniz 30 gün içinde değiştirin veya iade edin."
+          }
+        },
+        "gu3": {
+          "type": "item",
+          "settings": {
+            "icon": "cash",
+            "title": "Kapıda ödeme",
+            "text": "Dilerseniz ürünü teslim alırken ödeyin, taksit seçeneklerinden yararlanın."
+          }
+        },
+        "gu4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "1 yıl garanti",
+            "text": "Askılı botunuz 1 yıl boyunca garanti kapsamındadır."
+          }
+        }
+      },
+      "block_order": [
+        "gu1",
+        "gu2",
+        "gu3",
+        "gu4"
+      ],
+      "settings": {
+        "heading": "",
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "pb_products": {
+      "type": "mispati-products",
+      "settings": {
+        "heading": "Patili dostlarınız için",
+        "collection": "patili-dostlarimiz-i̇cin-urunler",
+        "limit": 6,
+        "columns": 4,
+        "hide_current": true,
+        "button_label": "Tümünü görüntüle",
+        "cream": false,
+        "pt": 64,
+        "pb": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pb_kombin",
+    "pb_intro",
+    "pb_video",
+    "pb_steps",
+    "pb_features",
+    "pb_compare",
+    "pb_uses",
+    "pb_size",
+    "pb_adapt",
+    "pb_reviews",
+    "pb_faq",
+    "pb_guarantee",
+    "pb_products"
+  ]
+}

@@ -1,0 +1,37 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="mp-subheading">{{ section.settings.text }}</div>{%- endif -%}
+    <div class="mp-compare" data-mp-compare>
+      {%- if section.settings.after_image != blank -%}
+        {{ section.settings.after_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: 'mp-compare__after', alt: section.settings.after_label }}
+      {%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+      {%- if section.settings.before_image != blank -%}
+        {{ section.settings.before_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: 'mp-compare__before', alt: section.settings.before_label }}
+      {%- endif -%}
+      <span class="mp-compare__tag mp-compare__tag--before">{{ section.settings.before_label }}</span>
+      <span class="mp-compare__tag mp-compare__tag--after">{{ section.settings.after_label }}</span>
+      <div class="mp-compare__line"><span class="mp-compare__handle">{% render 'mispati-icon', name: 'arrows-h' %}</span></div>
+      <input class="mp-compare__range" type="range" min="0" max="100" value="50" aria-label="Önce / sonra karşılaştırma">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Önce/Sonra",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "image_picker", "id": "before_image", "label": "Önce görseli (sol)" },
+    { "type": "text", "id": "before_label", "label": "Önce etiketi", "default": "Ceketsiz" },
+    { "type": "image_picker", "id": "after_image", "label": "Sonra görseli (sağ)" },
+    { "type": "text", "id": "after_label", "label": "Sonra etiketi", "default": "Mispati ile" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": true },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "presets": [{ "name": "Mispati Önce/Sonra" }]
+}
+{% endschema %}

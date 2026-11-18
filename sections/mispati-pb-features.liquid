@@ -1,0 +1,59 @@
+{%- assign has_img = false -%}{%- if section.settings.image != blank or request.design_mode -%}{%- assign has_img = true -%}{%- endif -%}
+{%- assign half = section.blocks.size | plus: 1 | divided_by: 2 -%}
+<section class="pb pb--paper" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="pb__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="pb-feat{% unless has_img %} pb-feat--noimg{% endunless %}">
+      <div class="pb-feat__col pb-feat__col--left">
+        {%- for block in section.blocks limit: half -%}
+          <div class="pb-feat__item" {{ block.shopify_attributes }}>
+            <span class="pb-icon">{% render 'mispati-icon', name: block.settings.icon %}</span>
+            <div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if has_img -%}
+        <div class="pb-feat__media">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 36vw, 90vw' }}
+          {%- else -%}<div class="pb__ph" style="height:100%">Görsel ekleyin</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="pb-feat__col">
+        {%- for block in section.blocks offset: half -%}
+          <div class="pb-feat__item" {{ block.shopify_attributes }}>
+            <span class="pb-icon">{% render 'mispati-icon', name: block.settings.icon %}</span>
+            <div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Özellikler",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Her detay bir sebeple var" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "image_picker", "id": "image", "label": "Orta görsel (opsiyonel)" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    { "type": "feature", "name": "Özellik", "settings": [
+      { "type": "select", "id": "icon", "label": "İkon", "options": [{ "value": "strap", "label": "Askı" }, { "value": "drop", "label": "Su" }, { "value": "sole", "label": "Taban" }, { "value": "reflect", "label": "Reflektör" }, { "value": "leg", "label": "Bacak" }, { "value": "adjust", "label": "Ayar" }, { "value": "snow", "label": "Kar" }, { "value": "rain", "label": "Yağmur" }, { "value": "moon", "label": "Gece" }, { "value": "mountain", "label": "Doğa" }, { "value": "paw", "label": "Pati" }, { "value": "shield", "label": "Kalkan" }, { "value": "return", "label": "İade" }, { "value": "cash", "label": "Kapıda ödeme" }, { "value": "card", "label": "Kart" }, { "value": "truck", "label": "Kargo" }, { "value": "gift", "label": "Hediye" }, { "value": "check", "label": "Onay" }], "default": "check" },
+      { "type": "text", "id": "title", "label": "Başlık", "default": "Özellik" },
+      { "type": "textarea", "id": "text", "label": "Metin" }
+    ] }
+  ],
+  "presets": [{ "name": "Premium Özellikler", "blocks": [{ "type": "feature" }, { "type": "feature" }, { "type": "feature" }, { "type": "feature" }] }]
+}
+{% endschema %}

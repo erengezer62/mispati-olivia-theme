@@ -1,0 +1,217 @@
+{%- comment -%}
+  Mispati Ceket Beden Bulucu
+  Kullanım (ürün sayfasında Özel Liquid bloğu):
+  {% render 'mispati-ceket-beden', chart: 'XS;sırt_min-sırt_max;göğüs_min-göğüs_max|S;...' %}
+  Her beden: Beden adı ; sırt uzunluğu aralığı (cm) ; göğüs çevresi aralığı (cm)
+  Beden adı, üründeki "beden" seçeneğiyle birebir aynı yazılmalıdır.
+{%- endcomment -%}
+{%- assign rows = chart | split: '|' -%}
+<details class="mcb" id="beden-bulucu" data-mcb>
+  <summary class="mcb__toggle">
+    <span class="mcb__toggle-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v8H3z"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>
+    </span>
+    <span class="mcb__toggle-text"><strong>Bedenimi bul</strong><span>Sırt ve göğüs ölçüsünü yazın, bedeni biz söyleyelim</span></span>
+    <span class="mcb__chev" aria-hidden="true"></span>
+  </summary>
+
+  <div class="mcb__panel">
+    <ol class="mcb__steps">
+      <li><b>Sırt uzunluğu:</b> Boynun bittiği yerden (tasmanın oturduğu hiza) kuyruğun başladığı noktaya kadar düz ölçün.</li>
+      <li><b>Göğüs çevresi:</b> Ön bacakların hemen arkasından, göğsün en geniş yerinden mezurayı tam bir tur dolayın.</li>
+    </ol>
+
+    <div class="mcb__inputs">
+      <label class="mcb__field">
+        <span>Sırt uzunluğu</span>
+        <span class="mcb__box"><input type="text" inputmode="decimal" autocomplete="off" placeholder="örn. 48" data-mcb-back aria-label="Sırt uzunluğu (cm)"><em>cm</em></span>
+      </label>
+      <label class="mcb__field">
+        <span>Göğüs çevresi</span>
+        <span class="mcb__box"><input type="text" inputmode="decimal" autocomplete="off" placeholder="örn. 62" data-mcb-chest aria-label="Göğüs çevresi (cm)"><em>cm</em></span>
+      </label>
+    </div>
+
+    <div class="mcb__result" data-mcb-result aria-live="polite">
+      <div class="mcb__badge" data-mcb-badge></div>
+      <div class="mcb__result-body">
+        <p data-mcb-msg></p>
+        <button type="button" class="mcb__pick" data-mcb-pick>Bu bedeni seç</button>
+      </div>
+    </div>
+    <p class="mcb__warn" data-mcb-warn></p>
+
+    <div class="mcb__table-wrap">
+      <table class="mcb__table">
+        <thead><tr><th>Beden</th><th>Sırt uzunluğu</th><th>Göğüs çevresi</th></tr></thead>
+        <tbody>
+          {%- for r in rows -%}
+            {%- assign c = r | split: ';' -%}
+            {%- assign b = c[1] | strip | replace: '-', ' – ' -%}
+            {%- assign g = c[2] | strip | replace: '-', ' – ' -%}
+            <tr data-mcb-row="{{ forloop.index0 }}"><td>{{ c[0] | strip }}</td><td>{{ b }} cm</td><td>{{ g }} cm</td></tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    <p class="mcb__note">İki beden arasında kalırsanız büyük bedeni seçin; ceketin boyun ve bel ayarı fazlalığı toplar. Beden uymazsa 30 gün içinde değiştirebilirsiniz.</p>
+  </div>
+
+  <script type="application/json" data-mcb-chart>{{ chart | json }}</script>
+</details>
+
+<style>
+  .mcb{margin:6px 0 14px;border:1.5px solid #e8e2d2;border-radius:12px;background:#fff;color:#1f1e1b;overflow:hidden}
+  .mcb[open]{border-color:#bda66c;background:#fbf8f1}
+  .mcb__toggle{list-style:none;display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;user-select:none}
+  .mcb__toggle::-webkit-details-marker{display:none}
+  .mcb__toggle::marker{content:''}
+  .mcb__toggle-icon{flex:0 0 36px;height:36px;border-radius:50%;background:#f4efe2;color:#a08a50;display:grid;place-items:center}
+  .mcb__toggle-icon svg{width:20px;height:20px}
+  .mcb__toggle-text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;line-height:1.3}
+  .mcb__toggle-text strong{font-size:15px}
+  .mcb__toggle-text span{font-size:12.5px;color:#6b665c}
+  .mcb__chev{width:9px;height:9px;border-right:2px solid #a08a50;border-bottom:2px solid #a08a50;transform:rotate(45deg);margin:0 4px 4px 0;transition:transform .2s}
+  .mcb[open] .mcb__chev{transform:rotate(-135deg);margin:4px 4px 0 0}
+  .mcb__panel{padding:2px 14px 16px}
+  .mcb__steps{margin:0 0 14px;padding-left:18px;font-size:13px;line-height:1.5;color:#3c3a35}
+  .mcb__steps li{margin-bottom:6px}
+  .mcb__inputs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+  .mcb__field{min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:600;color:#3c3a35}
+  .mcb__box{display:flex;align-items:center;border:1.5px solid #d9d3c3;border-radius:10px;background:#fff;padding:0 12px;transition:border-color .15s}
+  .mcb__box:focus-within{border-color:#bda66c}
+  .mcb__box input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:16px;padding:11px 0;color:#1f1e1b;box-shadow:none;width:100%;height:auto;min-height:0;margin:0}
+  .mcb__box em{font-style:normal;font-size:13px;color:#9a968c}
+  .mcb__result{display:none;align-items:center;gap:14px;margin-top:14px;padding:12px;border-radius:12px;background:#fff;border:1.5px solid #bda66c}
+  .mcb__result.is-on{display:flex}
+  .mcb__badge{flex:0 0 56px;height:56px;border-radius:50%;background:#bda66c;color:#fff;font-weight:700;font-size:19px;display:grid;place-items:center;letter-spacing:.02em}
+  .mcb__result-body p{margin:0 0 8px;font-size:13.5px;line-height:1.45}
+  .mcb__pick{appearance:none;border:0;border-radius:8px;background:#1f1e1b;color:#fff;font-size:13px;font-weight:600;padding:9px 14px;cursor:pointer}
+  .mcb__pick:hover{background:#3c3a35}
+  .mcb__warn{display:none;margin:12px 0 0;font-size:13px;line-height:1.45;color:#8a5a2b;background:#f4efe2;border-radius:10px;padding:10px 12px}
+  .mcb__warn.is-on{display:block}
+  .mcb__table-wrap{margin-top:16px;overflow-x:auto}
+  .mcb__table{width:100%;border-collapse:collapse;font-size:13px;text-align:center;background:#fff;border-radius:10px;overflow:hidden}
+  .mcb__table th{background:#f4efe2;color:#6b5a2e;font-weight:600;padding:9px 6px}
+  .mcb__table td{padding:9px 6px;border-top:1px solid #efe9da}
+  .mcb__table td:first-child{font-weight:700}
+  .mcb__table tr.is-hit td{background:#fbf3dc}
+  .mcb__note{margin:10px 0 0;font-size:12px;line-height:1.45;color:#6b665c}
+</style>
+
+<script>
+(function () {
+  var cs = document.currentScript;
+  var root = cs && cs.previousElementSibling && cs.previousElementSibling.previousElementSibling;
+  if (!root || !root.matches('[data-mcb]')) root = document.querySelector('[data-mcb]:not([data-ready])');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+
+  function n(v) { var x = parseFloat(String(v == null ? '' : v).replace(',', '.').trim()); return isNaN(x) ? null : x; }
+  function fmt(v) { return String(v).replace('.', ','); }
+
+  var sizes = [];
+  try {
+    JSON.parse(root.querySelector('[data-mcb-chart]').textContent).split('|').forEach(function (r) {
+      var c = r.split(';');
+      if (c.length < 3) return;
+      var b = c[1].split('-'), g = c[2].split('-');
+      sizes.push({ size: c[0].trim(), bMin: n(b[0]), bMax: n(b[1] != null ? b[1] : b[0]), gMin: n(g[0]), gMax: n(g[1] != null ? g[1] : g[0]) });
+    });
+  } catch (e) {}
+  if (!sizes.length) return;
+
+  var back = root.querySelector('[data-mcb-back]'), chest = root.querySelector('[data-mcb-chest]');
+  var box = root.querySelector('[data-mcb-result]'), badge = root.querySelector('[data-mcb-badge]'), msg = root.querySelector('[data-mcb-msg]');
+  var warn = root.querySelector('[data-mcb-warn]'), pick = root.querySelector('[data-mcb-pick]');
+  var rows = [].slice.call(root.querySelectorAll('[data-mcb-row]'));
+  var current = -1;
+
+  function idxFor(v, minK, maxK) {
+    for (var i = 0; i < sizes.length; i++) { if (v >= sizes[i][minK] && v <= sizes[i][maxK]) return { i: i, gap: false }; }
+    if (v < sizes[0][minK]) return { i: -1, gap: false };
+    for (var j = 0; j < sizes.length; j++) { if (sizes[j][minK] > v) return { i: j, gap: true }; }
+    return { i: sizes.length, gap: false };
+  }
+
+  function hide() { current = -1; box.classList.remove('is-on'); warn.classList.remove('is-on'); rows.forEach(function (r) { r.classList.remove('is-hit'); }); }
+  function show(i, text, note) {
+    current = i;
+    rows.forEach(function (r, k) { r.classList.toggle('is-hit', k === i); });
+    badge.textContent = sizes[i].size;
+    msg.innerHTML = text;
+    pick.textContent = sizes[i].size + ' bedeni seç';
+    box.classList.add('is-on');
+    if (note) { warn.textContent = note; warn.classList.add('is-on'); } else warn.classList.remove('is-on');
+  }
+  function fail(text) { hide(); warn.textContent = text; warn.classList.add('is-on'); }
+
+  function run() {
+    var B = n(back.value), G = n(chest.value);
+    if (B != null && (B < 10 || B > 150)) B = null;
+    if (G != null && (G < 15 || G > 200)) G = null;
+    if (B == null && G == null) { hide(); return; }
+
+    var last = sizes.length - 1;
+    var rb = B != null ? idxFor(B, 'bMin', 'bMax') : null;
+    var rg = G != null ? idxFor(G, 'gMin', 'gMax') : null;
+
+    if ((rb && rb.i > last) || (rg && rg.i > last)) {
+      fail('Girdiğiniz ölçü en büyük bedenimiz olan ' + sizes[last].size + ' bedenin üzerinde kalıyor. Bize yazın, köpeğinize uygun seçeneği birlikte bulalım.');
+      return;
+    }
+    var small = (rb && rb.i < 0) || (rg && rg.i < 0);
+    var ib = rb ? Math.max(rb.i, 0) : -1, ig = rg ? Math.max(rg.i, 0) : -1;
+    var i = Math.max(ib, ig);
+
+    var text, note = '';
+    if (B != null && G != null) {
+      if (ib === ig) {
+        text = 'Sırt <strong>' + fmt(B) + ' cm</strong>, göğüs <strong>' + fmt(G) + ' cm</strong>. Köpeğinize en uygun beden <strong>' + sizes[i].size + '</strong>.';
+      } else if (ig > ib) {
+        text = 'Sırt ölçüsüne göre ' + sizes[ib].size + ' uyardı, ama göğüs çevresi <strong>' + fmt(G) + ' cm</strong> olduğu için ceketin rahat kapanması adına <strong>' + sizes[i].size + '</strong> bedeni öneriyoruz. Fazla uzunluğu bel ayarı toplar.';
+      } else {
+        text = 'Göğüs ölçüsüne göre ' + sizes[ig].size + ' uyardı, ama sırt uzunluğu <strong>' + fmt(B) + ' cm</strong> olduğu için sırtı tam örtmesi adına <strong>' + sizes[i].size + '</strong> bedeni öneriyoruz. Göğüsteki boşluğu ayarlanabilir kayış kapatır.';
+      }
+      if ((rb.gap && ib === i) || (rg.gap && ig === i)) text += ' Ölçünüz iki beden arasında kaldığı için bir büyüğünü seçtik.';
+    } else {
+      var v = B != null ? B : G, label = B != null ? 'Sırt uzunluğu' : 'Göğüs çevresi', r = B != null ? rb : rg;
+      text = label + ' <strong>' + fmt(v) + ' cm</strong> için uygun beden <strong>' + sizes[i].size + '</strong>.' + (r.gap ? ' İki beden arasında kaldığınız için bir büyüğünü seçtik.' : '');
+      note = 'Daha kesin sonuç için ' + (B != null ? 'göğüs çevresini de' : 'sırt uzunluğunu da') + ' yazın.';
+    }
+    if (small) note = 'Ölçünüz en küçük bedenimiz olan ' + sizes[0].size + ' bedenin biraz altında. ' + sizes[0].size + ' ayarlanabilir yapısıyla genellikle uyar; emin olamazsanız bize yazın.';
+    show(i, text, note);
+  }
+
+  back.addEventListener('input', run);
+  chest.addEventListener('input', run);
+
+  function selectSize(val) {
+    var done = false;
+    var info = root.closest('product-info, .product__info-wrapper, .product') || document;
+    var radios = [].slice.call(info.querySelectorAll('input[type="radio"]')).filter(function (x) { return !x.closest('[data-mcb]'); });
+    var r = radios.find(function (x) { return x.value === val && x.offsetParent !== null; }) || radios.find(function (x) { return x.value === val; });
+    if (r) {
+      var lbl = r.id ? info.querySelector('label[for="' + r.id + '"]') : null;
+      if (lbl) lbl.click(); else { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+      done = true;
+    }
+    if (!done) {
+      [].slice.call(info.querySelectorAll('select')).forEach(function (s) {
+        if (done || s.closest('[data-mcb]')) return;
+        var opt = [].slice.call(s.options).find(function (o) { return o.value === val || o.text.trim() === val; });
+        if (opt) { s.value = opt.value; s.dispatchEvent(new Event('change', { bubbles: true })); done = true; }
+      });
+    }
+    return done;
+  }
+
+  pick.addEventListener('click', function () {
+    if (current < 0) return;
+    var val = sizes[current].size;
+    var ok = selectSize(val);
+    pick.textContent = ok ? val + ' seçildi ✓' : 'Bedeni yukarıdan seçin';
+    setTimeout(function () { if (current >= 0) pick.textContent = sizes[current].size + ' bedeni seç'; }, 2400);
+  });
+})();
+</script>

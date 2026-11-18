@@ -1,0 +1,52 @@
+{%- style -%}
+  .mp-hero-{{ section.id }} { position: relative; overflow: hidden; background: #1f1e1b; }
+  .mp-hero-{{ section.id }} .mp-hero__media img { display: block; width: 100%; height: {{ section.settings.height }}vh; min-height: 420px; object-fit: cover; }
+  .mp-hero-{{ section.id }} .mp-hero__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,{{ section.settings.overlay | divided_by: 100.0 }}) 100%); }
+  .mp-hero-{{ section.id }} .mp-hero__content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 0 20px 9vh; color: #fff; }
+  .mp-hero-{{ section.id }} h1 { font-family: var(--font-heading-family); font-weight: 600; font-size: clamp(30px, 4.6vw, 58px); line-height: 1.1; margin: 0 0 14px; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,0.25); }
+  .mp-hero-{{ section.id }} .mp-hero__sub { max-width: 620px; font-size: clamp(14px, 1.4vw, 17px); line-height: 1.6; margin: 0 0 26px; opacity: 0.95; }
+  .mp-hero-{{ section.id }} .mp-hero__media--mobile { display: none; }
+  @media (max-width: 749px) {
+    .mp-hero-{{ section.id }} .mp-hero__media--desktop.has-mobile { display: none; }
+    .mp-hero-{{ section.id }} .mp-hero__media--mobile { display: block; }
+    .mp-hero-{{ section.id }} .mp-hero__media img { height: 78vh; }
+  }
+{%- endstyle -%}
+<section class="mp-hero mp-hero-{{ section.id }}">
+  <div class="mp-hero__media mp-hero__media--desktop{% if section.settings.mobile_image != blank %} has-mobile{% endif %}">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', alt: section.settings.heading }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  {%- if section.settings.mobile_image != blank -%}
+    <div class="mp-hero__media mp-hero__media--mobile">
+      {{ section.settings.mobile_image | image_url: width: 1100 | image_tag: loading: 'eager', sizes: '100vw', alt: section.settings.heading }}
+    </div>
+  {%- endif -%}
+  <div class="mp-hero__overlay"></div>
+  <div class="mp-hero__content">
+    {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.subheading != blank -%}<p class="mp-hero__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}<a class="mp-btn" href="{{ section.settings.link | default: '/collections/all' }}">{{ section.settings.button_label }}</a>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Karşılama",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Masaüstü görsel" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobil görsel" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Onların Mutluluğu, Sizin Huzurunuz." },
+    { "type": "text", "id": "subheading", "label": "Alt başlık" },
+    { "type": "text", "id": "button_label", "label": "Buton metni", "default": "Ürünleri İncele" },
+    { "type": "url", "id": "link", "label": "Buton bağlantısı" },
+    { "type": "range", "id": "height", "label": "Masaüstü yükseklik", "min": 50, "max": 100, "step": 5, "unit": "vh", "default": 80 },
+    { "type": "range", "id": "overlay", "label": "Alt karartma", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 45 }
+  ],
+  "presets": [{ "name": "Mispati Karşılama" }]
+}
+{% endschema %}

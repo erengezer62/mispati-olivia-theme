@@ -1,0 +1,31 @@
+{%- comment -%}
+  Sepete ekle altındaki küçük yorum kaydırıcı.
+  data: "gorsel-dosya-adi.jpg~Yorum metni~Yazar;;..."  (görsel: Ayarlar > Dosyalar'daki dosya adı)
+{%- endcomment -%}
+{%- assign rows = data | split: ';;' -%}
+<div class="mp-mini" data-mp-mini>
+  <div class="mp-mini__track">
+    {%- for row in rows -%}
+      {%- assign f = row | split: '~' -%}
+      <div class="mp-mini__slide{% if forloop.first %} is-active{% endif %}">
+        {%- assign img_name = f[0] | strip -%}
+        {%- assign img = images[img_name] -%}
+        {%- assign img_w = img.width | plus: 0 -%}
+        {%- if img_name != blank and img_w > 0 -%}
+          {{ img | image_url: width: 120 | image_tag: class: 'mp-mini__avatar', loading: 'lazy', alt: f[2] }}
+        {%- endif -%}
+        <div>
+          <p class="mp-mini__text">{{ f[1] | strip }}</p>
+          <div class="mp-mini__author">{{ f[2] | strip }} {% render 'mispati-stars', rating: 5 %}</div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  {%- if rows.size > 1 -%}
+    <div class="mp-mini__dots">
+      {%- for row in rows -%}
+        <button type="button" class="mp-mini__dot{% if forloop.first %} is-active{% endif %}" aria-label="Yorum {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>

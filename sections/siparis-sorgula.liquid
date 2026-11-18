@@ -1,0 +1,634 @@
+{%- comment -%}
+  Mispati — Sipariş Sorgulama bölümü
+  Sekme 1: Müşteri sipariş numarası + e-posta veya telefon girer; durum, ürünler, adet, tutar ve kargo takibi görünür.
+  Sekme 2: Sipariş no + e-posta + telefon ile doğrulama, özet ve onay adımından sonra (kargoya verilmediyse) iptal.
+  Veriyi "API adresi" ayarına yazılan Cloudflare Worker'dan alır (worker.js).
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = section.id
+  assign accent = section.settings.accent_color | default: '#bda66c'
+  assign cancel_on = section.settings.cancel_enabled
+-%}
+
+<section
+  id="SiparisSorgula-{{ sid }}"
+  class="mp-track"
+  style="--mp-accent: {{ accent }}; --mp-pad-top: {{ section.settings.padding_top }}px; --mp-pad-bottom: {{ section.settings.padding_bottom }}px;"
+  data-endpoint="{{ section.settings.endpoint_url | escape }}"
+>
+  <div class="mp-track__inner">
+    <div class="mp-track__head">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="mp-track__title">{{ section.settings.heading | escape }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <div class="mp-track__sub">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if cancel_on -%}
+      <div class="mp-tabs" role="tablist" aria-label="Sipariş işlemleri">
+        <button type="button" role="tab" class="mp-tab is-active" data-tab="track" aria-selected="true">Sipariş sorgula</button>
+        <button type="button" role="tab" class="mp-tab" data-tab="cancel" aria-selected="false">Sipariş iptal</button>
+      </div>
+    {%- endif -%}
+
+    <div class="mp-panel" data-panel="track" role="tabpanel">
+    <form class="mp-track__form" data-form="track" novalidate>
+      <div class="mp-track__field">
+        <label for="mp-order-{{ sid }}">Sipariş numarası</label>
+        <input id="mp-order-{{ sid }}" name="order" type="text" inputmode="numeric" autocomplete="off" placeholder="Örn. 1632" required>
+      </div>
+      <div class="mp-track__field">
+        <label for="mp-contact-{{ sid }}">E-posta veya telefon</label>
+        <input id="mp-contact-{{ sid }}" name="contact" type="text" autocomplete="email" placeholder="Siparişte kullandığınız" required>
+      </div>
+      <button type="submit" class="mp-track__btn">
+        <span class="mp-track__btn-text">{{ section.settings.button_label | default: 'Siparişimi sorgula' | escape }}</span>
+        <span class="mp-track__spinner" aria-hidden="true"></span>
+      </button>
+      <p class="mp-track__error" role="alert" hidden></p>
+    </form>
+
+    <div class="mp-track__result" aria-live="polite" hidden></div>
+    </div>
+
+    {%- if cancel_on -%}
+    <div class="mp-panel" data-panel="cancel" role="tabpanel" hidden>
+      <form class="mp-track__form" data-form="cancel" novalidate>
+        <p class="mp-c__intro">{{ section.settings.cancel_intro | default: 'Siparişiniz henüz kargoya verilmediyse buradan iptal edebilirsiniz. Güvenliğiniz için sipariş verirken kullandığınız bilgilerin üçü de gerekli.' | escape }}</p>
+        <div class="mp-track__field">
+          <label for="mp-c-order-{{ sid }}">Sipariş numarası</label>
+          <input id="mp-c-order-{{ sid }}" name="order" type="text" inputmode="numeric" autocomplete="off" placeholder="Örn. 1632" required>
+        </div>
+        <div class="mp-track__field">
+          <label for="mp-c-email-{{ sid }}">E-posta adresi</label>
+          <input id="mp-c-email-{{ sid }}" name="email" type="email" autocomplete="email" placeholder="Siparişte kullandığınız e-posta" required>
+        </div>
+        <div class="mp-track__field">
+          <label for="mp-c-phone-{{ sid }}">Telefon numarası</label>
+          <input id="mp-c-phone-{{ sid }}" name="phone" type="tel" autocomplete="tel" placeholder="05XX XXX XX XX" required>
+        </div>
+        <button type="submit" class="mp-track__btn">
+          <span class="mp-track__btn-text">Devam et</span>
+          <span class="mp-track__spinner" aria-hidden="true"></span>
+        </button>
+        <p class="mp-track__error" role="alert" hidden></p>
+      </form>
+      <div class="mp-track__result mp-c__box" aria-live="polite" hidden></div>
+    </div>
+    {%- endif -%}
+
+    {%- if section.settings.help_text != blank -%}
+      <div class="mp-track__help">{{ section.settings.help_text }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .mp-track { padding: var(--mp-pad-top) 16px var(--mp-pad-bottom); }
+  .mp-track__inner { max-width: 640px; margin: 0 auto; }
+  .mp-track__head { text-align: center; margin-bottom: 28px; }
+  .mp-track__title { font-family: var(--font-heading-family); font-weight: 600; margin: 0 0 8px; }
+  .mp-track__sub { opacity: .75; line-height: 1.5; }
+  .mp-track__sub p { margin: 0; }
+
+  .mp-track__form { display: grid; gap: 14px; padding: 22px; border: 1px solid rgba(0,0,0,.1); border-radius: 14px; background: rgba(255,255,255,.6); }
+  .mp-track__field { display: grid; gap: 6px; }
+  .mp-track__field label { font-size: 14px; font-weight: 600; }
+  .mp-track__field input { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: 13px 14px; border: 1px solid rgba(0,0,0,.2); border-radius: 10px; background: #fff; color: inherit; }
+  .mp-track__field input:focus { outline: 2px solid var(--mp-accent); outline-offset: 1px; border-color: transparent; }
+  .mp-track__btn { position: relative; font: inherit; font-weight: 600; font-size: 16px; padding: 14px 18px; border: 0; border-radius: 10px; background: var(--mp-accent); color: #fff; cursor: pointer; }
+  .mp-track__btn[disabled] { opacity: .7; cursor: wait; }
+  .mp-track__spinner { display: none; width: 16px; height: 16px; margin-left: 8px; vertical-align: -3px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: mp-spin .7s linear infinite; }
+  .mp-track__btn[disabled] .mp-track__spinner { display: inline-block; }
+  @keyframes mp-spin { to { transform: rotate(360deg); } }
+  .mp-track__error { margin: 0; padding: 10px 12px; border-radius: 8px; background: #fdecec; color: #9b1c1c; font-size: 14px; }
+
+  .mp-track__result { margin-top: 24px; border: 1px solid rgba(0,0,0,.1); border-radius: 14px; overflow: hidden; background: #fff; }
+  .mp-track .mp-r__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,.08); flex-wrap: wrap; }
+  .mp-track .mp-r__no { font-size: 18px; font-weight: 700; margin: 0; }
+  .mp-track .mp-r__date { font-size: 13px; opacity: .65; margin-top: 2px; }
+  .mp-track .mp-r__badge { display: inline-block; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: color-mix(in srgb, var(--mp-accent) 14%, #fff); color: var(--mp-accent); }
+  .mp-track .mp-r__badge--warn { background: #fff4e5; color: #8a4b00; }
+  .mp-track .mp-r__badge--bad { background: #fdecec; color: #9b1c1c; }
+
+  .mp-track .mp-steps { display: grid; grid-template-columns: repeat(4, 1fr); padding: 22px 12px 18px; border-bottom: 1px solid rgba(0,0,0,.08); }
+  .mp-track .mp-step { position: relative; text-align: center; font-size: 12px; line-height: 1.3; opacity: .45; }
+  .mp-track .mp-step::before { content: ""; position: absolute; top: 11px; left: -50%; width: 100%; height: 2px; background: rgba(0,0,0,.15); z-index: 0; }
+  .mp-track .mp-step:first-child::before { display: none; }
+  .mp-track .mp-step__dot { position: relative; z-index: 1; display: block; width: 24px; height: 24px; margin: 0 auto 8px; border-radius: 50%; background: #fff; border: 2px solid rgba(0,0,0,.2); box-sizing: border-box; }
+  .mp-track .mp-step.is-done, .mp-track .mp-step.is-current { opacity: 1; }
+  .mp-track .mp-step.is-done::before, .mp-track .mp-step.is-current::before { background: var(--mp-accent); }
+  .mp-track .mp-step.is-done .mp-step__dot { background: var(--mp-accent); border-color: var(--mp-accent); }
+  .mp-track .mp-step.is-current .mp-step__dot { border-color: var(--mp-accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--mp-accent) 20%, transparent); }
+  .mp-track .mp-step.is-current { font-weight: 600; }
+
+  .mp-track .mp-r__section { padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,.08); }
+  .mp-track .mp-r__section:last-child { border-bottom: 0; }
+  .mp-track .mp-r__label { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; opacity: .6; margin: 0 0 10px; }
+  .mp-track .mp-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .mp-track .mp-item img, .mp-track .mp-item__ph { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: rgba(0,0,0,.05); flex: none; }
+  .mp-track .mp-item__info { flex: 1; min-width: 0; }
+  .mp-track .mp-item__title { font-weight: 600; font-size: 15px; }
+  .mp-track .mp-item__variant { font-size: 13px; opacity: .65; }
+  .mp-track .mp-item__qty { font-size: 14px; white-space: nowrap; }
+
+  .mp-track .mp-sum { display: grid; gap: 8px; font-size: 15px; }
+  .mp-track .mp-sum__row { display: flex; justify-content: space-between; gap: 12px; }
+  .mp-track .mp-sum__row--total { font-weight: 700; font-size: 17px; padding-top: 8px; border-top: 1px dashed rgba(0,0,0,.15); }
+
+  .mp-track .mp-trk { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 6px 0; }
+  .mp-track .mp-trk__info { font-size: 14px; }
+  .mp-track .mp-trk__no { font-family: ui-monospace, monospace; }
+  .mp-track .mp-trk__btn { display: inline-block; padding: 9px 14px; border-radius: 8px; background: var(--mp-accent); color: #fff !important; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .mp-track .mp-r__note { font-size: 14px; opacity: .75; margin: 0; line-height: 1.5; }
+
+  .mp-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 18px; border-radius: 12px; background: rgba(0,0,0,.06); }
+  .mp-tab { font: inherit; font-weight: 600; font-size: 15px; padding: 11px 10px; border: 0; border-radius: 9px; background: transparent; color: inherit; opacity: .7; cursor: pointer; }
+  .mp-tab.is-active { background: #fff; opacity: 1; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .mp-tab:focus-visible { outline: 2px solid var(--mp-accent); outline-offset: 1px; }
+  .mp-track [hidden] { display: none !important; }
+  .mp-c__intro { margin: 0; font-size: 14px; line-height: 1.5; opacity: .8; }
+  .mp-track .mp-c__lead { padding: 20px; text-align: center; }
+  .mp-track .mp-c__icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin-bottom: 10px; border-radius: 50%; font-size: 26px; font-weight: 700; background: color-mix(in srgb, var(--mp-accent) 16%, #fff); color: var(--mp-accent); }
+  .mp-track .mp-c__icon--warn { background: #fff4e5; color: #8a4b00; }
+  .mp-track .mp-c__h { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+  .mp-track .mp-c__warn { margin: 0; padding: 12px 14px; border-radius: 10px; background: #fff4e5; color: #6b3d00; font-size: 14px; line-height: 1.5; }
+  .mp-track .mp-c__select { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid rgba(0,0,0,.2); border-radius: 10px; background: #fff; color: inherit; }
+  .mp-track .mp-c__check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; cursor: pointer; }
+  .mp-track .mp-c__check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--mp-accent); }
+  .mp-track .mp-c__actions { display: grid; gap: 10px; padding: 16px 20px 20px; }
+  .mp-track .mp-c__btn { font: inherit; font-weight: 600; font-size: 16px; padding: 14px 18px; border: 0; border-radius: 10px; background: #b42318; color: #fff; cursor: pointer; }
+  .mp-track .mp-c__btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .mp-track .mp-c__btn--ghost { background: transparent; color: inherit; border: 1px solid rgba(0,0,0,.2); }
+  .mp-track .mp-c__link { display: inline-block; margin-top: 12px; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; text-decoration: underline; color: var(--mp-accent); cursor: pointer; }
+  .mp-track__help { margin-top: 22px; text-align: center; font-size: 14px; opacity: .75; line-height: 1.5; }
+
+  @media (max-width: 480px) {
+    .mp-track__form { padding: 16px; }
+    .mp-track .mp-r__top, .mp-track .mp-r__section { padding-left: 16px; padding-right: 16px; }
+    .mp-track .mp-step { font-size: 11px; }
+  }
+</style>
+
+<script>
+(function () {
+  var root = document.getElementById('SiparisSorgula-{{ sid }}');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+
+  var endpoint = root.dataset.endpoint;
+  var form = root.querySelector('[data-form="track"]');
+  var btn = form.querySelector('.mp-track__btn');
+  var errBox = form.querySelector('.mp-track__error');
+  var result = root.querySelector('[data-panel="track"] .mp-track__result');
+  var orderInput = form.elements.order;
+  var contactInput = form.elements.contact;
+
+  // Linkle gelen sipariş no'yu doldur: /pages/siparis-sorgula?siparis=1632
+  try {
+    var params = new URLSearchParams(location.search);
+    var pre = params.get('siparis') || params.get('order');
+    if (pre) orderInput.value = pre.replace(/[^0-9]/g, '');
+  } catch (e) {}
+
+  var FULFILL = {
+    UNFULFILLED: 'Hazırlanıyor',
+    IN_PROGRESS: 'Hazırlanıyor',
+    SCHEDULED: 'Hazırlanıyor',
+    ON_HOLD: 'Beklemede',
+    PENDING_FULFILLMENT: 'Hazırlanıyor',
+    OPEN: 'Hazırlanıyor',
+    PARTIALLY_FULFILLED: 'Kısmen kargoya verildi',
+    FULFILLED: 'Kargoya verildi',
+    RESTOCKED: 'İade edildi',
+    REQUEST_DECLINED: 'Beklemede'
+  };
+  var SHIPMENT = {
+    LABEL_PRINTED: 'Kargo etiketi hazır',
+    LABEL_PURCHASED: 'Kargo etiketi hazır',
+    CONFIRMED: 'Kargoya verildi',
+    CARRIER_PICKED_UP: 'Kargo teslim aldı',
+    IN_TRANSIT: 'Yolda',
+    OUT_FOR_DELIVERY: 'Dağıtımda',
+    ATTEMPTED_DELIVERY: 'Teslimat denendi',
+    DELIVERED: 'Teslim edildi',
+    PICKED_UP: 'Teslim alındı',
+    READY_FOR_PICKUP: 'Teslim almaya hazır',
+    FAILURE: 'Teslimatta sorun',
+    NOT_DELIVERED: 'Teslim edilemedi',
+    FULFILLED: 'Kargoya verildi',
+    MARKED_AS_FULFILLED: 'Kargoya verildi',
+    SUBMITTED: 'Kargoya verildi'
+  };
+  var PAY = {
+    PAID: 'Ödendi',
+    PARTIALLY_PAID: 'Kısmen ödendi',
+    AUTHORIZED: 'Ödeme onaylandı',
+    PENDING: 'Ödeme bekleniyor',
+    REFUNDED: 'İade edildi',
+    PARTIALLY_REFUNDED: 'Kısmen iade edildi',
+    VOIDED: 'İptal edildi',
+    EXPIRED: 'Süresi doldu'
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function money(amount, currency) {
+    try {
+      return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: currency || 'TRY' }).format(Number(amount));
+    } catch (e) { return amount + ' ' + (currency || 'TL'); }
+  }
+  function date(iso) {
+    try {
+      return new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+    } catch (e) { return iso; }
+  }
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.hidden = false;
+  }
+
+  // 1 Sipariş alındı · 2 Hazırlanıyor · 3 Kargoda · 4 Teslim edildi
+  function stepOf(o) {
+    var ships = o.shipments || [];
+    var delivered = ships.length && ships.every(function (s) { return s.status === 'DELIVERED' || s.status === 'PICKED_UP'; });
+    if (delivered) return 4;
+    if (ships.length || o.fulfillmentStatus === 'FULFILLED' || o.fulfillmentStatus === 'PARTIALLY_FULFILLED') return 3;
+    return 2;
+  }
+  function statusBadge(o, step) {
+    if (o.cancelled) return { text: 'İptal edildi', cls: 'mp-r__badge--bad' };
+    if (step === 4) return { text: 'Teslim edildi', cls: '' };
+    var last = (o.shipments || [])[0];
+    if (last && SHIPMENT[last.status]) {
+      var bad = ['FAILURE', 'NOT_DELIVERED', 'ATTEMPTED_DELIVERY'].indexOf(last.status) > -1;
+      return { text: SHIPMENT[last.status], cls: bad ? 'mp-r__badge--warn' : '' };
+    }
+    var t = FULFILL[o.fulfillmentStatus] || 'Hazırlanıyor';
+    return { text: t, cls: o.fulfillmentStatus === 'ON_HOLD' ? 'mp-r__badge--warn' : '' };
+  }
+  function payText(o) {
+    if (o.cashOnDelivery && (o.financialStatus === 'PENDING' || o.financialStatus === 'AUTHORIZED')) return 'Kapıda ödeme';
+    return PAY[o.financialStatus] || o.financialStatus || '-';
+  }
+
+  function render(o) {
+    var step = o.cancelled ? 0 : stepOf(o);
+    var badge = statusBadge(o, step);
+    var labels = ['Sipariş alındı', 'Hazırlanıyor', 'Kargoda', 'Teslim edildi'];
+
+    var html = '';
+    html += '<div class="mp-r__top"><div><p class="mp-r__no">Sipariş ' + esc(o.orderNumber) + '</p>';
+    html += '<div class="mp-r__date">' + esc(date(o.createdAt)) + '</div></div>';
+    html += '<span class="mp-r__badge ' + badge.cls + '">' + esc(badge.text) + '</span></div>';
+
+    if (!o.cancelled) {
+      html += '<div class="mp-steps">';
+      labels.forEach(function (l, i) {
+        var n = i + 1;
+        var cls = n < step || step === 4 ? 'is-done' : (n === step ? 'is-current' : '');
+        html += '<div class="mp-step ' + cls + '"><span class="mp-step__dot"></span>' + esc(l) + '</div>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="mp-r__section"><p class="mp-r__note">Bu sipariş iptal edilmiştir. Sorunuz varsa bizimle iletişime geçebilirsiniz.</p></div>';
+    }
+
+    if (o.shipments && o.shipments.length) {
+      html += '<div class="mp-r__section"><p class="mp-r__label">Kargo takibi</p>';
+      o.shipments.forEach(function (s) {
+        (s.tracking.length ? s.tracking : [{}]).forEach(function (t) {
+          html += '<div class="mp-trk"><div class="mp-trk__info">';
+          html += esc(t.company || 'Kargo');
+          if (t.number) html += ' · <span class="mp-trk__no">' + esc(t.number) + '</span>';
+          var lastTxt = s.last ? [s.last.message, s.last.city, s.last.at ? date(s.last.at) : ''].filter(Boolean).join(' · ') : (SHIPMENT[s.status] || 'Kargoya verildi'); html += '<br><span style="opacity:.65;font-size:13px">' + esc(lastTxt) + '</span></div>';
+          if (t.url) html += '<a class="mp-trk__btn" href="' + esc(t.url) + '" target="_blank" rel="noopener">Kargom nerede?</a>';
+          html += '</div>';
+        });
+      });
+      html += '</div>';
+    }
+
+    html += '<div class="mp-r__section"><p class="mp-r__label">Ürünler (' + esc(o.totalQuantity) + ' adet)</p>';
+    o.items.forEach(function (it) {
+      html += '<div class="mp-item">';
+      html += it.image ? '<img src="' + esc(it.image) + '" alt="" loading="lazy" width="56" height="56">' : '<span class="mp-item__ph"></span>';
+      html += '<div class="mp-item__info"><div class="mp-item__title">' + esc(it.title) + '</div>';
+      if (it.variant && it.variant !== 'Default Title') html += '<div class="mp-item__variant">' + esc(it.variant) + '</div>';
+      html += '</div><div class="mp-item__qty">' + esc(it.quantity) + ' adet</div></div>';
+    });
+    html += '</div>';
+
+    html += '<div class="mp-r__section"><div class="mp-sum">';
+    html += '<div class="mp-sum__row"><span>Ödeme</span><span>' + esc(payText(o)) + '</span></div>';
+    html += '<div class="mp-sum__row"><span>Kargo</span><span>' + (Number(o.shipping) > 0 ? esc(money(o.shipping, o.currency)) : 'Ücretsiz') + '</span></div>';
+    html += '<div class="mp-sum__row mp-sum__row--total"><span>Toplam tutar</span><span>' + esc(money(o.total, o.currency)) + '</span></div>';
+    html += '</div></div>';
+
+    if (canCancel && !o.cancelled && o.fulfillmentStatus === 'UNFULFILLED' && !(o.shipments && o.shipments.length)) {
+      html += '<div class="mp-r__section"><p class="mp-r__note">Siparişiniz henüz kargoya verilmedi.</p><button type="button" class="mp-c__link" data-go-cancel="' + esc(String(o.orderNumber).replace(/[^0-9]/g, '')) + '">Siparişi iptal etmek istiyorum</button></div>';
+    }
+
+    result.innerHTML = html;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  result.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-go-cancel]');
+    if (b) { cancelForm.elements.order.value = b.getAttribute('data-go-cancel'); switchTab('cancel'); cancelForm.elements.email.focus(); }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errBox.hidden = true;
+    result.hidden = true;
+
+    var order = orderInput.value.replace(/[^0-9]/g, '');
+    var contact = contactInput.value.trim();
+    if (!order) return showError('Lütfen sipariş numaranızı girin.');
+    if (!contact) return showError('Lütfen siparişte kullandığınız e-posta adresini veya telefon numarasını girin.');
+    if (!endpoint) return showError('Sipariş sorgulama şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.');
+
+    btn.disabled = true;
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ order: order, contact: contact })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, status: r.status, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data && res.data.order) return render(res.data.order);
+        if (res.status === 429) return showError('Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.');
+        showError((res.data && res.data.error) || 'Bu bilgilerle eşleşen bir sipariş bulamadık. Sipariş numaranızı ve iletişim bilginizi kontrol edin.');
+      })
+      .catch(function () { showError('Bağlantı hatası oluştu. Lütfen tekrar deneyin.'); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  /* ============ Sekmeler ============ */
+  var tabs = root.querySelectorAll('.mp-tab');
+  var panels = root.querySelectorAll('.mp-panel');
+  function switchTab(name) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-tab') === name;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== name; });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { switchTab(t.getAttribute('data-tab')); });
+  });
+
+  /* ============ Sipariş iptali ============ */
+  var cancelForm = root.querySelector('[data-form="cancel"]');
+  var canCancel = !!cancelForm;
+  if (!canCancel) return;
+
+  var cBtn = cancelForm.querySelector('.mp-track__btn');
+  var cErr = cancelForm.querySelector('.mp-track__error');
+  var cBox = root.querySelector('[data-panel="cancel"] .mp-track__result');
+  var base = String(endpoint || '').replace(/\/+$/, '');
+  var state = null;
+
+  try {
+    var qs = new URLSearchParams(location.search);
+    var pre2 = qs.get('siparis') || qs.get('order');
+    if (pre2) cancelForm.elements.order.value = pre2.replace(/[^0-9]/g, '');
+    if (qs.get('sekme') === 'iptal' || location.hash === '#iptal') switchTab('cancel');
+  } catch (e) {}
+
+  function cErrShow(msg) { cErr.textContent = msg; cErr.hidden = false; }
+  function post(path, body) {
+    return fetch(base + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, status: r.status, data: d || {} }; }); });
+  }
+  function showBox(html) {
+    cBox.innerHTML = html;
+    cBox.hidden = false;
+    cBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function resetCancel() {
+    state = null;
+    cBox.hidden = true;
+    cBox.innerHTML = '';
+    cancelForm.hidden = false;
+  }
+  function itemsHtml(o) {
+    var h = '<div class="mp-r__section"><p class="mp-r__label">Ürünler (' + esc(o.totalQuantity) + ' adet)</p>';
+    (o.items || []).forEach(function (it) {
+      h += '<div class="mp-item">' + (it.image ? '<img src="' + esc(it.image) + '" alt="" loading="lazy" width="56" height="56">' : '<span class="mp-item__ph"></span>');
+      h += '<div class="mp-item__info"><div class="mp-item__title">' + esc(it.title) + '</div>';
+      if (it.variant && it.variant !== 'Default Title') h += '<div class="mp-item__variant">' + esc(it.variant) + '</div>';
+      h += '</div><div class="mp-item__qty">' + esc(it.quantity) + ' adet</div></div>';
+    });
+    return h + '</div>';
+  }
+  function topHtml(o) {
+    return '<div class="mp-r__top"><div><p class="mp-r__no">Sipariş ' + esc(o.orderNumber) + '</p><div class="mp-r__date">' + esc(date(o.createdAt)) + '</div></div></div>';
+  }
+
+  function renderConfirm(d) {
+    var o = d.order;
+    state = { token: d.token, order: o };
+    var pay = o.payment === 'cod'
+      ? 'Kapıda ödeme seçtiğiniz için iptal durumunda sizden herhangi bir ödeme alınmaz.'
+      : o.payment === 'paid'
+        ? 'Siparişinizin ödemesi alınmış. İptal sonrasında iade işlemi için ekibimiz sizinle iletişime geçecek.'
+        : '';
+    var h = topHtml(o) + itemsHtml(o);
+    h += '<div class="mp-r__section"><div class="mp-sum"><div class="mp-sum__row mp-sum__row--total"><span>Toplam tutar</span><span>' + esc(money(o.total, o.currency)) + '</span></div></div></div>';
+    h += '<div class="mp-r__section" style="display:grid;gap:14px">';
+    h += '<p class="mp-c__warn"><strong>Bu işlem geri alınamaz.</strong> İptal ettiğiniz sipariş yeniden açılamaz; isterseniz yeni bir sipariş verebilirsiniz.' + (pay ? ' ' + esc(pay) : '') + '</p>';
+    h += '<div class="mp-track__field"><label for="mp-c-reason-{{ sid }}">İptal nedeni (isteğe bağlı)</label><select id="mp-c-reason-{{ sid }}" class="mp-c__select" data-reason>';
+    h += '<option value="">Seçiniz</option>';
+    Object.keys(d.reasons || {}).forEach(function (k) { h += '<option value="' + esc(k) + '">' + esc(d.reasons[k]) + '</option>'; });
+    h += '</select></div>';
+    h += '<label class="mp-c__check"><input type="checkbox" data-agree><span>' + esc(o.orderNumber) + ' numaralı siparişimin iptal edilmesini onaylıyorum.</span></label>';
+    h += '<p class="mp-track__error" role="alert" hidden data-cerr></p>';
+    h += '</div>';
+    h += '<div class="mp-c__actions"><button type="button" class="mp-c__btn" data-do-cancel disabled>Siparişi iptal et</button><button type="button" class="mp-c__btn mp-c__btn--ghost" data-back>Vazgeç</button></div>';
+    cancelForm.hidden = true;
+    showBox(h);
+  }
+
+  function renderBlocked(d) {
+    var o = d.order;
+    var h = topHtml(o);
+    h += '<div class="mp-c__lead"><span class="mp-c__icon mp-c__icon--warn">!</span><p class="mp-c__h">Bu sipariş şu an iptal edilemiyor</p><p class="mp-r__note">' + esc(o.message) + '</p>';
+    if (o.code !== 'cancelled') h += '<button type="button" class="mp-c__link" data-go-track="' + esc(String(o.orderNumber).replace(/[^0-9]/g, '')) + '">Sipariş durumunu görüntüle</button>';
+    h += '</div><div class="mp-c__actions"><button type="button" class="mp-c__btn mp-c__btn--ghost" data-back>Geri dön</button></div>';
+    cancelForm.hidden = true;
+    showBox(h);
+  }
+
+  function renderDone(d) {
+    var good = d.status === 'cancelled' || d.status === 'processing' || d.status === 'already';
+    var title = d.status === 'cancelled' ? 'Siparişiniz iptal edildi' : d.status === 'processing' ? 'İptal işleminiz alındı' : d.status === 'already' ? 'Sipariş zaten iptal edilmiş' : d.status === 'requested' ? 'İptal talebiniz alındı' : 'Sipariş iptal edilemedi';
+    var h = '<div class="mp-c__lead"><span class="mp-c__icon' + (good ? '' : ' mp-c__icon--warn') + '">' + (good ? '&#10003;' : '!') + '</span>';
+    h += '<p class="mp-c__h">' + esc(title) + (d.orderNumber ? ' · ' + esc(d.orderNumber) : '') + '</p><p class="mp-r__note">' + esc(d.message || '') + '</p></div>';
+    h += '<div class="mp-c__actions"><button type="button" class="mp-c__btn mp-c__btn--ghost" data-back>Tamam</button></div>';
+    cancelForm.hidden = true;
+    showBox(h);
+  }
+
+  cancelForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    cErr.hidden = true;
+    var f = cancelForm.elements;
+    var order = f.order.value.replace(/[^0-9]/g, '');
+    var email = f.email.value.trim();
+    var phone = f.phone.value.trim();
+    if (!order) return cErrShow('Lütfen sipariş numaranızı girin.');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return cErrShow('Lütfen siparişte kullandığınız e-posta adresini girin.');
+    if (phone.replace(/\D/g, '').length < 10) return cErrShow('Lütfen siparişte kullandığınız telefon numarasını girin.');
+    if (!base) return cErrShow('Sipariş iptali şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.');
+
+    cBtn.disabled = true;
+    post('/iptal/kontrol', { order: order, email: email, phone: phone })
+      .then(function (res) {
+        if (res.ok && res.data.order) return res.data.order.eligible && res.data.token ? renderConfirm(res.data) : renderBlocked(res.data);
+        if (res.status === 429) return cErrShow('Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.');
+        cErrShow(res.data.error || 'Bu bilgilerle eşleşen bir sipariş bulamadık.');
+      })
+      .catch(function () { cErrShow('Bağlantı hatası oluştu. Lütfen tekrar deneyin.'); })
+      .finally(function () { cBtn.disabled = false; });
+  });
+
+  cBox.addEventListener('change', function (e) {
+    if (e.target.matches('[data-agree]')) cBox.querySelector('[data-do-cancel]').disabled = !e.target.checked;
+  });
+
+  cBox.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('button') : null;
+    if (!t) return;
+    if (t.hasAttribute('data-back')) {
+      var done = cBox.querySelector('.mp-c__icon');
+      if (done) cancelForm.reset();
+      return resetCancel();
+    }
+    if (t.hasAttribute('data-go-track')) {
+      orderInput.value = t.getAttribute('data-go-track');
+      contactInput.value = cancelForm.elements.email.value;
+      switchTab('track');
+      return;
+    }
+    if (t.hasAttribute('data-do-cancel') && state) {
+      var err = cBox.querySelector('[data-cerr]');
+      err.hidden = true;
+      var agree = cBox.querySelector('[data-agree]');
+      if (!agree.checked) return;
+      t.disabled = true;
+      t.textContent = 'İptal ediliyor…';
+      var back = cBox.querySelector('[data-back]'); if (back) back.disabled = true;
+      post('/iptal/onay', { token: state.token, reason: cBox.querySelector('[data-reason]').value })
+        .then(function (res) {
+          if (res.ok && res.data.status === 'blocked') return renderDone({ status: 'blocked', orderNumber: res.data.orderNumber, message: res.data.message });
+          if (res.ok && res.data.status) return renderDone(res.data);
+          if (res.data && res.data.expired) { cancelForm.hidden = false; cBox.hidden = true; state = null; return cErrShow(res.data.error); }
+          err.textContent = (res.data && res.data.error) || 'İşlem tamamlanamadı. Lütfen tekrar deneyin.';
+          err.hidden = false;
+          t.disabled = false; t.textContent = 'Siparişi iptal et'; if (back) back.disabled = false;
+        })
+        .catch(function () {
+          err.textContent = 'Bağlantı hatası oluştu. Siparişinizin durumunu "Sipariş sorgula" sekmesinden kontrol edin.';
+          err.hidden = false;
+          t.disabled = false; t.textContent = 'Siparişi iptal et'; if (back) back.disabled = false;
+        });
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Sipariş sorgulama",
+  "tag": "div",
+  "class": "section-siparis-sorgula",
+  "settings": [
+    {
+      "type": "text",
+      "id": "endpoint_url",
+      "label": "API adresi",
+      "info": "Cloudflare Worker adresi, örn. https://mispati-siparis.KULLANICI.workers.dev"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Başlık",
+      "default": "Siparişim nerede?"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Açıklama",
+      "default": "<p>Sipariş numaranızı ve siparişte kullandığınız e-posta adresini ya da telefon numaranızı girerek siparişinizin durumunu görebilirsiniz.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Buton yazısı",
+      "default": "Siparişimi sorgula"
+    },
+    {
+      "type": "richtext",
+      "id": "help_text",
+      "label": "Alt bilgi",
+      "default": "<p>Sipariş numaranızı onay e-postanızda veya SMS'inizde bulabilirsiniz.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Sipariş iptal sekmesi"
+    },
+    {
+      "type": "checkbox",
+      "id": "cancel_enabled",
+      "label": "Sipariş iptal sekmesini göster",
+      "info": "Müşteri; sipariş no, e-posta ve telefonla doğrulayıp, kargoya verilmemiş siparişini iptal edebilir.",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "cancel_intro",
+      "label": "İptal sekmesi açıklaması",
+      "default": "Siparişiniz henüz kargoya verilmediyse buradan iptal edebilirsiniz. Güvenliğiniz için sipariş verirken kullandığınız bilgilerin üçü de gerekli."
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Vurgu rengi",
+      "default": "#bda66c"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Üst boşluk",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Alt boşluk",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    { "name": "Sipariş sorgulama" }
+  ]
+}
+{% endschema %}

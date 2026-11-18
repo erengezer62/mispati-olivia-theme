@@ -1,0 +1,20 @@
+{%- comment -%}
+  Teslimat zaman çizelgesi. steps: "Etiket~min~max;;Etiket~min~max"   ikonlar sırayla: sepet, kargo, hediye
+{%- endcomment -%}
+{%- assign rows = steps | default: 'Sipariş verildi~0~0;;Sipariş hazır~1~2;;Teslim edildi~2~4' | split: ';;' -%}
+<div class="mp-timeline">
+  {%- for row in rows -%}
+    {%- assign p = row | split: '~' -%}
+    <div class="mp-timeline__step" data-mp-tl data-min="{{ p[1] }}" data-max="{{ p[2] }}">
+      <span class="mp-timeline__icon">
+        {%- case forloop.index -%}
+          {%- when 1 -%}{% render 'mispati-icon', name: 'card' %}
+          {%- when 2 -%}{% render 'mispati-icon', name: 'truck' %}
+          {%- else -%}{% render 'mispati-icon', name: 'gift' %}
+        {%- endcase -%}
+      </span>
+      <strong class="mp-timeline__date" data-mp-tl-date>&nbsp;</strong>
+      <span class="mp-timeline__label">{{ p[0] }}</span>
+    </div>
+  {%- endfor -%}
+</div>

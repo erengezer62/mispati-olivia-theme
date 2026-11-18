@@ -1,0 +1,55 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="mp-subheading">{{ section.settings.text }}</div>{%- endif -%}
+    <div class="mp-cols{% if section.settings.image != blank %} mp-cols--with-image{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <div class="mp-cols__image">{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 45vw, 100vw' }}</div>
+      {%- endif -%}
+      <div class="mp-cols__grid" style="--mp-cols: {{ section.settings.columns }}">
+        {%- for block in section.blocks -%}
+          <div class="mp-col{% if section.settings.style == 'card' %} mp-col--card{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="mp-col__img{% if section.settings.round %} is-round{% endif %}">{{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', alt: block.settings.title }}</div>
+            {%- elsif block.settings.icon != blank -%}
+              <div class="mp-col__icon">{% render 'mispati-icon', name: block.settings.icon %}</div>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}<h3 class="mp-col__title">{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<div class="mp-col__text">{{ block.settings.text }}</div>{%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Sütunlar",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "image_picker", "id": "image", "label": "Yan görsel (opsiyonel)" },
+    { "type": "range", "id": "columns", "label": "Masaüstü sütun", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "select", "id": "style", "label": "Stil", "options": [{ "value": "card", "label": "Kart" }, { "value": "plain", "label": "Sade" }], "default": "card" },
+    { "type": "checkbox", "id": "round", "label": "Görseller yuvarlak", "default": false },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Sütun",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Görsel" },
+        { "type": "select", "id": "icon", "label": "İkon (görsel yoksa)", "options": [{ "value": "", "label": "Yok" }, { "value": "check", "label": "Onay" }, { "value": "shield", "label": "Kalkan" }, { "value": "paw", "label": "Pati" }, { "value": "truck", "label": "Kargo" }, { "value": "gift", "label": "Hediye" }, { "value": "return", "label": "İade" }], "default": "" },
+        { "type": "inline_richtext", "id": "title", "label": "Başlık" },
+        { "type": "richtext", "id": "text", "label": "Metin" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Sütunlar", "blocks": [{ "type": "column" }, { "type": "column" }, { "type": "column" }] }]
+}
+{% endschema %}

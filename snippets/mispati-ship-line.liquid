@@ -1,0 +1,11 @@
+{%- comment -%}
+  Kargo satırı + tahmini teslim tarihi (Pazar atlanır).
+  {% render 'mispati-ship-line', title: 'Bugün Sipariş Ver, Yarın Kargoda!', min_days: 2, max_days: 4 %}
+{%- endcomment -%}
+<div class="mp-ship" data-mp-eta data-min="{{ min_days | default: 2 }}" data-max="{{ max_days | default: 4 }}">
+  {% render 'mispati-icon', name: 'truck' %}
+  <div>
+    <p class="mp-ship__title">{{ title | default: 'Bugün Sipariş Ver, Yarın Kargoda!' }}</p>
+    <p class="mp-ship__eta" hidden>Tahmini teslimat: <strong data-mp-eta-range></strong></p>
+  </div>
+</div>

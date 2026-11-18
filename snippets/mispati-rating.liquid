@@ -1,0 +1,13 @@
+{%- comment -%}
+  Ürün başlığı üstündeki puan satırı.
+  {% render 'mispati-rating', rating: 4.7, count: 367, anchor: '#mp-reviews' %}
+  veya hazır etiket: {% render 'mispati-rating', rating: 4.8, label: '(4.8) 1000+ Mutlu Patiler' %}
+{%- endcomment -%}
+<a class="mp-rating" href="{{ anchor | default: '#mp-reviews' }}">
+  {% render 'mispati-stars', rating: rating %}
+  {%- if label != blank -%}
+    <span class="mp-rating__label">{{ label }}</span>
+  {%- else -%}
+    <span class="mp-rating__label"><strong>({{ rating }})</strong> {{ count }} Değerlendirme</span>
+  {%- endif -%}
+</a>

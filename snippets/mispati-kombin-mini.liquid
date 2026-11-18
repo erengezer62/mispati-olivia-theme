@@ -1,0 +1,62 @@
+{%- comment -%}
+  Ürün alanında, sepete ekle butonunun altında görünen kısa kombin önerisi.
+  Kullanım: render 'mispati-kombin-mini', handle: 'urun-handle', eyebrow: '...', text: '...', deal: '...', button: '...'
+{%- endcomment -%}
+{%- assign pair = all_products[handle] -%}
+{%- if pair != blank and pair.id != product.id -%}
+  {{ 'mispati-kombin.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'mispati-kombin.js' | asset_url }}" defer></script>
+  {%- liquid
+    assign only_default = pair.has_only_default_variant
+    assign sel = pair.selected_or_first_available_variant
+    if only_default
+      assign price = sel.price
+    else
+      assign price = pair.price_min
+    endif
+    if pair.options.size > 1
+      assign prompt = 'renk ve beden'
+    else
+      assign prompt = 'beden'
+    endif
+    assign btn_label = button | default: 'Kombine ekle'
+    assign deal_label = deal | default: 'Kombini Tamamla İndirimi Yakala'
+  -%}
+  <div class="mpkm" data-mpk-box data-money-format="{{ shop.money_format | escape }}">
+    <div class="mpkm__bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M4.9 6l14.2 12M19.1 6L4.9 18"/></svg>
+      <span>{{ eyebrow | default: 'Bu kış kombinini tamamla' }}</span>
+    </div>
+    <div class="mpkm__body" data-mpk-item>
+      <a class="mpkm__img" href="{{ pair.url }}">
+        {%- if pair.featured_media -%}{{ pair.featured_media | image_url: width: 240 | image_tag: loading: 'lazy', alt: pair.title }}{%- endif -%}
+      </a>
+      <div>
+        <a class="mpkm__name" href="{{ pair.url }}">{{ pair.title }}</a>
+        {%- if text != blank -%}<p class="mpkm__text">{{ text }}</p>{%- endif -%}
+        {%- if deal_label != blank -%}
+          <span class="mpkm__deal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>{{ deal_label }}</span>
+        {%- endif -%}
+        <div class="mpk__row">
+          {%- if only_default -%}
+            <input type="hidden" data-mpk-variant value="{{ sel.id }}" data-price="{{ sel.price }}">
+          {%- else -%}
+            <select class="mpk__select" data-mpk-variant data-price-default="{{ pair.price_min }}" data-name="{{ pair.title | escape }}" data-prompt="{{ prompt }}" aria-label="{{ pair.title | escape }} {{ prompt }} seçimi">
+              <option value="" data-price="{{ pair.price_min }}" selected disabled>{{ prompt | capitalize }} seçin</option>
+              {%- for v in pair.variants -%}
+                <option value="{{ v.id }}" data-price="{{ v.price }}"{% unless v.available %} disabled{% endunless %}>{{ v.title }}{% unless v.available %} (tükendi){% endunless %}</option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
+          <span class="mpk__price" data-mpk-price>{{ price | money }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mpkm__cta">
+      <button type="button" class="mpk__btn" data-mpk-add data-label-single="{{ btn_label | escape }}" data-label-multi="{{ btn_label | escape }}" data-label-done="Sepete eklendi">
+        <span data-mpk-label>{{ btn_label }}</span>
+      </button>
+    </div>
+    <p class="mpk__error" data-mpk-error hidden></p>
+  </div>
+{%- endif -%}

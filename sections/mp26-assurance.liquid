@@ -1,0 +1,67 @@
+<section class="mp26-assure" aria-labelledby="mp26-assure-{{ section.id }}">
+  <div class="mp26-wrap">
+    <div class="mp26-assure__grid">
+      <div class="mp26-assure__pitch">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="mp26-h2" id="mp26-assure-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="mp26-lead">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="mp26-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{- section.settings.button_label -}}
+            {% render 'mispati-icon', name: 'arrow-right' %}
+          </a>
+        {%- endif -%}
+      </div>
+      <ul class="mp26-assure__list" role="list">
+        {%- for block in section.blocks -%}
+          <li class="mp26-assure__item" {{ block.shopify_attributes }}>
+            {% render 'mispati-icon', name: block.settings.icon %}
+            {%- if block.settings.title != blank -%}<h3>{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Güvence Bandı 2026",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Bedenden emin değil misin?" },
+    { "type": "text", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "button_label", "label": "Buton metni", "default": "Bedenimi bul" },
+    { "type": "url", "id": "button_link", "label": "Buton bağlantısı" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Güvence",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "İkon",
+          "options": [
+            { "value": "truck", "label": "Kargo" },
+            { "value": "cash", "label": "Nakit" },
+            { "value": "card", "label": "Kart" },
+            { "value": "return", "label": "İade" },
+            { "value": "shield", "label": "Kalkan" },
+            { "value": "gift", "label": "Hediye" },
+            { "value": "paw", "label": "Pati" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Başlık", "default": "Ücretsiz kargo" },
+        { "type": "text", "id": "text", "label": "Metin" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Güvence Bandı 2026", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

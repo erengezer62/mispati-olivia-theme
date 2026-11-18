@@ -1,0 +1,11 @@
+{%- comment -%} Yıldız satırı — {% render 'mispati-stars', rating: 4.7 %} {%- endcomment -%}
+{%- assign r = rating | default: 5 | times: 1.0 -%}
+<span class="mp-stars" aria-label="{{ r }} / 5">
+  {%- for i in (1..5) -%}
+    {%- assign full_at = i | times: 1.0 -%}
+    {%- assign half_at = i | minus: 0.5 -%}
+    {%- if r >= full_at -%}{% render 'mispati-icon', name: 'star' %}
+    {%- elsif r >= half_at -%}{% render 'mispati-icon', name: 'star-half' %}
+    {%- else -%}{% render 'mispati-icon', name: 'star-empty' %}{%- endif -%}
+  {%- endfor -%}
+</span>

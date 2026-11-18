@@ -1,0 +1,14 @@
+{{ 'mp26.css' | asset_url | stylesheet_tag }}
+{{ 'mp26-home.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Mispati 2026 katmanı",
+  "tag": "div",
+  "class": "mp26-layer",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "paragraph", "content": "Bu bölüm 2026 tasarımının renk, yazı ve buton katmanını yükler. Görünür bir alanı yoktur; kaldırmayın." }
+  ]
+}
+{% endschema %}

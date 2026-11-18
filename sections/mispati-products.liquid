@@ -1,0 +1,51 @@
+{%- assign coll = section.settings.collection -%}
+{%- assign current_id = product.id | default: 0 -%}
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading" style="margin-bottom:32px">{{ section.settings.heading }}</h2>{%- endif -%}
+    <ul class="mp-products__grid" style="--mp-cols: {{ section.settings.columns }}">
+      {%- if coll != blank -%}
+        {%- for item in coll.products limit: section.settings.limit -%}
+          {%- if section.settings.hide_current and item.id == current_id -%}{%- continue -%}{%- endif -%}
+          <li class="grid__item">
+            {% render 'card-product',
+              card_product: item,
+              media_aspect_ratio: 'square',
+              image_shape: 'default',
+              show_secondary_image: true,
+              show_vendor: false,
+              show_rating: false,
+              section_id: section.id
+            %}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..section.settings.limit) -%}
+          <li class="grid__item">{% render 'card-product', show_vendor: false, placeholder_image: 'product-apparel-1' %}</li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+    {%- if section.settings.button_label != blank and coll != blank -%}
+      <div class="mp-products__more"><a class="mp-btn" href="{{ coll.url }}">{{ section.settings.button_label }}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Ürün Listesi",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Patili Dostlarımız İçin Ürünler" },
+    { "type": "collection", "id": "collection", "label": "Koleksiyon" },
+    { "type": "range", "id": "limit", "label": "Ürün sayısı", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "range", "id": "columns", "label": "Masaüstü sütun", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "checkbox", "id": "hide_current", "label": "Ürün sayfasında mevcut ürünü gizle", "default": true },
+    { "type": "text", "id": "button_label", "label": "Buton metni", "default": "Tümünü görüntüle" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "presets": [{ "name": "Mispati Ürün Listesi" }]
+}
+{% endschema %}

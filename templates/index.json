@@ -1,0 +1,294 @@
+{
+  "sections": {
+    "mp26_hero": {
+      "type": "mp26-hero",
+      "settings": {
+        "image": "shopify://shop_images/DSC09937_bc1237b3-470c-4006-b65a-afa1d3d2a0b2.jpg",
+        "position_style": "object-position: 50% 70%",
+        "height": 88,
+        "overlay": 70,
+        "align": "left",
+        "compact": false,
+        "heading": "Yağmur yağsın, yürüyüş kısalmasın.",
+        "heading_tag": "h1",
+        "subheading": "Su geçirmez termal ceket, askılı bot ve eller serbest yürüyüş seti. Islak, soğuk ve erken kararan akşamlar için köpeğine göre tasarlandı.",
+        "button_label": "Ceketi incele",
+        "button_link": "shopify://products/termal-su-gecirmez-kopek-ceketi",
+        "button2_label": "Tüm ürünler",
+        "button2_link": "shopify://collections/patili-dostlarimiz-i̇cin-urunler",
+        "product": "termal-su-gecirmez-kopek-ceketi",
+        "chip_label": "Fotoğraftaki ceket",
+        "rating": "4.7",
+        "rating_label": "4,7 · 367 değerlendirme",
+        "pause_label": "Videoyu duraklat",
+        "play_label": "Videoyu oynat"
+      }
+    },
+    "mp26_problems": {
+      "type": "mp26-problems",
+      "settings": {
+        "heading": "Bugünkü yürüyüşü ne kısaltıyor?",
+        "text": "Üç tanıdık dert, üç ayrı çözüm. Seninkini seç."
+      },
+      "blocks": {
+        "prob_rain": {
+          "type": "problem",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0058_VSCO_192815e3-623c-428c-a6e1-928d6cda91f4.jpg",
+            "icon": "rain",
+            "tag": "Yağmur ve soğuk",
+            "title": "Sen montunun içinde rahatsın, o titriyor.",
+            "product": "termal-su-gecirmez-kopek-ceketi",
+            "button_label": "Ceketi gör"
+          }
+        },
+        "prob_mud": {
+          "type": "problem",
+          "settings": {
+            "image": "shopify://shop_images/yurume_aniu.png",
+            "icon": "drop",
+            "tag": "Çamur ve ıslak pati",
+            "title": "Kapıdan girince başlayan pati yıkama telaşı kısalsın.",
+            "product": "su-gecirmez-askili-kopek-botu",
+            "button_label": "Botu gör"
+          }
+        },
+        "prob_hands": {
+          "type": "problem",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_22_Tem_2026_14_11_34.png",
+            "icon": "strap",
+            "tag": "Çeken köpek, dolu eller",
+            "title": "Bir elde tasma, diğerinde telefon. İkisi de serbest kalsın.",
+            "product": "mispati-freewalk",
+            "button_label": "Freewalk'ı gör"
+          }
+        }
+      },
+      "block_order": ["prob_rain", "prob_mud", "prob_hands"]
+    },
+    "mp26_story": {
+      "type": "mp26-story",
+      "settings": {
+        "heading": "Bir sonbahar akşamı, üç an.",
+        "text": "Eskiden yağmurun ilk damlasıyla eve dönüş başlardı. Ceketle yürüyüş, havaya göre değil köpeğinin enerjisine göre bitiyor.",
+        "button_label": "Ceketi incele",
+        "button_link": "shopify://products/termal-su-gecirmez-kopek-ceketi"
+      },
+      "blocks": {
+        "moment_out": {
+          "type": "moment",
+          "settings": {
+            "time": "18:40",
+            "image": "shopify://shop_images/IMG_2307_8243d718-019e-45cb-829f-ce51b4b46aca.jpg",
+            "title": "Kapıdan çıkarken",
+            "text": "<p>Hava kapalı, rüzgâr serin. Sen kalın montunu giydin; onun da polar astarlı, yüksek yakalı bir katmanı var.</p>"
+          }
+        },
+        "moment_rain": {
+          "type": "moment",
+          "settings": {
+            "time": "18:55",
+            "image": "shopify://shop_images/9E582CDB-551F-410E-A0F0-5D41982132F7_8c7b14be-ab3a-4cb9-bcf0-9d77a22fe9f4.jpg",
+            "title": "Yağmur bastırınca",
+            "text": "<p>Su geçirmez dış yüzey ve bantlı dikişler yağmuru dışarıda bırakıyor. Yanlardaki reflektif biyeler kararan havada onu görünür kılıyor.</p>"
+          }
+        },
+        "moment_home": {
+          "type": "moment",
+          "settings": {
+            "time": "19:20",
+            "image": "shopify://shop_images/DSC09466.jpg",
+            "title": "Eve dönünce",
+            "text": "<p>Islak ceketi çıkarıp asıyorsun. Tüyler sırılsıklam olmadığı için kurulama faslı kısa sürüyor, kalan nemi <a href=\"/products/bambu-kumas-kopek-bornozu\">bambu bornoz</a> hallediyor.</p>"
+          }
+        }
+      },
+      "block_order": ["moment_out", "moment_rain", "moment_home"]
+    },
+    "mp26_bundle": {
+      "type": "mp26-bundle",
+      "settings": {
+        "main_product": "termal-su-gecirmez-kopek-ceketi",
+        "main_tile": "Gövde için",
+        "main_tag": "Gövde için",
+        "pair_product": "su-gecirmez-askili-kopek-botu",
+        "pair_tile": "Patiler için",
+        "pair_tag": "Patiler için",
+        "heading": "Tepeden patiye hazır.",
+        "text": "<p>Ceket gövdeyi yağmurdan, askılı botun su geçirmez patikleri patileri çamurdan korur. Bedenleri seç, ikisini tek seferde sepete ekle.</p>",
+        "deal_label": "Kombini Tamamla İndirimi Yakala",
+        "deal_note": "İki ürünü birlikte aldığında indirim sepette otomatik uygulanır.",
+        "deal_off": "Kombini tamamla, indirimi kaçırma",
+        "deal_off_note": "İndirimden yararlanmak için iki ürünü de seçili bırak.",
+        "total_label": "Kombin toplamı",
+        "button_label": "Kombini sepete ekle",
+        "button_single": "Sepete ekle",
+        "button_done": "Sepete eklendi",
+        "note": "Kapıda ödeme • Vade farksız taksit • 30 gün değişim"
+      }
+    },
+    "mp26_ugc": {
+      "type": "mp26-ugc",
+      "settings": {
+        "heading": "Islak yürüyüşlerden kareler",
+        "text": "Mispati kullanan köpek sahiplerinin gönderdiği fotoğraflar ve yorumlar.",
+        "rating": "4.7",
+        "rating_label": "367 değerlendirme"
+      },
+      "blocks": {
+        "rev_ulas": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1776579885__1000026620__original.webp",
+            "rating": 5,
+            "text": "<p>Harika su geçirmez ceket. Serin günler için hafif ama aynı zamanda sıcak tutan bir ürün. Köpeğim normalde yağmurdan nefret etmesine rağmen bu montla sağanak yağmurda yürümeyi tolere etti.</p>",
+            "author": "Ulaş U."
+          }
+        },
+        "rev_ensar": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1784965709__img_9244__original.webp",
+            "rating": 5,
+            "text": "<p>Yağmurda yaptığımız yürüyüşte köpeğim benden bile daha kuru kaldı. Şiddetle tavsiye ediyorum.</p>",
+            "author": "Ensar U."
+          }
+        },
+        "rev_gizem": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1786505934__img_6633__original.webp",
+            "rating": 5,
+            "text": "<p>Harika mont, çok kaliteli. Giydirmesi ve çıkarması çok kolay, görünüşü çok şık ve yavrumuz bunu giymeyi çok seviyor.</p>",
+            "author": "Gizem S."
+          }
+        },
+        "rev_ertugrul": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1778986502__img_5231__original.webp",
+            "rating": 5,
+            "text": "<p>Köpeğimle koşarken kullanıyorum, tam bir hayat kurtarıcı. Yağmura yakalandığımızda koşularımızı bitirmemize gerek kalmıyor.</p>",
+            "author": "Ertuğrul O."
+          }
+        },
+        "rev_taner": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1780230583__img_8372__original.webp",
+            "rating": 5,
+            "text": "<p>Mont biraz ıslandı ve çamurlandı ama çamaşırlıkta çok hızlı bir şekilde kurudu. Herkese önereceğim harika bir ürün.</p>",
+            "author": "Taner Y."
+          }
+        },
+        "rev_selim": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1781561362__img_2360__original.webp",
+            "rating": 5,
+            "text": "<p>Sıcak köpek = Mutlu köpek. Üzerine çok düşünülerek tasarlanmış, gerçekten çok iyi üretilmiş ve ödenen paranın hakkını sonuna kadar veriyor.</p>",
+            "author": "Selim P."
+          }
+        },
+        "rev_esen": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1782640556__img_5950__original.webp",
+            "rating": 5,
+            "text": "<p>Montu o kadar çok sevdim ki tüm arkadaşlarımın ve ailemin köpekleri için de ekstradan sipariş verdim.</p>",
+            "author": "Esen A."
+          }
+        },
+        "rev_ahmet": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1782344340__39385__original.webp",
+            "rating": 5,
+            "text": "<p>Sipariş verdikten 2 gün sonra teslim ettiler, etkili bir hizmet.</p>",
+            "author": "Ahmet S."
+          }
+        }
+      },
+      "block_order": ["rev_ulas", "rev_ensar", "rev_gizem", "rev_ertugrul", "rev_taner", "rev_selim", "rev_esen", "rev_ahmet"]
+    },
+    "mp26_products": {
+      "type": "mispati-products",
+      "settings": {
+        "heading": "Yürüyüşten banyoya, hepsi burada.",
+        "collection": "patili-dostlarimiz-i̇cin-urunler",
+        "limit": 8,
+        "columns": 4,
+        "hide_current": false,
+        "button_label": "Tüm ürünleri gör",
+        "cream": false,
+        "pt": 96,
+        "pb": 96
+      }
+    },
+    "mp26_assurance": {
+      "type": "mp26-assurance",
+      "settings": {
+        "heading": "Bedenden emin değil misin?",
+        "text": "Ceket sayfasındaki Bedenimi bul aracı, köpeğinin ölçülerine göre doğru bedeni önerir. Yine de olmazsa 30 gün içinde değiştiriyoruz.",
+        "button_label": "Bedenimi bul",
+        "button_link": "shopify://products/termal-su-gecirmez-kopek-ceketi"
+      },
+      "blocks": {
+        "as_ship": { "type": "item", "settings": { "icon": "truck", "title": "Ücretsiz kargo", "text": "Sürat Kargo veya PTT Kargo ile, takip numarasıyla kapına gelir." } },
+        "as_cod": { "type": "item", "settings": { "icon": "cash", "title": "Kapıda ödeme", "text": "Siparişini teslim alırken öde." } },
+        "as_card": { "type": "item", "settings": { "icon": "card", "title": "Peşin fiyatına taksit", "text": "Kartla ödemede vade farkı yok." } },
+        "as_return": { "type": "item", "settings": { "icon": "return", "title": "30 gün değişim, 14 gün iade", "text": "Beden uymazsa değişim kolay." } }
+      },
+      "block_order": ["as_ship", "as_cod", "as_card", "as_return"]
+    },
+    "mp26_faq": {
+      "type": "mispati-faq",
+      "settings": {
+        "heading": "Aklına takılanlar",
+        "text": "",
+        "open_first": true,
+        "cta": "<p>Başka bir sorun mu var? <a href=\"/pages/contact\">Bize yaz</a>, hemen dönelim.</p>",
+        "schema_markup": true,
+        "cream": false,
+        "pt": 96,
+        "pb": 96
+      },
+      "blocks": {
+        "faq_ship": { "type": "question", "settings": { "question": "Kargo ücretli mi, hangi firmayla geliyor?", "answer": "<p>Kargo ücretsiz. Siparişler Sürat Kargo veya PTT Kargo ile gönderilir; takip numaranla siparişini Siparişinizi Takip Edin sayfasından sorgulayabilirsin.</p>" } },
+        "faq_cod": { "type": "question", "settings": { "question": "Kapıda ödeme var mı?", "answer": "<p>Evet, kapıda ödeme seçeneğiyle sipariş verebilirsin. Kartla ödemede peşin fiyatına taksit imkânı da var.</p>" } },
+        "faq_size": { "type": "question", "settings": { "question": "Beden uymazsa ne oluyor?", "answer": "<p>30 gün içinde değişim, 14 gün içinde iade hakkın var. Ceket için ürün sayfasındaki Bedenimi bul aracı, köpeğinin ölçülerine göre bedeni önerir.</p>" } },
+        "faq_jacket": { "type": "question", "settings": { "question": "Ceket yağmurda nasıl bir koruma sağlıyor?", "answer": "<p>Dış yüzeyi su geçirmez, dikişleri bantlıdır; yağmuru dışarıda bırakır. İçindeki polar astar soğuk havada sıcak tutar. Göğüs tasması, sırttaki kapaklı açıklıktan rahatça geçer.</p>" } },
+        "faq_boot": { "type": "question", "settings": { "question": "Askılı botun hangi kısmı su geçirmez?", "answer": "<p>Su geçirmez olan kısım patik bölümüdür; askılar ve sırt bölümü su geçirmez değildir. Kaymaz kauçuk taban ve reflektif bilek bantları vardır, askılı sistem botun yürürken yerinde kalmasına yardım eder.</p>" } },
+        "faq_freewalk": { "type": "question", "settings": { "question": "Freewalk çekme alışkanlığını bitirir mi?", "answer": "<p>Freewalk çekme alışkanlığını değiştirmez; çekişin kola ve bileğe değil bele dağılmasını sağlar ve iki elini serbest bırakır. Esnek ip ani çekişleri yumuşatır. 68 kg'a kadar köpeklerde kullanılabilir.</p>" } }
+      },
+      "block_order": ["faq_ship", "faq_cod", "faq_size", "faq_jacket", "faq_boot", "faq_freewalk"]
+    },
+    "mp26_closing": {
+      "type": "mp26-hero",
+      "settings": {
+        "image": "shopify://shop_images/IMG_6934_24e329c9-f8f2-4e5c-9b2f-38ca83e95151.jpg",
+        "mobile_image": "shopify://shop_images/kar.png",
+        "position_style": "object-position: 50% 50%",
+        "height": 72,
+        "overlay": 70,
+        "align": "left",
+        "compact": true,
+        "heading": "Kış kapıda. Yürüyüşler kısalmasın.",
+        "heading_tag": "h2",
+        "subheading": "Ceket ve askılı botu birlikte al, kombin indirimini sepette gör.",
+        "button_label": "Ceketi incele",
+        "button_link": "shopify://products/termal-su-gecirmez-kopek-ceketi",
+        "button2_label": "Botu incele",
+        "button2_link": "shopify://products/su-gecirmez-askili-kopek-botu",
+        "product": "",
+        "chip_label": "",
+        "rating": "",
+        "rating_label": "",
+        "pause_label": "Videoyu duraklat",
+        "play_label": "Videoyu oynat"
+      }
+    }
+  },
+  "order": ["mp26_hero", "mp26_problems", "mp26_story", "mp26_bundle", "mp26_ugc", "mp26_products", "mp26_assurance", "mp26_faq", "mp26_closing"]
+}

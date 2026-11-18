@@ -1,0 +1,14 @@
+{%- comment -%}
+  Güven rozetleri satırı. items: "ikon:Metin|ikon:Metin"
+  İkonlar: shield, paw, return, card, cash, truck, gift
+{%- endcomment -%}
+{%- assign list = items | default: 'shield:1 Yıl Garanti|paw:Tüm Irklara Uygun|return:30 Gün Değişim, İade|card:Taksit İmkanı|cash:Kapıda Ödeme' | split: '|' -%}
+<div class="mp-trust">
+  {%- for entry in list -%}
+    {%- assign parts = entry | split: ':' -%}
+    <div class="mp-trust__item">
+      {% render 'mispati-icon', name: parts[0] %}
+      <span>{{ parts[1] }}</span>
+    </div>
+  {%- endfor -%}
+</div>

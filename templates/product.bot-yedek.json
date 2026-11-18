@@ -1,0 +1,719 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "custom_liquid_1": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-rating', rating: '4.7', label: '(4.7) 157 Değerlendirme' %}"
+          }
+        },
+        "title_2": {
+          "type": "title",
+          "settings": {
+            "title_size_dt": 30,
+            "title_size_mb": 24,
+            "title_line_height": 1.2
+          }
+        },
+        "custom_liquid_3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"mp-lead\"><p>Kış yürüyüşleri için tam koruma ve konfor. Dış yüzeyi <strong>%</strong>100 su geçirmez, yırtılma ve aşınmaya karşı ekstra dayanıklı TPE materyalden üretilmiş olup, patilerin kuru kalmasını sağlar. Kauçuk tabanı zorlu zeminlerde tutunmayı artırır. Sırt destekli askı sistemi, botların ayaktan çıkmasını tamamen engelleyerek köpeğinizin doğal yürüyüşüne uyum sağlar.</p></div>"
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "label_style": "body",
+            "font_size": 14,
+            "font_style": "bold",
+            "swatch_type": "variant_image",
+            "swatch_shape": "circle",
+            "swatch_size": 2.6,
+            "swatch_image_height": "square",
+            "swatch_image_custom_radius_value": 2,
+            "size_trigger": "",
+            "chart_id": "",
+            "size_page": "",
+            "size_icon": "hanger",
+            "spaced_size": false
+          }
+        },
+        "lumin_quantity_5": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": true,
+            "hide_variant": true,
+            "compare_price_type": "original",
+            "discount_type": "percentage",
+            "discount": 0,
+            "fixed_price": 0,
+            "qty": 1,
+            "color_scheme": "background-1",
+            "title": "<strong>1× Askılı Köpek Botu</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 299 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "Ücretsiz Kargo",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": true,
+            "heading_title": "<strong>KAPIDA ÖDEME • VADE FARKSIZ TAKSİT</strong>",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 16,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "lumin_quantity_6": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": false,
+            "hide_variant": true,
+            "compare_price_type": "calculated",
+            "discount_type": "fixed",
+            "discount": 0,
+            "fixed_price": 80000,
+            "qty": 2,
+            "color_scheme": "background-1",
+            "title": "<strong>2×Askılı Köpek Botu</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 598 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "2 Al Daha Az Öde",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": false,
+            "heading_title": "",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 8,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "price_7": {
+          "type": "price",
+          "settings": {
+            "hide_tax_shipping": true,
+            "reverse_price": false,
+            "save_text_size": 12,
+            "price_weight": "bold",
+            "price_text_size": 22,
+            "price_text_size_mb": 20,
+            "compare_price": "#9a968c",
+            "original_price": "#1f1e1b",
+            "show_save_price": true,
+            "save_text": "#ffffff",
+            "save_bg": "#bda66c",
+            "save_border": "#bda66c",
+            "save_border_thickness": 0,
+            "save_corner_radius": 6,
+            "save_shadow_opacity": 0,
+            "save_shadow_horizontal_offset": 2,
+            "save_shadow_vertical_offset": 2,
+            "save_shadow_blur": 5
+          },
+          "disabled": true
+        },
+        "custom_liquid_8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-trust-row', items: 'shield:1 Yıl Garanti|paw:Tüm Irklara Uygun|return:30 Gün Değişim, İade|card:Taksit İmkanı|cash:Kapıda Ödeme' %}"
+          }
+        },
+        "buy_buttons_9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "skip_cart": false,
+            "button_custom_style": true,
+            "button_font_size": 17,
+            "button_height": 54,
+            "lm_main_button": "#bda66c",
+            "lm_main_button_gr": "",
+            "lm_main_text": "#ffffff",
+            "lm_main_button_border_width": 0,
+            "lm_main_button_border_color": "#bda66c"
+          }
+        },
+        "custom_liquid_10": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-ship-line', title: 'Bugün Sipariş Ver, Yarın Kargoda!', min_days: 1, max_days: 9 %}"
+          }
+        },
+        "description_11": {
+          "type": "description",
+          "settings": {}
+        },
+        "custom_liquid_12": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-mini-reviews', data: 'images_8e209e69-1e50-439e-849b-2c834fc5d8ac.jpg~Eve artık çamurlu ve ıslak patiler getirmiyoruz :)) Hem temizlemekten kurtuldum hemde köpeğim dışarının pisliğini eve getirmiyor~Ulaş T.;;images_1_ff97e82e-39b9-4870-8fc9-ef469ffba0d1.jpg~Geceleri reflektörleri parlıyor, farkedilme açısından süper. Su geçirmemesinden bahsetmiyorum bile her düşünceli köpek sahibinde olmalı 👍~Yasin E.;;images_2_3b107f60-fe15-4d61-b8c6-a50f359db1ca.jpg~Biz kelimenin tam anlamıyla bayıldıkkk, hem çok tatlı oldu hemde artık patilerimiz ıslanmıyor~Seher Y.' %}"
+          }
+        }
+      },
+      "block_order": [
+        "custom_liquid_1",
+        "title_2",
+        "custom_liquid_3",
+        "variant_picker_4",
+        "lumin_quantity_5",
+        "lumin_quantity_6",
+        "price_7",
+        "custom_liquid_8",
+        "buy_buttons_9",
+        "custom_liquid_10",
+        "description_11",
+        "custom_liquid_12"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "no_scroll": false,
+        "color_scheme": "background-1",
+        "block_padding": 1.5,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "thumbnail_size": 54,
+        "thumbnail_radius": 10,
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "mobile_thumbnails": "show",
+        "show_full_image": true,
+        "first_image_size": 100,
+        "second_image_size": 0,
+        "show_container": false,
+        "container_bg": "#ffffff",
+        "container_radius": 10,
+        "container_padding": 20,
+        "container_border_color": "#fcf7f5",
+        "show_container_mb": false,
+        "container_bg_mb": "#ffffff",
+        "container_padding_mb": 20,
+        "container_radius_mb": 8,
+        "container_border_color_mb": "#fcf7f5",
+        "container_text": "",
+        "container_text_bg": "#104698",
+        "container_text_txt": "#ffffff",
+        "padding_top": 32,
+        "padding_top_mb": 0,
+        "padding_bottom": 48
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Bunları da beğenebilirsiniz",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_no_crop": false,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_scroll_tags": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      },
+      "disabled": true
+    },
+    "mp_video_1": {
+      "type": "mispati-video",
+      "settings": {
+        "video": "shopify://files/videos/ana sayfa kesit  bot.mp4",
+        "heading": "",
+        "full_width": false,
+        "controls": false,
+        "cream": false,
+        "pt": 24,
+        "pb": 24
+      }
+    },
+    "mp_feature_rows_2": {
+      "type": "mispati-feature-rows",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "numbers": true,
+        "cream": false,
+        "pt": 56,
+        "pb": 56
+      },
+      "blocks": {
+        "b1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8030_3203c6b0-6fe3-491d-83e6-cce61634e1d4.jpg",
+            "eyebrow": "",
+            "title": "Su Geçirmez TPU Katman",
+            "text": "<p>Kumaşın iç yüzeyine özel ısı ve basınç işlemiyle kalıcı olarak entegre edilen bu esnek film, sıradan kaplamaların aksine zamanla soyulmaz veya çatlamaz. Üzerindeki mikroskobik gözenekler sayesinde dışarıdan gelen yağmur damlalarını %100 oranında engellerken, içeride oluşan nemin ve sıcak havanın dışarı atılmasını sağlar. Böylece dostunuz en hareketli oyunlarında bile özgürce koşar; yağmura karşı tam koruma altında olurken, üzerine geçirilmiş naylon bir poşet gibi terlemez ve bunalmaz. Hem aşılmaz bir kalkan hem de nefes alan ikinci bir deri gibi çalışır.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "b2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_y9zz22y9zz22y9zz.jpg",
+            "eyebrow": "",
+            "title": "Pratik Tasma Erişimi",
+            "text": "<p>Göğüs tasmasını ceketin üzerine takmaya çalışmak hem büyük bir eziyet hem de kumaşın yapısına zarar verir. Bu uğraşı bitirmek için sırt kısmına çift yönlü bir tasma çıkışı ekledik. Göğüs tasmasını ceketin altına rahatça giydirebilir, kayışı dışarıdan saniyeler içinde bağlayıp yürüyüşe çıkabilirsiniz.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ]
+    },
+    "mp_compare_3": {
+      "type": "mispati-compare",
+      "settings": {
+        "heading": "İki Yürüyüş Arasındaki Devasa Fark",
+        "text": "<p>Sırılsıklam tüyler, titreyen bir beden ve yürüyüş sonrası bitmeyen kurulama derdi... Ceketsiz bir yürüyüş her ikiniz için de yorucudur. Mispati Termal Ceket, <strong>suyu iten dış yüzeyi</strong> ve <strong>vücut ısısını koruyan termal yalıtımıyla</strong> dostunuza konfor, size ise pratiklik sunar.</p>",
+        "before_image": "shopify://shop_images/Gemini_Generated_Image_hgpcqohgpcqohgpc.jpg",
+        "after_image": "shopify://shop_images/Gemini_Generated_Image_c6xhd7c6xhd7c6xh.jpg",
+        "before_label": "Önce",
+        "after_label": "Sonra",
+        "cream": true,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_reviews_4": {
+      "type": "mispati-reviews",
+      "settings": {
+        "heading": "Kullanıcı Değerlendirmeleri",
+        "show_summary": true,
+        "rating": "4.7",
+        "count": "157",
+        "verified": true,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      },
+      "blocks": {
+        "b1": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1776579885__1000026620__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Harika su geçirmez ceket. Serin günler için hafif ama aynı zamanda sıcak tutan bir ürün. köpeğim normalde yağmurdan nefret etmesine rağmen, bu montla sağanak yağmurda yürümeyi tolere etti.</p>",
+            "author": "Ulaş U."
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1780434252__1000024107__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Bentley bugün yağmur altında ilk yürüyüşüne çıktı ve ceket vücudunu çok güzel bir şekilde kupkuru tuttu. Onu çok seviyoruz.</p>",
+            "author": "Ece T."
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1780821998__img_5097__original.webp",
+            "rating": 5,
+            "title": "Fiyatını Hakediyor",
+            "text": "<p>Ucuz markalardan çok daha iyi</p>",
+            "author": "Alp O."
+          }
+        },
+        "b4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1778204849__33d780a6-3c46-4b27-9284-2709def80e55__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Su geçirmez montumuza kelimenin tam anlamıyla bayılıyoruz.</p>",
+            "author": "Ceyda S."
+          }
+        },
+        "b5": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1786505934__img_6633__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Harika mont, çok kaliteli. Giydirmesi ve çıkarması çok kolay, görünüşü çok şık ve yavrumuz bunu giymeyi çok seviyor</p>",
+            "author": "Gizem S."
+          }
+        },
+        "b6": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1782179500__inbound8903712253154187324__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Kalıbı baya iyi, gerçekten su geçirmez</p>",
+            "author": "Bedirhan T."
+          }
+        },
+        "b7": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1780230583__img_8372__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>mont biraz ıslandı ve çamurlandı ama çamaşırlıkta çok hızlı bir şekilde kurudu. Herkese önereceğim harika bir ürün</p>",
+            "author": "Taner Y."
+          }
+        },
+        "b8": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1781732247__img_8632__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Yavrum buna bayılıyor. Giydirmesi çok kolay, oldukça rahat görünüyor ve yavrumu yağmurda tamamen kuru tutuyor.</p>",
+            "author": "Büşra G."
+          }
+        },
+        "b9": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1784965709__img_9244__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>yağmurda yaptığımız yürüyüşte, köpeğim benden bile daha kuru kaldı. Şiddetle tavsiye ediyorum</p>",
+            "author": "Ensar U."
+          }
+        },
+        "b10": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1779055535__img_6220__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>10 üzerinden 10 veriyorum. Köpeğim Jasper yağmurun altında öylece dururken bile tamamen kuru kalıyor. Daha önce denediğimiz diğer markalar kayıyor, gevşiyor ya da üzerinde garip bir şekilde duruyordu; bu mont ise güvenli bir şekilde yerinde sabit kalıyor ve üzerine cuk oturuyor.</p>",
+            "author": "İrem I."
+          }
+        },
+        "b11": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1776894209__2f7495a9-0cdf-4783-aeca-725f5efeaa1c__original.webp",
+            "rating": 5,
+            "title": "Keyifli ve rahat",
+            "text": "<p>Hızlı teslimat</p>",
+            "author": "Gizem B."
+          }
+        },
+        "b12": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1782344340__39385__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>sipariş verdikten 2 gün sonra teslim ettiler etkili bir hizmet</p>",
+            "author": "Ahmet S."
+          }
+        },
+        "b13": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1776653396__img_3768__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Harika kalıp ve kesinlikle su geçirmiyor. Üzerine çok iyi oturdu ve su geçirmezliği muazzam; şikayet edilecek hiçbir şey yok.</p>",
+            "author": "Ceylan K."
+          }
+        },
+        "b14": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1781999951__img_6910__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>beğendim</p>",
+            "author": "Nurullah İ."
+          }
+        },
+        "b15": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1781561362__img_2360__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Sıcak köpek = Mutlu köpek. Üzerine çok düşünülerek tasarlanmış, gerçekten çok iyi üretilmiş ve ödenen paranın hakkını sonuna kadar veriyor.</p>",
+            "author": "Selim P."
+          }
+        },
+        "b16": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1782640556__img_5950__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Mükemmel tasarım. Montu o kadar çok sevdim ki, tüm arkadaşlarımın ve ailemin köpekleri için de ekstradan sipariş verdim.</p>",
+            "author": "Esen A."
+          }
+        },
+        "b17": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1784717137__img_9597__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>İnanılmaz kalite ve su geçirmez! İnanılmaz kalite, köpeği sıcacık ve kuru tutuyor, ayrıca inanılmaz tatlı duruyor.</p>",
+            "author": "Cemile İ."
+          }
+        },
+        "b18": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1778986502__img_5231__original.webp",
+            "rating": 4,
+            "title": "",
+            "text": "<p>Köpeğimle koşarken kullanıyorum tam bir hayat kurtarıcı yağmura yakalandığımızda koşularımızı bitirmemize gerek kalmıyor</p>",
+            "author": "Ertuğrul O."
+          }
+        },
+        "b19": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1783816022__img-20260712-wa0033__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>bizim yeni favorimizz</p>",
+            "author": "Naz K."
+          }
+        },
+        "b20": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1778408571__img_7671__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>Gönül isterki tüm renkleri bizim olsun :)</p>",
+            "author": "Ferhan U."
+          }
+        },
+        "b21": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/1776766938__img_2704__original.webp",
+            "rating": 5,
+            "title": "",
+            "text": "<p>2 köpeğimede aldım sevdiler gibi </p>",
+            "author": "Yaren I."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12",
+        "b13",
+        "b14",
+        "b15",
+        "b16",
+        "b17",
+        "b18",
+        "b19",
+        "b20",
+        "b21"
+      ]
+    },
+    "mp_faq_5": {
+      "type": "mispati-faq",
+      "settings": {
+        "heading": "Sık Sorulan Sorular ?",
+        "text": "",
+        "open_first": true,
+        "cta": "<p>Başka bir sorunuz mu var? <a href=\"/pages/contact\">Bize yazın</a>, hemen yardımcı olalım.</p>",
+        "schema_markup": true,
+        "cream": true,
+        "pt": 64,
+        "pb": 64
+      },
+      "blocks": {
+        "b1": {
+          "type": "question",
+          "settings": {
+            "question": "Bu ceket gerçekten tamamen su geçirmez mi?",
+            "answer": "<p>Evet, mont ISO 811:2018 standartlarında test edilmiş ve ağır doğa şartlarına uygun olan 20.000 mm hidrostatik su direncine sahip olduğu kanıtlanmıştır. Rüzgar ve su geçirmez dış katman sağanak yağışta yüzey suyunu emse bile, iç kısımdaki TPU (Termoplastik Poliüretan) bariyer suyun alt katmanlara sızmasını kesin olarak engeller. Böylece iç kısımdaki polar astar ve köpeğiniz daima kuru ve sıcak kalır.</p>"
+          }
+        },
+        "b2": {
+          "type": "question",
+          "settings": {
+            "question": "Derin göğüslü veya uzun sırtlı (Pointer, Spaniel vb.) köpekler için uygun mu?",
+            "answer": "<p>Kesinlikle. Ürün standart pet shop kıyafetlerinin uymadığı derin göğüs kafesine veya uzun sırta sahip ırklar için özel bir kalıpla tasarlanmıştır. Ayarlanabilir göğüs kayışı, boyun ve sırt bölgesi için eklenen esnek büzme ipleri (bungee kordonlar) sayesinde montu köpeğinizin vücut yapısına kusursuz bir şekilde uydurabilirsiniz.</p>"
+          }
+        },
+        "b3": {
+          "type": "question",
+          "settings": {
+            "question": "Göğüs tasması ile birlikte kullanılabilir mi?",
+            "answer": "<p>Evet, montun sırt kısmında özel ve korumalı bir yer almaktadır. Bu bölme sayesinde montun altına giydirdiğiniz göğüs tasmasına veya boyunluğa gezdirme kayışınızı kolayca bağlayabilirsiniz.</p>"
+          }
+        },
+        "b4": {
+          "type": "question",
+          "settings": {
+            "question": "Ceketi nasıl temizlemeliyim?",
+            "answer": "<p>Ceketi çamaşır makinesinde soğuk veya ılık suda, hassas yıkama programında yıkayabilirsiniz. Plastik klipslerin zarar görmemesi için bir yıkama filesi kullanılması tavsiye edilir. Su geçirmez membrana (TPU) zarar vermemek adına yumuşatıcı kullanmamalı ve ürünü kesinlikle kurutma makinesine (tumble dry) atmamalısınız; asarak kurutmak en doğrusudur.</p>"
+          }
+        },
+        "b5": {
+          "type": "question",
+          "settings": {
+            "question": "Köpeğim için doğru bedeni nasıl seçerim?",
+            "answer": "<p>Beden seçimindeki en önemli metrik sırt uzunluğudur. Ölçü alırken boynun tabanından (tasmanın oturduğu hiza) kuyruğun başladığı noktaya kadar olan mesafeyi ölçmelisiniz. Tam uyum için ön bacakların hemen arkasından göğüs çevresini (en geniş nokta) ve boyun çevresini de ölçerek ürünün beden tablosuyla eşleştirmeniz yeterlidir.</p>"
+          }
+        },
+        "b6": {
+          "type": "question",
+          "settings": {
+            "question": "İade veya değişim yapabilir miyim?",
+            "answer": "<p>Ürünü teslim aldıktan sonra, iade politikasındaki koşullar kapsamında 14 gün içinde iade, 30 gün içinde değişim talebi oluşturabilirsiniz.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "mp_products_6": {
+      "type": "mispati-products",
+      "settings": {
+        "heading": "Patili Dostlarımız İçin Ürünler",
+        "collection": "patili-dostlarimiz-i̇cin-urunler",
+        "limit": 3,
+        "columns": 3,
+        "hide_current": true,
+        "button_label": "Tümünü görüntüle",
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "mp_video_1",
+    "mp_feature_rows_2",
+    "mp_compare_3",
+    "mp_reviews_4",
+    "mp_faq_5",
+    "mp_products_6"
+  ]
+}

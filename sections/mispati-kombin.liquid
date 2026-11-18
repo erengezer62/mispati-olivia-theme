@@ -1,0 +1,100 @@
+{{ 'mispati-kombin.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mispati-kombin.js' | asset_url }}" defer></script>
+{%- liquid
+  assign main = product
+  assign pair = section.settings.pair_product
+-%}
+{%- if main != blank and pair != blank and pair.id != main.id -%}
+  {%- liquid
+    assign mv = main.selected_or_first_available_variant
+    if pair.has_only_default_variant
+      assign pair_price = pair.selected_or_first_available_variant.price
+    else
+      assign pair_price = pair.price_min
+    endif
+    assign total = mv.price | plus: pair_price
+  -%}
+  <section class="mpk{% if section.settings.cream %} mpk--cream{% endif %}" id="kombini-tamamla" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+    <div class="mpk__wrap">
+      <div class="mpk__grid">
+        <div class="mpk__visual">
+          {%- if section.settings.image != blank -%}
+            <div class="mpk__hero">{{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 46vw, 100vw' }}</div>
+          {%- else -%}
+            <div class="mpk__duo">
+              <div class="mpk__tile">
+                {%- if main.featured_media -%}{{ main.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 22vw, 44vw', alt: main.title }}{%- endif -%}
+                {%- if section.settings.tile_main != blank -%}<span class="mpk__tile-tag">{{ section.settings.tile_main }}</span>{%- endif -%}
+              </div>
+              <span class="mpk__plus" aria-hidden="true">+</span>
+              <a class="mpk__tile" href="{{ pair.url }}">
+                {%- if pair.featured_media -%}{{ pair.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 22vw, 44vw', alt: pair.title }}{%- endif -%}
+                {%- if section.settings.tile_pair != blank -%}<span class="mpk__tile-tag">{{ section.settings.tile_pair }}</span>{%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="mpk__content">
+          {%- if section.settings.eyebrow != blank -%}<span class="mpk__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+          {%- if section.settings.heading != blank -%}<h2 class="mpk__title">{{ section.settings.heading }}</h2>{%- endif -%}
+          {%- if section.settings.text != blank -%}<div class="mpk__text">{{ section.settings.text }}</div>{%- endif -%}
+          <div class="mpk__card" data-mpk-box data-money-format="{{ shop.money_format | escape }}">
+            {% render 'mispati-kombin-item', p: main, tag: section.settings.main_tag, toggle: true, preselect: true, is_main: true %}
+            {% render 'mispati-kombin-item', p: pair, tag: section.settings.pair_tag, toggle: true, preselect: false, is_main: false %}
+            {%- if section.settings.deal_label != blank -%}
+              <div class="mpk__deal is-active" data-mpk-deal>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+                <div>
+                  <strong data-mpk-deal-title data-on="{{ section.settings.deal_label | escape }}" data-off="{{ section.settings.deal_off | default: section.settings.deal_label | escape }}">{{ section.settings.deal_label }}</strong>
+                  {%- if section.settings.deal_note != blank -%}<span data-mpk-deal-note data-on="{{ section.settings.deal_note | escape }}" data-off="{{ section.settings.deal_off_note | escape }}">{{ section.settings.deal_note }}</span>{%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+            <div class="mpk__total"><span>{{ section.settings.total_label }}</span><strong data-mpk-total>{{ total | money }}</strong></div>
+            <button type="button" class="mpk__btn" data-mpk-add data-label-multi="{{ section.settings.button_label | escape }}" data-label-single="{{ section.settings.button_single | escape }}" data-label-done="{{ section.settings.button_done | escape }}">
+              <span data-mpk-label>{{ section.settings.button_label }}</span>
+            </button>
+            <p class="mpk__error" data-mpk-error hidden></p>
+            {%- if section.settings.note != blank -%}<p class="mpk__note">{{ section.settings.note }}</p>{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  <section class="mpk"><div class="mpk__wrap"><div class="mpk__empty">Kombini tamamla: bölüm ayarlarından önerilecek tamamlayıcı ürünü seçin.</div></div></section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mispati Kombini Tamamla",
+  "tag": "div",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "product", "id": "pair_product", "label": "Önerilecek tamamlayıcı ürün" },
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket", "default": "Bu kış kombinini tamamla" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Kombini <em>tamamla</em>", "info": "İtalik yazılan kısım altın renkte görünür." },
+    { "type": "richtext", "id": "text", "label": "İkna metni" },
+    { "type": "image_picker", "id": "image", "label": "Kombin görseli", "info": "Boş bırakılırsa iki ürünün görseli yan yana gösterilir." },
+    { "type": "text", "id": "tile_main", "label": "Bu ürünün görsel etiketi" },
+    { "type": "text", "id": "tile_pair", "label": "Tamamlayıcı ürünün görsel etiketi" },
+    { "type": "text", "id": "main_tag", "label": "Bu ürün satır etiketi", "default": "Bu ürün" },
+    { "type": "text", "id": "pair_tag", "label": "Tamamlayıcı ürün satır etiketi", "default": "Kombini tamamlar" },
+    { "type": "header", "content": "Kombin indirimi" },
+    { "type": "text", "id": "deal_label", "label": "İndirim başlığı", "default": "Kombini Tamamla İndirimi Yakala", "info": "Boş bırakılırsa indirim kutusu gizlenir." },
+    { "type": "text", "id": "deal_note", "label": "İndirim açıklaması", "default": "İki ürünü birlikte aldığınızda indirim sepette otomatik uygulanır." },
+    { "type": "text", "id": "deal_off", "label": "Tek ürün seçiliyken başlık", "default": "Kombini tamamla, indirimi kaçırma" },
+    { "type": "text", "id": "deal_off_note", "label": "Tek ürün seçiliyken açıklama", "default": "İndirimden yararlanmak için iki ürünü de seçili bırakın." },
+    { "type": "header", "content": "Toplam ve buton" },
+    { "type": "text", "id": "total_label", "label": "Toplam etiketi", "default": "Kombin toplamı" },
+    { "type": "text", "id": "button_label", "label": "Buton metni (iki ürün)", "default": "Kombini sepete ekle" },
+    { "type": "text", "id": "button_single", "label": "Buton metni (tek ürün)", "default": "Sepete ekle" },
+    { "type": "text", "id": "button_done", "label": "Eklendi mesajı", "default": "Sepete eklendi" },
+    { "type": "text", "id": "note", "label": "Buton altı not", "default": "Kapıda ödeme • Vade farksız taksit • 30 gün değişim ve iade" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": true },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Mispati Kombini Tamamla" }]
+}
+{% endschema %}

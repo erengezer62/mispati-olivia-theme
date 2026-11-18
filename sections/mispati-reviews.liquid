@@ -1,0 +1,70 @@
+<section id="mp-reviews" class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.show_summary -%}
+      <div class="mp-reviews__summary">
+        <strong>{{ section.settings.rating }}</strong>
+        {% render 'mispati-stars', rating: section.settings.rating %}
+        <span>{{ section.settings.count }} değerlendirme</span>
+      </div>
+    {%- endif -%}
+    <div class="mp-reviews__wrap" data-mp-carousel>
+      <button type="button" class="mp-nav mp-nav--prev" data-mp-prev aria-label="Önceki">{% render 'mispati-icon', name: 'arrow-left' %}</button>
+      <div class="mp-reviews__track" data-mp-track>
+        {%- for block in section.blocks -%}
+          <article class="mp-review" {{ block.shopify_attributes }}>
+            <div class="mp-review__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 80vw', alt: block.settings.author }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span class="mp-review__quote">{% render 'mispati-icon', name: 'quote' %}</span>
+            </div>
+            <div class="mp-review__body">
+              <div>{% render 'mispati-stars', rating: block.settings.rating %}</div>
+              {%- if block.settings.title != blank -%}<h3 class="mp-review__title">{{ block.settings.title }}</h3>{%- endif -%}
+              <div class="mp-review__text">{{ block.settings.text }}</div>
+              <div class="mp-review__author">{{ block.settings.author }}</div>
+              {%- if section.settings.verified -%}
+                <span class="mp-review__verified">{% render 'mispati-icon', name: 'verified' %} Doğrulanmış alıcı</span>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+      <button type="button" class="mp-nav mp-nav--next" data-mp-next aria-label="Sonraki">{% render 'mispati-icon', name: 'arrow-right' %}</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Yorumlar",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Kullanıcı Değerlendirmeleri" },
+    { "type": "checkbox", "id": "show_summary", "label": "Puan özetini göster", "default": true },
+    { "type": "text", "id": "rating", "label": "Ortalama puan", "default": "4.7" },
+    { "type": "text", "id": "count", "label": "Değerlendirme sayısı", "default": "367" },
+    { "type": "checkbox", "id": "verified", "label": "\"Doğrulanmış alıcı\" etiketi", "default": true },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": true },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Yorum",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Fotoğraf" },
+        { "type": "range", "id": "rating", "label": "Puan", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Başlık" },
+        { "type": "richtext", "id": "text", "label": "Yorum", "default": "<p>Harika bir ürün.</p>" },
+        { "type": "text", "id": "author", "label": "İsim", "default": "Ayşe K." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Yorumlar", "blocks": [{ "type": "review" }, { "type": "review" }, { "type": "review" }, { "type": "review" }] }]
+}
+{% endschema %}

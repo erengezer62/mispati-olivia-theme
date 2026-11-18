@@ -1,0 +1,228 @@
+{%- comment -%}
+  Mispati Beden Bulucu — pati genişliği / uzunluğu veya ırka göre beden önerir,
+  "Bu bedeni seç" ile ürün sayfasındaki beden seçicisini otomatik ayarlar.
+{%- endcomment -%}
+<section class="pb pb--cream" id="beden-bulucu" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="pb__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+
+    <div class="pb-size" data-pb-size>
+      <div class="pb-size__card">
+        <span class="pb-kicker">Adım adım ölçün</span>
+        <div class="pb-size__howto">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="8" y="14" width="104" height="92" rx="8" fill="#fff" stroke="#d9d1bd"/>
+            <g fill="#26422f">
+              <ellipse cx="60" cy="72" rx="20" ry="17"/>
+              <ellipse cx="38" cy="47" rx="7" ry="9"/>
+              <ellipse cx="52" cy="37" rx="7" ry="9"/>
+              <ellipse cx="68" cy="37" rx="7" ry="9"/>
+              <ellipse cx="82" cy="47" rx="7" ry="9"/>
+            </g>
+            <g stroke="#a8905a" stroke-width="2" fill="none" stroke-linecap="round">
+              <path d="M28 96h64"/><path d="M28 92v8M92 92v8"/>
+              <path d="M104 30v62"/><path d="M100 30h8M100 92h8"/>
+            </g>
+          </svg>
+          <ol>
+            <li>Köpeğinizi ayakta dururken ön patisini bir kâğıda bastırın.</li>
+            <li>Patinin çevresini kalemle çizin.</li>
+            <li>En geniş yeri (genişlik) ve tırnak ucundan topuğa (uzunluk) ölçün.</li>
+          </ol>
+        </div>
+
+        <span class="pb-size__label">Pati ölçüleriniz</span>
+        <div class="pb-size__inputs">
+          <div class="pb-size__field">
+            <input type="number" inputmode="decimal" step="0.1" min="1" max="20" placeholder="Genişlik" data-w aria-label="Pati genişliği (cm)">
+            <span class="pb-size__unit">cm</span>
+          </div>
+          <div class="pb-size__field">
+            <input type="number" inputmode="decimal" step="0.1" min="1" max="20" placeholder="Uzunluk (ops.)" data-l aria-label="Pati uzunluğu (cm)">
+            <span class="pb-size__unit">cm</span>
+          </div>
+        </div>
+        <div class="pb-size__small">Ölçüyü virgül ya da noktayla yazabilirsiniz, örn. 6,5</div>
+
+        <div class="pb-size__or">ya da ırkınızı seçin</div>
+        <div class="pb-size__field" style="margin-top:12px">
+          <select data-breed aria-label="Irk seçin">
+            <option value="">Irk seçin</option>
+            {%- for block in section.blocks -%}
+              {%- assign breeds = block.settings.breeds | split: ',' -%}
+              {%- for b in breeds -%}
+                {%- assign bn = b | strip -%}
+                {%- if bn != blank -%}<option value="{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}">{{ bn }}</option>{%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          </select>
+        </div>
+
+        <div class="pb-size__result" data-result aria-live="polite">
+          <div class="pb-size__badge" data-badge>M</div>
+          <div>
+            <p data-msg></p>
+            <button type="button" class="pb-size__pick" data-pick>Bu bedeni seç</button>
+          </div>
+        </div>
+        <div class="pb-size__warn" data-warn></div>
+      </div>
+
+      <div>
+        <div class="pb-table__wrap">
+          <table class="pb-table">
+            <thead><tr><th>Beden</th><th>Pati genişliği</th><th>Pati uzunluğu</th><th>Sırt ve gövde</th><th>Önerilen ırklar</th></tr></thead>
+            <tbody>
+              {%- for block in section.blocks -%}
+                <tr data-row="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                  <td>{{ block.settings.size }}</td>
+                  <td>{{ block.settings.w_min }} – {{ block.settings.w_max }} cm</td>
+                  <td>{{ block.settings.l_min }} – {{ block.settings.l_max }} cm</td>
+                  <td>{{ block.settings.body }}</td>
+                  <td class="pb-table__breeds">{{ block.settings.breeds }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        {%- if section.settings.note != blank -%}<div class="pb-size__note">{{ section.settings.note }}</div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-pb-sizes>
+    [
+      {%- for block in section.blocks -%}
+        { "size": {{ block.settings.size | json }}, "wMin": {{ block.settings.w_min | json }}, "wMax": {{ block.settings.w_max | json }}, "lMin": {{ block.settings.l_min | json }}, "lMax": {{ block.settings.l_max | json }} }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</section>
+
+<script>
+(function () {
+  var root = document.querySelector('#shopify-section-{{ section.id }} [data-pb-size]');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+  var sec = root.closest('section');
+  var sizes = [];
+  try { sizes = JSON.parse(sec.querySelector('[data-pb-sizes]').textContent); } catch (e) {}
+  sizes.forEach(function (s) { ['wMin', 'wMax', 'lMin', 'lMax'].forEach(function (k) { s[k] = parseFloat(String(s[k]).replace(',', '.')); }); });
+  var w = root.querySelector('[data-w]'), l = root.querySelector('[data-l]'), breed = root.querySelector('[data-breed]');
+  var box = root.querySelector('[data-result]'), badge = root.querySelector('[data-badge]'), msg = root.querySelector('[data-msg]'), warn = root.querySelector('[data-warn]'), pick = root.querySelector('[data-pick]');
+  var rows = [].slice.call(sec.querySelectorAll('[data-row]'));
+  var current = -1;
+
+  function num(v) { var n = parseFloat(String(v || '').replace(',', '.')); return isNaN(n) ? null : n; }
+  function show(i, text) {
+    current = i;
+    rows.forEach(function (r, idx) { r.classList.toggle('is-hit', idx === i); });
+    if (i < 0) { box.classList.remove('is-on'); return; }
+    badge.textContent = sizes[i].size;
+    msg.innerHTML = text;
+    box.classList.add('is-on');
+    warn.classList.remove('is-on');
+  }
+  function fromMeasure() {
+    breed.value = '';
+    var W = num(w.value), L = num(l.value);
+    if (W == null) { show(-1); return; }
+    var hits = [];
+    sizes.forEach(function (s, i) { if (W >= s.wMin && W <= s.wMax) hits.push(i); });
+    if (!hits.length && W > sizes[0].wMin && W < sizes[sizes.length - 1].wMax) {
+      for (var g = 0; g < sizes.length; g++) { if (sizes[g].wMin > W) { show(g, 'Patiniz <strong>' + W + ' cm</strong> ile iki bedenin arasında kalıyor. Rahat bir kullanım için bir büyük beden olan <strong>' + sizes[g].size + '</strong> bedeni öneriyoruz.'); return; } }
+    }
+    if (!hits.length) {
+      show(-1);
+      warn.textContent = W < sizes[0].wMin ? 'Bu ölçü en küçük bedenimizin altında kalıyor. Bize yazın, birlikte bakalım.' : (W > sizes[sizes.length - 1].wMax ? 'Bu ölçü en büyük bedenimizin üzerinde. Bize yazın, birlikte bakalım.' : 'Ölçüyü kontrol edin; iki beden aralığının tam ortasında kalıyor olabilir.');
+      warn.classList.add('is-on');
+      return;
+    }
+    var pickI = hits[hits.length - 1], note = '';
+    if (hits.length > 1) {
+      if (L != null) {
+        var byL = hits.filter(function (i) { return L >= sizes[i].lMin && L <= sizes[i].lMax; });
+        if (byL.length) pickI = byL[0];
+        note = ' Pati uzunluğunuza göre seçildi.';
+      } else {
+        note = ' İki bedenin sınırındasınız; uzunluğu da girerseniz daha net öneririz. Arada kalırsanız büyük beden daha rahat olur.';
+      }
+    }
+    show(pickI, 'Patiniz <strong>' + W + ' cm</strong> genişlikte: size en uygun beden <strong>' + sizes[pickI].size + '</strong>.' + note);
+  }
+  function fromBreed() {
+    if (breed.value === '') { show(-1); return; }
+    w.value = ''; l.value = '';
+    var i = parseInt(breed.value, 10);
+    var name = breed.options[breed.selectedIndex].text;
+    show(i, '<strong>' + name + '</strong> için genellikle <strong>' + sizes[i].size + '</strong> beden uygundur. Köpekler arasında fark olabileceği için pati genişliğini ölçmenizi öneririz.');
+  }
+  w.addEventListener('input', fromMeasure);
+  l.addEventListener('input', fromMeasure);
+  breed.addEventListener('change', fromBreed);
+
+  pick.addEventListener('click', function () {
+    if (current < 0) return;
+    var val = sizes[current].size;
+    var done = false;
+    var scope = document.querySelector('variant-selects, variant-radios');
+    if (scope) {
+      var r = [].slice.call(scope.querySelectorAll('input[type="radio"]')).find(function (x) { return x.value === val; });
+      if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); done = true; }
+      else {
+        [].slice.call(scope.querySelectorAll('select')).forEach(function (s) {
+          if (done) return;
+          var opt = [].slice.call(s.options).find(function (o) { return o.value === val || o.text.trim() === val; });
+          if (opt) { s.value = opt.value; s.dispatchEvent(new Event('change', { bubbles: true })); done = true; }
+        });
+      }
+    }
+    if (!done) {
+      document.querySelectorAll('product-info select, .product__info-wrapper select').forEach(function (s) {
+        if (done || s.offsetParent === null) return;
+        var opt = [].slice.call(s.options).find(function (o) { return o.value === val || o.text.trim() === val; });
+        if (opt) { s.value = opt.value; s.dispatchEvent(new Event('change', { bubbles: true })); done = true; }
+      });
+    }
+    var target = document.querySelector('.product__info-wrapper, product-info') || document.body;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    pick.textContent = done ? val + ' seçildi' : 'Bedeni yukarıdan seçin';
+    setTimeout(function () { pick.textContent = 'Bu bedeni seç'; }, 2200);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Beden Bulucu",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket", "default": "Beden Bulucu" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Doğru beden, <em>bir dakikada.</em>" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "richtext", "id": "note", "label": "Tablo altı not" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "size",
+      "name": "Beden",
+      "settings": [
+        { "type": "text", "id": "size", "label": "Beden (ürün seçeneğiyle aynı yazılmalı)", "default": "M" },
+        { "type": "text", "id": "w_min", "label": "Pati genişliği min (cm)", "default": "5" },
+        { "type": "text", "id": "w_max", "label": "Pati genişliği max (cm)", "default": "6" },
+        { "type": "text", "id": "l_min", "label": "Pati uzunluğu min (cm)", "default": "6" },
+        { "type": "text", "id": "l_max", "label": "Pati uzunluğu max (cm)", "default": "7" },
+        { "type": "text", "id": "body", "label": "Sırt ve gövde çevresi", "default": "98 – 116 cm" },
+        { "type": "text", "id": "breeds", "label": "Önerilen ırklar (virgülle)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Beden Bulucu", "blocks": [{ "type": "size" }] }]
+}
+{% endschema %}

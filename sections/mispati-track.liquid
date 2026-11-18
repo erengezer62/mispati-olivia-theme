@@ -1,0 +1,351 @@
+{%- comment -%}
+  Mispati Kargo Takip ekranı — uygulamasız, tamamen tema.
+  Takip numarasından kargo firmasını tanır ve firmanın resmi takip sayfasını açar.
+  Kargo firmaları "Kargo firması" bloklarıyla yönetilir (ad, numara kalıbı, takip adresi).
+{%- endcomment -%}
+<section class="mp-tr" id="mp-track-{{ section.id }}">
+  <div class="mp-tr__hero">
+    <div class="mp-tr__hero-icon">{% render 'mispati-icon', name: 'truck' %}</div>
+    <h1 class="mp-tr__title">{{ section.settings.heading }}</h1>
+    {%- if section.settings.subheading != blank -%}<p class="mp-tr__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+  </div>
+
+  <div class="mp-tr__card">
+    <form class="mp-tr__form" novalidate>
+      <div class="mp-tr__field">
+        <label for="mp-tr-no-{{ section.id }}">Kargo takip numarası</label>
+        <div class="mp-tr__inputwrap">
+          <input id="mp-tr-no-{{ section.id }}" name="tracking" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Örn. 10610117120224 veya KP06720925159" required>
+          <span class="mp-tr__detect" hidden></span>
+        </div>
+      </div>
+
+      <div class="mp-tr__carriers" role="radiogroup" aria-label="Kargo firması">
+        <span class="mp-tr__carriers-label">Kargo firması</span>
+        <div class="mp-tr__chips">
+          {%- for block in section.blocks -%}
+            <button type="button" class="mp-tr__chip" role="radio" aria-checked="false" data-carrier="{{ forloop.index0 }}" style="--c: {{ block.settings.color }}" {{ block.shopify_attributes }}>
+              <span class="mp-tr__chip-dot"></span>{{ block.settings.name }}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <button type="submit" class="mp-tr__btn">Kargomu Takip Et</button>
+      <p class="mp-tr__hint">Takip numaranız siparişiniz kargoya verildiğinde SMS ve e-posta ile gönderilir.</p>
+    </form>
+    <div class="mp-tr__error" role="alert" hidden></div>
+  </div>
+
+  <div class="mp-tr__result" aria-live="polite"></div>
+
+  <div class="mp-tr__recent" hidden>
+    <span class="mp-tr__recent-label">Son sorguladıklarınız</span>
+    <div class="mp-tr__recent-list"></div>
+  </div>
+
+  <div class="mp-tr__card mp-tr__flow">
+    <h2 class="mp-tr__h2">Siparişiniz nasıl ilerler?</h2>
+    <ol class="mp-tr__flow-list">
+      <li><span class="mp-tr__flow-dot">1</span><div><strong>Sipariş alındı</strong><span>Siparişiniz onaylanır ve sipariş numaranız e-posta ile gönderilir.</span></div></li>
+      <li><span class="mp-tr__flow-dot">2</span><div><strong>Hazırlanıyor</strong><span>{{ section.settings.prep_text }}</span></div></li>
+      <li><span class="mp-tr__flow-dot">3</span><div><strong>Kargoya verildi</strong><span>Takip numaranız SMS ve e-posta ile iletilir; hareketler birkaç saat içinde görünür.</span></div></li>
+      <li><span class="mp-tr__flow-dot">4</span><div><strong>Teslim edildi</strong><span>Paketiniz kapınızda. Patili dostunuzla güzel günler!</span></div></li>
+    </ol>
+  </div>
+
+  {%- if section.settings.show_faq -%}
+    <div class="mp-tr__faq">
+      <h2 class="mp-tr__h2">Sık sorulanlar</h2>
+      <details><summary>Takip numaramı nerede bulurum?</summary><div>Siparişiniz kargoya verildiğinde gönderdiğimiz SMS ve e-postada takip numaranız ve kargo firması yazar. Mesajı bulamazsanız WhatsApp'tan sipariş numaranızla bize yazın.</div></details>
+      <details><summary>Takip numaram sorgulanmıyor, ne yapmalıyım?</summary><div>Kargoya yeni verilen paketlerin kargo firmasının sisteminde görünmesi birkaç saat sürebilir. Numarayı boşluksuz ve eksiksiz girdiğinizden emin olun; sorun devam ederse bize yazın.</div></details>
+      <details><summary>Kargom gecikti, ne yapabilirim?</summary><div>Kargo firmasının sayfasındaki son harekete bakın. Paket uzun süre aynı şubede bekliyorsa WhatsApp'tan bize ulaşın, kargo firmasıyla sizin adınıza iletişime geçelim.</div></details>
+    </div>
+  {%- endif -%}
+
+  <div class="mp-tr__help">
+    {%- if section.settings.whatsapp != blank -%}
+      {%- assign wa = section.settings.whatsapp | remove: ' ' | remove: '+' -%}
+      <a class="mp-tr__help-item" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">{% render 'mispati-icon', name: 'whatsapp' %}<div><strong>Yardım mı lazım?</strong><span>WhatsApp'tan bize yazın, hemen yardımcı olalım.</span></div></a>
+    {%- endif -%}
+    {%- if section.settings.email != blank -%}
+      <a class="mp-tr__help-item" href="mailto:{{ section.settings.email }}">{% render 'mispati-icon', name: 'mail' %}<div><strong>E-posta</strong><span>{{ section.settings.email }}</span></div></a>
+    {%- endif -%}
+  </div>
+
+  <script type="application/json" data-mp-carriers>
+    [
+      {%- for block in section.blocks -%}
+        {
+          "name": {{ block.settings.name | json }},
+          "color": {{ block.settings.color | json }},
+          "pattern": {{ block.settings.pattern | json }},
+          "url": {{ block.settings.url | json }},
+          "mode": {{ block.settings.mode | json }},
+          "home": {{ block.settings.home_url | json }},
+          "note": {{ block.settings.note | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</section>
+
+<style>
+  .mp-tr { max-width: 760px; margin: 0 auto; padding: 48px 20px 72px; color: var(--mp-ink, #1f1e1b); }
+  .mp-tr__hero { text-align: center; margin-bottom: 28px; }
+  .mp-tr__hero-icon { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 20px; background: var(--mp-gold-soft, #f4efe2); color: var(--mp-gold-dark, #a08a50); display: flex; align-items: center; justify-content: center; }
+  .mp-tr__hero-icon svg { width: 32px; height: 32px; }
+  .mp-tr__title { font-family: var(--font-heading-family); font-weight: 600; font-size: clamp(28px, 4vw, 40px); margin: 0 0 10px; line-height: 1.15; }
+  .mp-tr__sub { color: var(--mp-muted, #6d6a62); font-size: 15.5px; line-height: 1.6; max-width: 540px; margin: 0 auto; }
+  .mp-tr__card { background: #fff; border: 1px solid var(--mp-line, #e8e2d2); border-radius: 20px; box-shadow: 0 14px 40px rgba(31,30,27,0.07); padding: 26px; }
+  .mp-tr__form { display: grid; gap: 18px; }
+  .mp-tr__field label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 8px; }
+  .mp-tr__inputwrap { position: relative; }
+  .mp-tr__inputwrap input { width: 100%; height: 56px; padding: 0 16px; border: 1px solid #d9d3c3; border-radius: 14px; font: inherit; font-size: 17px; letter-spacing: 0.04em; background: #fff; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+  .mp-tr__inputwrap input:focus { outline: none; border-color: var(--mp-gold, #bda66c); box-shadow: 0 0 0 4px rgba(189,166,108,0.18); }
+  .mp-tr__inputwrap input.is-invalid { border-color: #c0392b; }
+  .mp-tr__detect { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; background: var(--c, #bda66c); pointer-events: none; animation: mpTrPop 0.25s ease; }
+  @keyframes mpTrPop { from { opacity: 0; transform: translateY(-50%) scale(0.9); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+  .mp-tr__carriers-label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 8px; }
+  .mp-tr__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mp-tr__chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid #d9d3c3; background: #fff; font: inherit; font-size: 14px; font-weight: 600; color: var(--mp-ink, #1f1e1b); cursor: pointer; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s; }
+  .mp-tr__chip-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c, #bda66c); }
+  .mp-tr__chip[aria-checked="true"] { border-color: var(--c, #bda66c); background: #fffdf8; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, #bda66c) 20%, transparent); }
+  .mp-tr__btn { height: 56px; border: 0; border-radius: 14px; background: var(--mp-gold, #bda66c); color: #fff; font: inherit; font-weight: 600; font-size: 16px; letter-spacing: 0.03em; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+  .mp-tr__btn:hover { background: var(--mp-gold-dark, #a08a50); box-shadow: 0 8px 20px rgba(189,166,108,0.35); transform: translateY(-1px); }
+  .mp-tr__hint { font-size: 12.5px; color: var(--mp-muted, #6d6a62); margin: -6px 0 0; text-align: center; }
+  .mp-tr__error { margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: #fdf1ef; color: #9b2c1f; font-size: 14px; line-height: 1.55; }
+
+  .mp-tr__result:not(:empty) { margin-top: 22px; }
+  .mp-tr__res { overflow: hidden; padding: 0; animation: mpTrIn 0.35s ease both; }
+  @keyframes mpTrIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .mp-tr__res-head { display: flex; align-items: center; gap: 14px; padding: 22px 24px; background: var(--mp-cream, #f7f4ec); border-bottom: 1px solid var(--mp-line, #e8e2d2); }
+  .mp-tr__mono { width: 52px; height: 52px; border-radius: 14px; background: var(--c, #bda66c); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; letter-spacing: 0.02em; flex: none; }
+  .mp-tr__eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mp-muted, #6d6a62); font-weight: 600; }
+  .mp-tr__carrier { font-weight: 700; font-size: 18px; margin: 2px 0; }
+  .mp-tr__no { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; color: var(--mp-muted, #6d6a62); }
+  .mp-tr__no strong { color: var(--mp-ink, #1f1e1b); letter-spacing: 0.04em; }
+  .mp-tr__copy { border: 0; background: transparent; color: var(--mp-gold-dark, #a08a50); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; padding: 2px 4px; }
+  .mp-tr__res-body { padding: 24px; display: grid; gap: 16px; }
+  .mp-tr__go { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 14px; background: var(--c, #bda66c); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; border: 0; font-family: inherit; cursor: pointer; transition: filter 0.2s, transform 0.15s; }
+  .mp-tr__go:hover { filter: brightness(0.93); transform: translateY(-1px); }
+  .mp-tr__go svg { width: 20px; height: 20px; }
+  .mp-tr__steps { list-style: none; margin: 0; padding: 16px; display: grid; gap: 12px; background: var(--mp-cream, #f7f4ec); border-radius: 14px; }
+  .mp-tr__steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; }
+  .mp-tr__steps b { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 2px solid var(--c, #bda66c); color: var(--mp-ink, #1f1e1b); display: flex; align-items: center; justify-content: center; font-size: 12.5px; flex: none; }
+  .mp-tr__steps li.is-done b { background: var(--c, #bda66c); color: #fff; }
+  .mp-tr__note { font-size: 13px; color: var(--mp-muted, #6d6a62); line-height: 1.6; margin: 0; }
+  .mp-tr__unknown h3 { margin: 0 0 6px; font-size: 18px; }
+  .mp-tr__unknown p { margin: 0; color: var(--mp-muted, #6d6a62); font-size: 14.5px; line-height: 1.6; }
+
+  .mp-tr__recent { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .mp-tr__recent-label { font-size: 12.5px; color: var(--mp-muted, #6d6a62); font-weight: 600; margin-right: 4px; }
+  .mp-tr__recent-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mp-tr__recent-item { border: 1px dashed #cfc9b9; background: transparent; border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12.5px; letter-spacing: 0.03em; cursor: pointer; color: var(--mp-ink, #1f1e1b); }
+  .mp-tr__recent-item:hover { border-color: var(--mp-gold, #bda66c); }
+
+  .mp-tr__flow { margin-top: 26px; }
+  .mp-tr__h2 { font-family: var(--font-heading-family); font-size: 20px; font-weight: 600; margin: 0 0 18px; }
+  .mp-tr__flow-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; }
+  .mp-tr__flow-list::before { content: ""; position: absolute; top: 17px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, var(--mp-gold, #bda66c) 0 6px, transparent 6px 11px); }
+  .mp-tr__flow-list li { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; position: relative; }
+  .mp-tr__flow-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--mp-gold, #bda66c); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .mp-tr__flow-list strong { display: block; font-size: 14px; margin-bottom: 2px; }
+  .mp-tr__flow-list span { font-size: 12.5px; color: var(--mp-muted, #6d6a62); line-height: 1.5; }
+
+  .mp-tr__faq { margin-top: 30px; }
+  .mp-tr__faq details { border-bottom: 1px solid var(--mp-line, #e8e2d2); }
+  .mp-tr__faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 2px; font-weight: 600; font-size: 15px; }
+  .mp-tr__faq summary::-webkit-details-marker { display: none; }
+  .mp-tr__faq summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--mp-gold-dark, #a08a50); transition: transform 0.2s; }
+  .mp-tr__faq details[open] summary::after { transform: rotate(45deg); }
+  .mp-tr__faq details > div { padding: 0 2px 18px; color: var(--mp-muted, #6d6a62); font-size: 14.5px; line-height: 1.7; }
+
+  .mp-tr__help { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 26px; }
+  .mp-tr__help-item { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 16px; background: var(--mp-cream, #f7f4ec); color: inherit; text-decoration: none; }
+  .mp-tr__help-item svg { width: 22px; height: 22px; color: var(--mp-gold-dark, #a08a50); flex: none; margin-top: 2px; }
+  .mp-tr__help-item strong { display: block; font-size: 14px; margin-bottom: 2px; }
+  .mp-tr__help-item span { font-size: 12.5px; color: var(--mp-muted, #6d6a62); line-height: 1.5; }
+
+  @media (max-width: 749px) {
+    .mp-tr { padding: 32px 16px 56px; }
+    .mp-tr__card { padding: 18px; border-radius: 18px; }
+    .mp-tr__res { padding: 0; }
+    .mp-tr__res-head, .mp-tr__res-body { padding: 18px; }
+    .mp-tr__flow-list { grid-template-columns: 1fr; gap: 16px; }
+    .mp-tr__flow-list::before { top: 18px; bottom: 18px; left: 17px; right: auto; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--mp-gold, #bda66c) 0 6px, transparent 6px 11px); }
+    .mp-tr__flow-list li { flex-direction: row; text-align: left; align-items: flex-start; }
+    .mp-tr__flow-dot { flex: none; }
+    .mp-tr__detect { font-size: 11px; padding: 5px 8px; }
+  }
+</style>
+
+<script>
+(function () {
+  var root = document.getElementById('mp-track-{{ section.id }}');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+
+  var carriers = [];
+  try { carriers = JSON.parse(root.querySelector('[data-mp-carriers]').textContent) || []; } catch (e) {}
+  carriers.forEach(function (c) { try { c.re = c.pattern ? new RegExp('^(?:' + c.pattern + ')$', 'i') : null; } catch (e) { c.re = null; } });
+
+  var form = root.querySelector('form');
+  var input = form.elements.tracking;
+  var detect = root.querySelector('.mp-tr__detect');
+  var chips = [].slice.call(root.querySelectorAll('.mp-tr__chip'));
+  var errorBox = root.querySelector('.mp-tr__error');
+  var result = root.querySelector('.mp-tr__result');
+  var recentWrap = root.querySelector('.mp-tr__recent');
+  var recentList = root.querySelector('.mp-tr__recent-list');
+  var selected = -1, manual = false;
+  var KEY = 'mp_track_recent';
+
+  var ICON_EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>';
+  var ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>';
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function clean(v) { return String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
+  function initials(name) { return String(name || '?').split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase(); }
+
+  function detectCarrier(no) {
+    for (var i = 0; i < carriers.length; i++) { if (carriers[i].re && carriers[i].re.test(no)) return i; }
+    return -1;
+  }
+  function select(i, isManual) {
+    selected = i; manual = !!isManual;
+    chips.forEach(function (ch, idx) { ch.setAttribute('aria-checked', idx === i ? 'true' : 'false'); });
+  }
+  function updateDetect() {
+    var no = clean(input.value);
+    var i = no.length >= 8 ? detectCarrier(no) : -1;
+    if (i > -1) {
+      detect.hidden = false; detect.textContent = carriers[i].name; detect.style.setProperty('--c', carriers[i].color || '#bda66c');
+      if (!manual) select(i, false);
+    } else {
+      detect.hidden = true;
+      if (!manual) select(-1, false);
+    }
+  }
+
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return false; });
+    try {
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); ta.remove(); return Promise.resolve(ok);
+    } catch (e) { return Promise.resolve(false); }
+  }
+
+  function loadRecent() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+  function saveRecent(no) {
+    try { var l = loadRecent().filter(function (x) { return x !== no; }); l.unshift(no); localStorage.setItem(KEY, JSON.stringify(l.slice(0, 4))); } catch (e) {}
+    renderRecent();
+  }
+  function renderRecent() {
+    var l = loadRecent();
+    recentWrap.hidden = !l.length;
+    recentList.innerHTML = l.map(function (n) { return '<button type="button" class="mp-tr__recent-item" data-recent="' + esc(n) + '">' + esc(n) + '</button>'; }).join('');
+  }
+
+  function renderResult(no, c) {
+    var url = (c.url || '').split('{takip}').join(encodeURIComponent(no));
+    var isCopy = c.mode === 'copy_open' || !url || url.indexOf(encodeURIComponent(no)) === -1;
+    var target = isCopy ? (c.home || url) : url;
+    var head = '<div class="mp-tr__res-head"><span class="mp-tr__mono">' + esc(initials(c.name)) + '</span><div><div class="mp-tr__eyebrow">Kargo firması</div><div class="mp-tr__carrier">' + esc(c.name) + '</div>' +
+      '<div class="mp-tr__no">Takip no: <strong>' + esc(no) + '</strong><button type="button" class="mp-tr__copy" data-copy="' + esc(no) + '">Kopyala</button></div></div></div>';
+    var body;
+    if (!isCopy) {
+      body = '<a class="mp-tr__go" href="' + esc(target) + '" target="_blank" rel="noopener">' + ICON_EXT + 'Hareketleri ' + esc(c.name) + ' sitesinde gör</a>' +
+        '<p class="mp-tr__note">Kargonuzun tüm hareketleri ' + esc(c.name) + ' sitesinde yeni sekmede açılır. ' + esc(c.note || '') + '</p>';
+    } else {
+      body = '<button type="button" class="mp-tr__go" data-copyopen="' + esc(no) + '" data-target="' + esc(target) + '">' + ICON_COPY + 'Numarayı kopyala ve ' + esc(c.name) + ' sayfasını aç</button>' +
+        '<ol class="mp-tr__steps"><li data-step="1"><b>1</b><span>Takip numaranız kopyalanır.</span></li><li><b>2</b><span>' + esc(c.name) + ' sayfası yeni sekmede açılır; <strong>Gönderi Takip</strong> kutusuna numaranızı yapıştırın.</span></li><li><b>3</b><span><strong>Sorgula</strong>’ya basın, kargonuzun tüm hareketlerini görün.</span></li></ol>' +
+        (c.note ? '<p class="mp-tr__note">' + esc(c.note) + '</p>' : '');
+    }
+    result.innerHTML = '<article class="mp-tr__card mp-tr__res" style="--c:' + esc(c.color || '#bda66c') + '">' + head + '<div class="mp-tr__res-body">' + body + '</div></article>';
+  }
+
+  function renderUnknown(no) {
+    result.innerHTML = '<div class="mp-tr__card mp-tr__unknown"><h3>Kargo firmasını seçin</h3><p>Bu numaranın hangi kargo firmasına ait olduğunu otomatik tanıyamadık. Yukarıdan kargo firmanızı seçip tekrar deneyin; emin değilseniz kargo SMS’inize bakabilir ya da bize yazabilirsiniz.</p></div>';
+  }
+
+  function showError(t) { errorBox.textContent = t; errorBox.hidden = false; }
+  function clearError() { errorBox.hidden = true; errorBox.textContent = ''; }
+
+  function submit() {
+    clearError();
+    var no = clean(input.value);
+    input.classList.toggle('is-invalid', !no);
+    if (!no) { showError('Lütfen kargo takip numaranızı girin.'); input.focus(); return; }
+    if (no.length < 8) { showError('Takip numarası çok kısa görünüyor. Lütfen numarayı eksiksiz girin.'); return; }
+    var i = selected > -1 ? selected : detectCarrier(no);
+    if (i < 0) { renderUnknown(no); return; }
+    select(i, manual);
+    renderResult(no, carriers[i]);
+    saveRecent(no);
+    if (history.replaceState) { var u = new URL(location.href); u.searchParams.set('takip', no); history.replaceState(null, '', u); }
+    result.firstElementChild && result.firstElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  input.addEventListener('input', updateDetect);
+  chips.forEach(function (ch, idx) {
+    ch.addEventListener('click', function () { select(selected === idx && manual ? -1 : idx, selected !== idx || !manual); if (selected === -1) updateDetect(); });
+  });
+  form.addEventListener('submit', function (e) { e.preventDefault(); submit(); });
+
+  result.addEventListener('click', function (e) {
+    var cp = e.target.closest('[data-copy]');
+    if (cp) { copy(cp.dataset.copy).then(function (ok) { cp.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı'; setTimeout(function () { cp.textContent = 'Kopyala'; }, 1600); }); }
+    var co = e.target.closest('[data-copyopen]');
+    if (co) {
+      // Pencereyi tıklama anında aç (açılır pencere engelleyicilerine takılmasın), ardından kopyala
+      var win = window.open(co.dataset.target, '_blank');
+      if (win) { try { win.opener = null; } catch (err) {} }
+      copy(co.dataset.copyopen).then(function (ok) {
+        var first = result.querySelector('[data-step="1"]');
+        if (first) { first.classList.add('is-done'); first.querySelector('span').textContent = ok ? 'Takip numaranız kopyalandı.' : 'Numarayı elle kopyalayın: ' + co.dataset.copyopen; }
+      });
+      if (!win) location.href = co.dataset.target;
+    }
+  });
+  recentList.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-recent]'); if (!b) return;
+    input.value = b.dataset.recent; manual = false; updateDetect(); submit();
+  });
+
+  renderRecent();
+  var pre = new URLSearchParams(location.search).get('takip');
+  if (pre) { input.value = pre; updateDetect(); submit(); }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Mispati Kargo Takip",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Başlık", "default": "Kargom Nerede?" },
+    { "type": "text", "id": "subheading", "label": "Alt başlık", "default": "Kargo takip numaranızı girin, kargo firmanızı otomatik tanıyalım ve paketinizin tüm hareketlerini tek tıkla görün." },
+    { "type": "text", "id": "prep_text", "label": "Hazırlanıyor adımı metni", "default": "Siparişiniz özenle paketlenir ve genellikle 1 iş günü içinde kargoya verilir." },
+    { "type": "checkbox", "id": "show_faq", "label": "Sık sorulanları göster", "default": true },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp destek numarası", "default": "+90 539 926 6375" },
+    { "type": "text", "id": "email", "label": "Destek e-postası", "default": "mispatitr@hotmail.com" }
+  ],
+  "blocks": [
+    {
+      "type": "carrier",
+      "name": "Kargo firması",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Firma adı", "default": "Kargo Firması" },
+        { "type": "color", "id": "color", "label": "Renk", "default": "#bda66c" },
+        { "type": "text", "id": "pattern", "label": "Takip numarası kalıbı (regex)", "info": "Örn. 14 haneli rakam için \\d{14}, KP ile başlayan 13 karakter için KP\\d{11}" },
+        { "type": "text", "id": "url", "label": "Takip adresi", "info": "Numaranın geleceği yere {takip} yazın. Örn. https://suratkargo.com.tr/KargoTakip/?kargotakipno={takip}" },
+        { "type": "select", "id": "mode", "label": "Açılış şekli", "options": [{ "value": "link", "label": "Numarayla doğrudan aç" }, { "value": "copy_open", "label": "Numarayı kopyala, siteyi aç" }], "default": "link" },
+        { "type": "text", "id": "home_url", "label": "Firma takip sayfası (kopyala modunda açılır)" },
+        { "type": "text", "id": "note", "label": "Kısa not" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Kargo Takip" }]
+}
+{% endschema %}

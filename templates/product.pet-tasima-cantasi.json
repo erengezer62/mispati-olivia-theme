@@ -1,0 +1,851 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "custom_liquid_1": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-rating', rating: '4.8', label: '(4.8) 397 Değerlendirme' %}"
+          }
+        },
+        "title_2": {
+          "type": "title",
+          "settings": {
+            "title_size_dt": 30,
+            "title_size_mb": 24,
+            "title_line_height": 1.2
+          }
+        },
+        "custom_liquid_3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"mp-lead\"><p>68 kg’a kadar olan tüm ırklar için uygun olan Freewalk; esnek kordonu ve bel çevresinde 360° dönen metal kancasıyla yürüyüşlerde daha güvenli ve kontrollü bir deneyim sunar. Geniş bel çantasıyla tüm ihtiyaçlarınız da yanınızda olur.</p></div>"
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "label_style": "body",
+            "font_size": 14,
+            "font_style": "bold",
+            "swatch_type": "variant_image",
+            "swatch_shape": "circle",
+            "swatch_size": 2.6,
+            "swatch_image_height": "square",
+            "swatch_image_custom_radius_value": 2,
+            "size_trigger": "",
+            "chart_id": "",
+            "size_page": "",
+            "size_icon": "hanger",
+            "spaced_size": false
+          }
+        },
+        "lumin_quantity_5": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": true,
+            "hide_variant": true,
+            "compare_price_type": "original",
+            "discount_type": "percentage",
+            "discount": 0,
+            "fixed_price": 0,
+            "qty": 1,
+            "color_scheme": "background-1",
+            "title": "<strong>1× Freewalk Yürüyüş Seti</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 299 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "Ücretsiz Kargo",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": true,
+            "heading_title": "<strong>KAPIDA ÖDEME • VADE FARKSIZ TAKSİT • ÜCRETSİZ KARGO</strong>",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 16,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "lumin_quantity_6": {
+          "type": "lumin-quantity-break",
+          "settings": {
+            "show_on_all_products": true,
+            "selected_product": [],
+            "selected_collection": "",
+            "selected": false,
+            "hide_variant": true,
+            "compare_price_type": "calculated",
+            "discount_type": "fixed",
+            "discount": 0,
+            "fixed_price": 80000,
+            "qty": 2,
+            "color_scheme": "background-1",
+            "title": "<strong>2× Freewalk Yürüyüş Seti</strong>",
+            "title_size": 16,
+            "subtitle": "<strong>Sepette 598 TL Değerinde Hediye</strong>",
+            "subtitle_size": 11,
+            "subtitle_bg_color": "#f4efe2",
+            "subtitle_color_small": "#a08a50",
+            "subtitle_border_color": "rgba(0,0,0,0)",
+            "badge_show": true,
+            "badge": "2 AL %50 DAHA AZ ÖDE",
+            "badge_size": 11,
+            "badge_style": "lumin-ribbon lumin-top-short",
+            "badge_bg_color": "#bda66c",
+            "badge_background_gradient": "",
+            "badge_color": "#ffffff",
+            "qty_show_image": false,
+            "qty_image_width": 52,
+            "qty_image_radius": 8,
+            "heading_title_show": false,
+            "heading_title": "",
+            "heading_title_alignment": "center",
+            "heading_title_size": 12,
+            "use_custom_title_color": true,
+            "heading_title_color": "#1f1e1b",
+            "bottom_text_show": false,
+            "bottom_image_width": 24,
+            "bottom_image_radius": 0,
+            "bottom_text": "",
+            "bottom_content_alignment": "flex-start",
+            "bottom_text_size": 12,
+            "text_color_bottom": "#a08a50",
+            "bg_color_bottom": "#f4efe2",
+            "bottom_background_gradient": "",
+            "border_thickness": 2,
+            "border_radius": 12,
+            "mt": 8,
+            "mb": 8,
+            "custom_color": true,
+            "title_color": "#1f1e1b",
+            "subtitle_color": "#a08a50",
+            "discount_color": "#9a968c",
+            "uncheck_bg_color": "#ffffff",
+            "border_color": "#e8e2d2",
+            "dot_color": "#d9d3c3",
+            "text_color": "#1f1e1b",
+            "checked_bg_color": "#fbf8f1",
+            "checked_border_color": "#bda66c",
+            "dot_check_color": "#bda66c",
+            "checked_text_color": "#1f1e1b"
+          }
+        },
+        "price_7": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "hide_tax_shipping": true,
+            "reverse_price": false,
+            "save_text_size": 12,
+            "price_weight": "bold",
+            "price_text_size": 22,
+            "price_text_size_mb": 20,
+            "compare_price": "#9a968c",
+            "original_price": "#1f1e1b",
+            "show_save_price": true,
+            "save_text": "#ffffff",
+            "save_bg": "#bda66c",
+            "save_border": "#bda66c",
+            "save_border_thickness": 0,
+            "save_corner_radius": 6,
+            "save_shadow_opacity": 0,
+            "save_shadow_horizontal_offset": 2,
+            "save_shadow_vertical_offset": 2,
+            "save_shadow_blur": 5
+          }
+        },
+        "custom_liquid_8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-trust-row', items: 'shield:1 Yıl Garanti|paw:Tüm Irklara Uygun|return:30 Gün Değişim, İade|card:Taksit İmkanı|cash:Kapıda Ödeme' %}"
+          }
+        },
+        "buy_buttons_9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "skip_cart": false,
+            "button_padding_top": 20,
+            "button_padding_bottom": 20,
+            "button_custom_style": true,
+            "button_font_size": 17,
+            "button_height": 54,
+            "lm_main_button": "#bda66c",
+            "lm_main_button_gr": "",
+            "lm_main_text": "#ffffff",
+            "lm_main_button_border_width": 0,
+            "lm_main_button_border_color": "#bda66c"
+          }
+        },
+        "custom_liquid_10": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-ship-line', title: 'Bugün Sipariş Ver, Yarın Kargoda!', min_days: 1, max_days: 9 %}"
+          }
+        },
+        "description_11": {
+          "type": "description",
+          "settings": {}
+        },
+        "custom_liquid_12": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'mispati-mini-reviews', data: 's-e2602080b133b2ce3e3d0aa9e829b1c794fdb86b.jpg~Atlas kedileri görünce bir anda çekiyor, farkını en çok o anlarda hissettim. Çekişi daha yumuşak hissettiriyor ve artık sarsılmıyorum. Hediye gelen kaka poşetlerinide kancaya asıyorum baya kullanışlı.~Mehmet ve Atlas;;images_1.jpg~Efsane bir ürün kesinlikle tavsiye ediyorum büyük ırk köpekler için kurtarıcı bir ürün dilediğiniz gibi koşun mükemmel satıcıya da ilgisi için teşekkürler~Işıl ve Black;;13.avif~Yürüyüşlerimizi kolaylaştırdı. Çekiştirme durumunda lastikli olduğu için köpeğim hemen geri bana doğru çekiliyor 🤣 Çanta kısmı çıkarılabiliyor onsuz da kullanabilirsiniz.~Berk ve Kemik' %}"
+          }
+        },
+        "custom_liquid_13": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"mp-tabs\"><details><summary>1 Yıl Garanti Neleri Kapsar</summary><div class=\"mp-tabs__body\"><p>Ürünün kullanım kılavuzuna uygun kullanıldığı halde yıpranması, kordonun kopması rengin solması gibi deformeleri kapsamaktadır.</p></div></details><details><summary>Nasıl Kullanılır</summary><div class=\"mp-tabs__body\"><p>Freewalk'ı önce belinize göre ayarlayıp bağlayın, eşyalarınızı bel çantasına koyduktan sonra kordonu dostunuzun hareket alanına göre ayarlayın ve hazırsınız.</p></div></details></div>"
+          }
+        }
+      },
+      "block_order": [
+        "custom_liquid_1",
+        "title_2",
+        "custom_liquid_3",
+        "variant_picker_4",
+        "lumin_quantity_5",
+        "lumin_quantity_6",
+        "price_7",
+        "custom_liquid_8",
+        "buy_buttons_9",
+        "custom_liquid_10",
+        "description_11",
+        "custom_liquid_12",
+        "custom_liquid_13"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "no_scroll": false,
+        "color_scheme": "background-1",
+        "block_padding": 1.5,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "thumbnail_size": 54,
+        "thumbnail_radius": 10,
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "mobile_thumbnails": "show",
+        "show_full_image": true,
+        "first_image_size": 100,
+        "second_image_size": 0,
+        "show_container": false,
+        "container_bg": "#ffffff",
+        "container_radius": 10,
+        "container_padding": 20,
+        "container_border_color": "#fcf7f5",
+        "show_container_mb": false,
+        "container_bg_mb": "#ffffff",
+        "container_padding_mb": 20,
+        "container_radius_mb": 8,
+        "container_border_color_mb": "#fcf7f5",
+        "container_text": "",
+        "container_text_bg": "#104698",
+        "container_text_txt": "#ffffff",
+        "padding_top": 32,
+        "padding_top_mb": 0,
+        "padding_bottom": 48
+      }
+    },
+    "mp_columns_1": {
+      "type": "mispati-columns",
+      "blocks": {
+        "b1": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Keyifli Yürüyüşler Elleri Serbest Bırakmakla Başlar",
+            "text": "<p>Sürekli tasma tutmak, sağa sola çekiştirilmek, eşyalarınız için ayrı bir çanta taşımak, bunun gibi ufak ama can sıkıcı detaylar dostunuzla geçirdiğiniz kıymetli zamanın tadını kaçırabilir. Freewalk, bu durumları ortadan kaldırıp, size keyifli ve konforlu bir yürüyüş deneyimi sunar.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ],
+      "settings": {
+        "heading": "",
+        "text": "",
+        "columns": 1,
+        "style": "card",
+        "round": false,
+        "cream": false,
+        "pt": 56,
+        "pb": 56
+      }
+    },
+    "mp_media_slider_2": {
+      "type": "mispati-media-slider",
+      "blocks": {
+        "b1": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/nuryeniğkesit.mp4",
+            "caption": ""
+          }
+        },
+        "b2": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/2 gerçek esen kesit.mp4",
+            "caption": ""
+          }
+        },
+        "b3": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/k6.mp4",
+            "caption": ""
+          }
+        },
+        "b4": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/k4.mp4",
+            "caption": ""
+          }
+        },
+        "b5": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/k1.mp4",
+            "caption": ""
+          }
+        },
+        "b6": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/k2.mp4",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ],
+      "settings": {
+        "heading": "",
+        "per_view": 3,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_columns_3": {
+      "type": "mispati-columns",
+      "blocks": {
+        "b1": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Freewalk Ne İşe Yarar",
+            "text": "<p><strong>Freewalk</strong>, ellerinizi serbest bırakır ve dostunuzun sizi <strong>çekiştirmesine engel </strong>olur. Tasma ve eşya taşıma derdini ortadan kaldırır. <strong>Hareketli </strong>dostunuzda sizi artık sağa sola <strong>çekiştiremez</strong></p>"
+          }
+        },
+        "b2": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Yürüyüş Sistemi Nasıl İşler",
+            "text": "<p>Freewalk'ı <strong>bel ölçünüze göre ayarlayın</strong>, eşyalarınızı <strong>klipslere </strong>ve bel çantasına yerleştirin. Kordonuda dostunuzla aranızdaki <strong>mesafeye </strong>göre ayarladıktan sonra eller serbest yürüyüşe <strong>hazırsınız</strong>.</p>"
+          }
+        },
+        "b3": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "title": "Tarzınıza Uyum Sağlar",
+            "text": "<p>Sade, siyah ve <strong>modern tasarımıyla</strong> spor kombinlerinden günlük kıyafetlere kadar stilinizi bozmadan <strong>her yürüyüşe eşlik eder.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "heading": "",
+        "text": "",
+        "columns": 3,
+        "style": "card",
+        "round": false,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_feature_rows_4": {
+      "type": "mispati-feature-rows",
+      "blocks": {
+        "b1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_qafg1qqafg1qqafg.jpg",
+            "eyebrow": "",
+            "title": "Büyük, Orta Ve Küçük Irklar İçin Uygun",
+            "text": "<p>Dostunuz nekadar hareketli olursa olsun, şok emici ve esnek kordon teknolojisi sayesinde ani sarsılmaları azaltır. 68 kilograma kadar tüm ırklar için uygundur.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "b2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_qma069qma069qma0.jpg",
+            "eyebrow": "",
+            "title": "İhtiyaçlarınız Yanınızda",
+            "text": "<p>Kaka poşeti, anahtar, telefon ve suluk gibi yürüyüşte yanınıza almanız gereken ihtiyaçları Freewalk'ın kemer bölgesine asabilir veya bel çantasına koyabilirsiniz.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "b3": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_22_Tem_2026_15_00_30.png",
+            "eyebrow": "",
+            "title": "Özgür Hareket",
+            "text": "<p>85cm-130 cm’ye kadar ayarlanabilen bel-kalça sistemiyle kullanım genişliğini kolayca ayarlayın. 130-150 cm’ye kadar hareket mesafesi sunan kordon ise dostunuza yürüyüş boyunca rahatça hareket edebileceği alan bırakır.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "heading": "",
+        "text": "",
+        "numbers": true,
+        "cream": false,
+        "pt": 56,
+        "pb": 56
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "Bunları da beğenebilirsiniz",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_no_crop": false,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_scroll_tags": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "mp_compare_5": {
+      "type": "mispati-compare",
+      "settings": {
+        "heading": "Normal Tasmadan Farkı Ne ?",
+        "text": "<p>Freewalk yalnızca ellerinizi serbest bırakmaz, eşyalarınızı güvenle taşıyabileceğiniz bir bölme, dilediğiniz gibi ayarlayabileceğiniz hareket alanı ve ani atılmaları, çekiştirmeleri hafifleten bir sistem sunar.</p>",
+        "before_image": "shopify://shop_images/ChatGPT_Image_16_Tem_2026_15_37_07.png",
+        "before_label": "Klasik Tasma",
+        "after_image": "shopify://shop_images/ChatGPT_Image_16_Tem_2026_15_37_14.png",
+        "after_label": "Mispati Freewalk",
+        "cream": true,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_reviews_6": {
+      "type": "mispati-reviews",
+      "blocks": {
+        "b1": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/y1.jpg",
+            "rating": 5,
+            "title": "Keyifli ve rahat",
+            "text": "<p>Stardan kahvemi alıp köpeğimle rahatça yürüyebilmek bile benim için yeterliydi 😂 tasmayı sürekli elimde taşımamak çok güzel</p>",
+            "author": "Doğa U."
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_r42y20r42y20r42y.jpg",
+            "rating": 5,
+            "title": "Ayarlaması Kolay",
+            "text": "<p>İlk başta belimde rahatsız eder mi diye düşündüm ama ayarını yaptıktan sonra oldukça rahat oldu. Yürürken iki elimin boş kalması gerçekten büyük kolaylık</p>",
+            "author": "İrem K."
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/y5.jpg",
+            "rating": 5,
+            "title": "Fiyatını Hakediyor",
+            "text": "<p>Kordon çok esnek Tarçın aniden hızlandığında kolum yerinden çıkmıyor 😂</p>",
+            "author": "Mehmet K."
+          }
+        },
+        "b4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_y3xf8ky3xf8ky3xf.jpg",
+            "rating": 5,
+            "title": "Tüm köpek sahipleri bunu denemeli",
+            "text": "<p>Büyük ve hareketli bir köpeğim olduğu için tereddüt etmiştim. Bağlantıları sağlam hissettiriyor ve yürüyüş sırasında ürün belimde sabit kalıyor.</p>",
+            "author": "Faruk P."
+          }
+        },
+        "b5": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/y3.jpg",
+            "rating": 5,
+            "title": "Kullanışlı",
+            "text": "<p>Telefonumu ve anahtarımı nereye koyacağımı düşünmüyorum artık. Fermuarlı cebi beklediğimden daha kullanışlı çıktı.</p>",
+            "author": "Gizem S."
+          }
+        },
+        "b6": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/64836548-1717061990299.jpg",
+            "rating": 5,
+            "title": "Keşke önceden alsaydım",
+            "text": "<p>Ürün geldiği gün denedim. Daha ilk yürüyüşte sürekli tasma tutmamanın ne kadar rahat olduğunu fark ettim.</p>",
+            "author": "İsmail S."
+          }
+        },
+        "b7": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/11336402-1711839258543.jpg",
+            "rating": 5,
+            "title": "Güzel",
+            "text": "<p>Belimde kaba duracağını düşünüyordum ama beklediğimden güzel</p>",
+            "author": "Ece T."
+          }
+        },
+        "b8": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/107005396-1772105794794.jpg",
+            "rating": 5,
+            "title": "Çok kullanışlı",
+            "text": "<p>En sevdiğim tarafı tek bir özellik değil; telefon cebi, esnek kordon ve ellerimin boş kalması birlikte yürüyüşü çok daha pratik hâle getirdi.</p>",
+            "author": "Kübra T."
+          }
+        },
+        "b9": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_lpwzj9lpwzj9lpwz.jpg",
+            "rating": 5,
+            "title": "Geniş alan",
+            "text": "<p>maması, poşet, anahtar ve telefonumu aynı yerde taşıyabilmek çok pratik.</p>",
+            "author": "Utku U."
+          }
+        },
+        "b10": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Gerçek kalite",
+            "text": "<p>Koşarken tasmayı bir elimden diğerine geçirmek zorunda kalmıyorum. Hareket etmek çok daha rahat</p>",
+            "author": "Nur G."
+          }
+        },
+        "b11": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Keyifli ve rahat",
+            "text": "<p>Hızlı teslimat</p>",
+            "author": "Gizem B."
+          }
+        },
+        "b12": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "2 günde elimdeydi",
+            "text": "<p>sipariş verdikten 2 gün sonra teslim ettiler etkili bir hizmet</p>",
+            "author": "Kaan S."
+          }
+        },
+        "b13": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/y7.jpg",
+            "rating": 5,
+            "title": "Koşularda etkili",
+            "text": "<p>sabah koşularına artık dostumuda yanımda götürüyorum iyiki karşıma çıkmış</p>",
+            "author": "Özge K."
+          }
+        },
+        "b14": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "5 yıldız",
+            "text": "<p>beğendim</p>",
+            "author": "Taner S."
+          }
+        },
+        "b15": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "T A V S İ Y E",
+            "text": "<p>360 derece dönme olayı baya iyiiiiiii</p>",
+            "author": "Ceyda C."
+          }
+        },
+        "b16": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Bel kısmı rahat",
+            "text": "<p>Eşimle dönüşümlü kullanıyoruz. Bel ayarı kolay olduğu için ikimize de uyuyor.</p>",
+            "author": "Fatma E."
+          }
+        },
+        "b17": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Gerçekten fark yarattı",
+            "text": "<p>İnci etrafımda tur atıyor ama ben sadece yürüyorum 😂</p>",
+            "author": "Selen İ."
+          }
+        },
+        "b18": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "title": "Muhteşem",
+            "text": "<p>Takması düşündüğümden basitmiş tokayı kapatıp bel ayarını yapıyorum</p>",
+            "author": "Bedirhan K."
+          }
+        },
+        "b19": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Başarılı",
+            "text": "<p>bizim yeni favorimizz</p>",
+            "author": "İrem Altun K."
+          }
+        },
+        "b20": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "10 YILDIZ",
+            "text": "<p>yürürken herşey artık cok kolay</p>",
+            "author": "Nur C."
+          }
+        },
+        "b21": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "İYİKİ ALDIM",
+            "text": "<p>güzel hizmet ve iyi ürün</p>",
+            "author": "Işıl I."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12",
+        "b13",
+        "b14",
+        "b15",
+        "b16",
+        "b17",
+        "b18",
+        "b19",
+        "b20",
+        "b21"
+      ],
+      "settings": {
+        "heading": "Freewalk İle Yürüyüş Anları",
+        "show_summary": true,
+        "rating": "4.8",
+        "count": "397",
+        "verified": true,
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_faq_7": {
+      "type": "mispati-faq",
+      "blocks": {
+        "b1": {
+          "type": "question",
+          "settings": {
+            "question": "Freewalk paketinden neler çıkar?",
+            "answer": "<p>Freewalk; ayarlanabilir bel kemeri, çıkarılabilir fermuarlı bel çantası ve şok emici esnek kordondan oluşur. Köpek göğüs tasması, suluk ve katlanır kap kutuya dahil değildir. Kampanya kapsamında kaka poşeti aparatı ve 30’lu poşet hediye gönderilir.</p>"
+          }
+        },
+        "b2": {
+          "type": "question",
+          "settings": {
+            "question": "Freewalk belime uyum sağlar mı?",
+            "answer": "<p>Ayarlanabilir bel sistemi farklı vücut ölçülerine uyum sağlayacak şekilde tasarlanmıştır. </p>"
+          }
+        },
+        "b3": {
+          "type": "question",
+          "settings": {
+            "question": "Köpeğim çok çekiyor, kullanabilir miyim?",
+            "answer": "<p>Şok emici kordon, köpeğinizin ani hareketlerinde oluşan sarsıntıyı yumuşatmaya yardımcı olur. Freewalk köpeğinizin çekiş alışkanlığını ortadan kaldıran bir eğitim ürünü değildir. Güçlü ve hareketli köpeklerde ilk kullanıma yürüyüş temposunda başlanmasını öneririz.</p>"
+          }
+        },
+        "b4": {
+          "type": "question",
+          "settings": {
+            "question": "Telefonum fermuarlı bölmeye sığar mı?",
+            "answer": "<p>Fermuarlı cebin ölçüsü <strong>17cm×9cm’dir</strong>. İç kısmı geniş ve telefonunuzun yanınızda cüzdan gibi eşyalarıda rahatlıkla sığdırabilirsiniz.</p>"
+          }
+        },
+        "b5": {
+          "type": "question",
+          "settings": {
+            "question": "Büyük,küçük ve orta ırklar için uygunmu?",
+            "answer": "<p>Freewalk günlük yürüyüş ve hafif koşu için tasarlanmıştır. Büyük, küçük, orta tüm ırklar için uygundur.</p>"
+          }
+        },
+        "b6": {
+          "type": "question",
+          "settings": {
+            "question": "İade veya değişim yapabilir miyim?",
+            "answer": "<p>Ürünü teslim aldıktan sonra, iade politikasındaki koşullar kapsamında 14 gün içinde iade, 30 gün içinde değişim talebi oluşturabilirsiniz.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ],
+      "settings": {
+        "heading": "Sık Sorulan Sorular ?",
+        "text": "",
+        "open_first": true,
+        "cta": "<p>Başka bir sorunuz mu var? <a href=\"/pages/contact\">Bize yazın</a>, hemen yardımcı olalım.</p>",
+        "schema_markup": true,
+        "cream": true,
+        "pt": 64,
+        "pb": 64
+      }
+    },
+    "mp_products_8": {
+      "type": "mispati-products",
+      "settings": {
+        "heading": "Patili Dostlarımız İçin Ürünler",
+        "collection": "patili-dostlarimiz-i̇cin-urunler",
+        "limit": 3,
+        "columns": 3,
+        "hide_current": true,
+        "button_label": "Tümünü görüntüle",
+        "cream": false,
+        "pt": 64,
+        "pb": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mp_columns_1",
+    "mp_media_slider_2",
+    "mp_columns_3",
+    "mp_feature_rows_4",
+    "related-products",
+    "mp_compare_5",
+    "mp_reviews_6",
+    "mp_faq_7",
+    "mp_products_8"
+  ]
+}

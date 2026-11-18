@@ -1,0 +1,42 @@
+{%- comment -%}
+  Kombini tamamla satırı. p: ürün, tag: üst etiket, toggle: onay kutusu, preselect: mevcut varyantı seçili getir, is_main: ana ürün
+{%- endcomment -%}
+{%- liquid
+  assign only_default = p.has_only_default_variant
+  assign sel = p.selected_or_first_available_variant
+  if preselect or only_default
+    assign price = sel.price
+  else
+    assign price = p.price_min
+  endif
+  if p.options.size > 1
+    assign prompt = 'renk ve beden'
+  else
+    assign prompt = 'beden'
+  endif
+-%}
+<div class="mpk__item" data-mpk-item>
+  {%- if toggle -%}
+    <label class="mpk__check"><input type="checkbox" checked data-mpk-toggle aria-label="{{ p.title | escape }} kombine dahil"><span></span></label>
+  {%- endif -%}
+  <a class="mpk__thumb" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+    {%- if p.featured_media -%}{{ p.featured_media | image_url: width: 200 | image_tag: loading: 'lazy', alt: p.title }}{%- endif -%}
+  </a>
+  <div class="mpk__info">
+    {%- if tag != blank -%}<span class="mpk__tag{% unless is_main %} mpk__tag--gold{% endunless %}">{{ tag }}</span>{%- endif -%}
+    <a class="mpk__name" href="{{ p.url }}">{{ p.title }}</a>
+    <div class="mpk__row">
+      {%- if only_default -%}
+        <input type="hidden" data-mpk-variant value="{{ sel.id }}" data-price="{{ sel.price }}">
+      {%- else -%}
+        <select class="mpk__select" data-mpk-variant{% if is_main %} data-mpk-main{% endif %} data-price-default="{{ p.price_min }}" data-name="{{ p.title | escape }}" data-prompt="{{ prompt }}" aria-label="{{ p.title | escape }} {{ prompt }} seçimi">
+          {%- unless preselect -%}<option value="" data-price="{{ p.price_min }}" selected disabled>{{ prompt | capitalize }} seçin</option>{%- endunless -%}
+          {%- for v in p.variants -%}
+            <option value="{{ v.id }}" data-price="{{ v.price }}"{% unless v.available %} disabled{% endunless %}{% if preselect and v.id == sel.id %} selected{% endif %}>{{ v.title }}{% unless v.available %} (tükendi){% endunless %}</option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+      <span class="mpk__price" data-mpk-price>{{ price | money }}</span>
+    </div>
+  </div>
+</div>

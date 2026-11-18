@@ -1,0 +1,51 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading" style="margin-bottom:28px">{{ section.settings.heading }}</h2>{%- endif -%}
+    <div class="mp-reviews__wrap" data-mp-carousel>
+      <button type="button" class="mp-nav mp-nav--prev" data-mp-prev aria-label="Önceki">{% render 'mispati-icon', name: 'arrow-left' %}</button>
+      <div class="mp-media__track" data-mp-track style="--mp-per: {{ section.settings.per_view }}">
+        {%- for block in section.blocks -%}
+          <figure class="mp-media__item" {{ block.shopify_attributes }}>
+            <div class="mp-media__frame">
+              {%- if block.settings.video != blank -%}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, preload: 'none', image_size: '800x' }}
+              {%- elsif block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            {%- if block.settings.caption != blank -%}<figcaption class="mp-media__cap">{{ block.settings.caption }}</figcaption>{%- endif -%}
+          </figure>
+        {%- endfor -%}
+      </div>
+      <button type="button" class="mp-nav mp-nav--next" data-mp-next aria-label="Sonraki">{% render 'mispati-icon', name: 'arrow-right' %}</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Medya Kaydırıcı",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık" },
+    { "type": "range", "id": "per_view", "label": "Masaüstünde görünen", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Video / Görsel",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video" },
+        { "type": "image_picker", "id": "image", "label": "Görsel (video yoksa)" },
+        { "type": "richtext", "id": "caption", "label": "Açıklama" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Medya Kaydırıcı", "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }] }]
+}
+{% endschema %}

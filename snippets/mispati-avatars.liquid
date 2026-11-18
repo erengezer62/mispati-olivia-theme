@@ -1,0 +1,17 @@
+{%- comment -%}
+  Yorumcu avatarları + kısa sosyal kanıt metni.
+  {% render 'mispati-avatars', files: 'a.webp,b.webp', line1: '100+ sipariş', line2: 'son 24 saatte' %}
+{%- endcomment -%}
+{%- assign list = files | split: ',' -%}
+<div class="mp-avatars">
+  <div class="mp-avatars__stack">
+    {%- for f in list -%}
+      {%- assign n = f | strip -%}
+      {%- assign img = images[n] -%}{%- assign img_w = img.width | plus: 0 -%}{%- if img_w > 0 -%}{{ img | image_url: width: 80 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+    {%- endfor -%}
+  </div>
+  <div class="mp-avatars__text">
+    {% render 'mispati-stars', rating: 5 %}
+    <span><strong>{{ line1 }}</strong> {{ line2 }}</span>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<section class="mp26-prob" aria-labelledby="mp26-prob-{{ section.id }}">
+  <div class="mp26-wrap">
+    <div class="mp26-prob__head">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="mp26-h2" id="mp26-prob-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="mp26-lead">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <ul class="mp26-prob__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        <li class="mp26-prob__card" {{ block.shopify_attributes }}>
+          <a class="mp26-prob__link" href="{% if p != blank %}{{ p.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 990px) 31vw, 82vw', loading: 'lazy', alt: '' }}
+            {%- elsif p.featured_media -%}
+              {{ p.featured_media | image_url: width: 1200 | image_tag: widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 990px) 31vw, 82vw', loading: 'lazy', alt: '' }}
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            {%- endif -%}
+
+            {%- if block.settings.tag != blank -%}
+              <span class="mp26-prob__tag">
+                {% render 'mispati-icon', name: block.settings.icon %}
+                {{- block.settings.tag -}}
+              </span>
+            {%- endif -%}
+
+            <div class="mp26-prob__body">
+              {%- if block.settings.title != blank -%}
+                <h3 class="mp26-prob__title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              <span class="mp26-prob__foot">
+                <span>
+                  {%- if p != blank -%}
+                    <span class="mp26-prob__name">{{ p.title }}</span>
+                    <span class="mp26-prob__price">{{ p.price_min | money }}</span>
+                  {%- endif -%}
+                </span>
+                {%- if block.settings.button_label != blank -%}
+                  <span class="mp26-prob__cta">
+                    {{- block.settings.button_label -}}
+                    {% render 'mispati-icon', name: 'arrow-right' %}
+                  </span>
+                {%- endif -%}
+              </span>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sorun Kartları 2026",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Bugünkü yürüyüşü ne kısaltıyor?" },
+    { "type": "text", "id": "text", "label": "Açıklama", "default": "Üç tanıdık dert, üç ayrı çözüm. Seninkini seç." }
+  ],
+  "blocks": [
+    {
+      "type": "problem",
+      "name": "Sorun kartı",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Görsel", "info": "Boş bırakılırsa ürünün ana görseli kullanılır." },
+        {
+          "type": "select", "id": "icon", "label": "Etiket ikonu",
+          "options": [
+            { "value": "rain", "label": "Yağmur" },
+            { "value": "snow", "label": "Kar" },
+            { "value": "drop", "label": "Damla" },
+            { "value": "sole", "label": "Taban" },
+            { "value": "strap", "label": "Kemer" },
+            { "value": "paw", "label": "Pati" },
+            { "value": "moon", "label": "Gece" },
+            { "value": "mountain", "label": "Doğa" }
+          ],
+          "default": "rain"
+        },
+        { "type": "text", "id": "tag", "label": "Etiket", "default": "Yağmur ve soğuk" },
+        { "type": "text", "id": "title", "label": "Sorun cümlesi", "default": "Sen montunun içinde rahatsın, o titriyor." },
+        { "type": "product", "id": "product", "label": "Çözüm ürünü" },
+        { "type": "text", "id": "button_label", "label": "Buton metni", "default": "Ürünü gör" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Sorun Kartları 2026", "blocks": [{ "type": "problem" }, { "type": "problem" }, { "type": "problem" }] }]
+}
+{% endschema %}

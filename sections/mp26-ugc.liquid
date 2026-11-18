@@ -1,0 +1,69 @@
+<section class="mp26-ugc" aria-labelledby="mp26-ugc-{{ section.id }}">
+  <div class="mp26-wrap">
+    <div class="mp26-ugc__head">
+      <div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="mp26-h2" id="mp26-ugc-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="mp26-lead">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.rating != blank -%}
+        <div class="mp26-ugc__score">
+          <strong>{{ section.settings.rating | replace: '.', ',' }}</strong>
+          <div>
+            {% render 'mispati-stars', rating: section.settings.rating %}
+            {%- if section.settings.rating_label != blank -%}<span>{{ section.settings.rating_label }}</span>{%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <ul class="mp26-ugc__wall" role="list">
+      {%- for block in section.blocks -%}
+        <li class="mp26-ugc__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 700 | image_tag: widths: '320, 480, 700', sizes: '(min-width: 990px) 24vw, (min-width: 750px) 45vw, 78vw', loading: 'lazy', alt: block.settings.image.alt }}
+          {%- endif -%}
+          <div class="mp26-ugc__body">
+            {% render 'mispati-stars', rating: block.settings.rating %}
+            {%- if block.settings.text != blank -%}
+              <div class="mp26-ugc__quote">{{ block.settings.text }}</div>
+            {%- endif -%}
+            {%- if block.settings.author != blank -%}
+              <p class="mp26-ugc__name">{{ block.settings.author }}</p>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Müşteri Kareleri 2026",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Islak yürüyüşlerden kareler" },
+    { "type": "text", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "rating", "label": "Ortalama puan (ör. 4.7)", "info": "Yalnızca gerçek müşteri puanınızı yazın. Boş bırakılırsa gizlenir." },
+    { "type": "text", "id": "rating_label", "label": "Puan altı metin", "default": "367 değerlendirme" },
+    { "type": "paragraph", "content": "Her gerçek müşteri yorumu için bir Yorum bloğu ekleyin." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Yorum",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Müşteri fotoğrafı" },
+        { "type": "range", "id": "rating", "label": "Puan", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "richtext", "id": "text", "label": "Yorum" },
+        { "type": "text", "id": "author", "label": "İsim (ör. Ayşe K.)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Müşteri Kareleri 2026" }]
+}
+{% endschema %}

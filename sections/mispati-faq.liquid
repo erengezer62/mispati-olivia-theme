@@ -1,0 +1,61 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="mp-subheading">{{ section.settings.text }}</div>{%- endif -%}
+    <div class="mp-faq">
+      {%- for block in section.blocks -%}
+        <details class="mp-faq__item" {% if forloop.first and section.settings.open_first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>
+            <span class="mp-faq__check">{% render 'mispati-icon', name: 'check' %}</span>
+            <span class="mp-faq__q">{{ block.settings.question }}</span>
+            <span class="mp-faq__chev">{% render 'mispati-icon', name: 'chevron-down' %}</span>
+          </summary>
+          <div class="mp-faq__a">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.cta != blank -%}<div class="mp-faq__cta">{{ section.settings.cta }}</div>{%- endif -%}
+  </div>
+</section>
+
+{%- if section.settings.schema_markup and section.blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in section.blocks -%}
+    { "@type": "Question", "name": {{ block.settings.question | strip_html | json }}, "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} } }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mispati SSS",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Sık Sorulan Sorular" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "checkbox", "id": "open_first", "label": "İlk soruyu açık başlat", "default": true },
+    { "type": "richtext", "id": "cta", "label": "Alt not", "default": "<p>Başka bir sorunuz mu var? <a href=\"/pages/contact\">Bize yazın</a></p>" },
+    { "type": "checkbox", "id": "schema_markup", "label": "Google için SSS işaretlemesi ekle", "default": true },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Soru",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Soru", "default": "Soru metni" },
+        { "type": "richtext", "id": "answer", "label": "Cevap", "default": "<p>Cevap metni.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati SSS", "blocks": [{ "type": "question" }, { "type": "question" }, { "type": "question" }] }]
+}
+{% endschema %}

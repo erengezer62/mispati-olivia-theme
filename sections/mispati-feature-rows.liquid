@@ -1,0 +1,56 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="mp-subheading">{{ section.settings.text }}</div>{%- endif -%}
+    <div class="mp-rows">
+      {%- for block in section.blocks -%}
+        <div class="mp-row" {{ block.shopify_attributes }}>
+          <div class="mp-row__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw', alt: block.settings.title }}
+            {%- else -%}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="mp-row__content">
+            {%- if section.settings.numbers -%}<span class="mp-row__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{%- endif -%}
+            {%- if block.settings.eyebrow != blank -%}<div class="mp-eyebrow">{{ block.settings.eyebrow }}</div>{%- endif -%}
+            <h3 class="mp-row__title">{{ block.settings.title }}</h3>
+            <div class="mp-row__text">{{ block.settings.text }}</div>
+            {%- if block.settings.button_label != blank -%}<a class="mp-btn" style="margin-top:8px" href="{{ block.settings.button_link | default: '#' }}">{{ block.settings.button_label }}</a>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Özellik Satırları",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Bölüm başlığı" },
+    { "type": "richtext", "id": "text", "label": "Bölüm açıklaması" },
+    { "type": "checkbox", "id": "numbers", "label": "Sıra numarası göster", "default": true },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Satır",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Görsel" },
+        { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+        { "type": "inline_richtext", "id": "title", "label": "Başlık", "default": "Özellik başlığı" },
+        { "type": "richtext", "id": "text", "label": "Metin", "default": "<p>Özelliği anlatan kısa metin.</p>" },
+        { "type": "text", "id": "button_label", "label": "Buton metni" },
+        { "type": "url", "id": "button_link", "label": "Buton bağlantısı" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Özellik Satırları", "blocks": [{ "type": "row" }, { "type": "row" }] }]
+}
+{% endschema %}

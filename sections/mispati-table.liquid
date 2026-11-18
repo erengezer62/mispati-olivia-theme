@@ -1,0 +1,56 @@
+<section class="mp-section{% if section.settings.cream %} mp-section--cream{% endif %}" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="mp-container">
+    {%- if section.settings.heading != blank -%}<h2 class="mp-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="mp-subheading">{{ section.settings.text }}</div>{%- endif -%}
+    <div class="mp-table">
+      <div class="mp-table__row mp-table__row--head">
+        <div></div>
+        <div class="mp-table__us">
+          {%- if section.settings.us_logo != blank -%}{{ section.settings.us_logo | image_url: width: 160 | image_tag: loading: 'lazy', alt: section.settings.us_label }}{%- endif -%}
+          <span>{{ section.settings.us_label }}</span>
+        </div>
+        <div class="mp-table__them">
+          {%- if section.settings.them_logo != blank -%}{{ section.settings.them_logo | image_url: width: 160 | image_tag: loading: 'lazy', alt: section.settings.them_label }}{%- endif -%}
+          <span>{{ section.settings.them_label }}</span>
+        </div>
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="mp-table__row" {{ block.shopify_attributes }}>
+          <div class="mp-table__label">{{ block.settings.benefit }}</div>
+          <div class="mp-table__us">{% if block.settings.us %}<span class="mp-yes">{% render 'mispati-icon', name: 'check' %}</span>{% else %}<span class="mp-no">✕</span>{% endif %}</div>
+          <div class="mp-table__them">{% if block.settings.them %}<span class="mp-yes mp-yes--muted">{% render 'mispati-icon', name: 'check' %}</span>{% else %}<span class="mp-no">✕</span>{% endif %}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati Karşılaştırma",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Farkımız ne?" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "us_label", "label": "Bizim etiket", "default": "Mispati" },
+    { "type": "image_picker", "id": "us_logo", "label": "Bizim görsel" },
+    { "type": "text", "id": "them_label", "label": "Diğerleri etiketi", "default": "Diğerleri" },
+    { "type": "image_picker", "id": "them_logo", "label": "Diğerleri görsel" },
+    { "type": "checkbox", "id": "cream", "label": "Krem arka plan", "default": false },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Satır",
+      "settings": [
+        { "type": "text", "id": "benefit", "label": "Özellik", "default": "Özellik" },
+        { "type": "checkbox", "id": "us", "label": "Bizde var", "default": true },
+        { "type": "checkbox", "id": "them", "label": "Diğerlerinde var", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati Karşılaştırma", "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }] }]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+<section class="pb pb--green" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="pb__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="pb-adapt">
+      {%- for block in section.blocks -%}
+        <div class="pb-adapt__item" {{ block.shopify_attributes }}>
+          <div class="pb-adapt__day">{{ forloop.index }}<small>{{ section.settings.unit }}</small></div>
+          <div>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.tip != blank -%}<div class="pb-adapt__tip">{{ section.settings.tip }}</div>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Alışma Rehberi",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "İlk adımlar komik olabilir" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "unit", "label": "Adım birimi", "default": "Gün" },
+    { "type": "richtext", "id": "tip", "label": "Alt ipucu" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    { "type": "day", "name": "Adım", "settings": [
+      { "type": "text", "id": "title", "label": "Başlık", "default": "Başlık" },
+      { "type": "textarea", "id": "text", "label": "Metin" }
+    ] }
+  ],
+  "presets": [{ "name": "Premium Alışma Rehberi", "blocks": [{ "type": "day" }, { "type": "day" }, { "type": "day" }] }]
+}
+{% endschema %}

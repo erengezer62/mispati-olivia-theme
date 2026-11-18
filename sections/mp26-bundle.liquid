@@ -1,0 +1,101 @@
+{{ 'mispati-kombin.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mispati-kombin.js' | asset_url }}" defer></script>
+{%- liquid
+  assign main = section.settings.main_product
+  assign pair = section.settings.pair_product
+-%}
+<section class="mp26-kombin" id="kombin" aria-labelledby="mp26-kombin-{{ section.id }}">
+  <div class="mp26-wrap">
+    <div class="mp26-kombin__grid">
+      <div class="mp26-kombin__duo">
+        <a class="mp26-kombin__tile" href="{% if main != blank %}{{ main.url }}{% else %}#{% endif %}" tabindex="-1" aria-hidden="true">
+          {%- if section.settings.main_image != blank -%}
+            {{ section.settings.main_image | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 46vw', loading: 'lazy', alt: '' }}
+          {%- elsif main.featured_media -%}
+            {{ main.featured_media | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 46vw', loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+          {%- endif -%}
+          {%- if section.settings.main_tile != blank -%}<span>{{ section.settings.main_tile }}</span>{%- endif -%}
+        </a>
+        <span class="mp26-kombin__plus" aria-hidden="true">+</span>
+        <a class="mp26-kombin__tile" href="{% if pair != blank %}{{ pair.url }}{% else %}#{% endif %}" tabindex="-1" aria-hidden="true">
+          {%- if section.settings.pair_image != blank -%}
+            {{ section.settings.pair_image | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 46vw', loading: 'lazy', alt: '' }}
+          {%- elsif pair.featured_media -%}
+            {{ pair.featured_media | image_url: width: 900 | image_tag: widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 46vw', loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'product-apparel-2' | placeholder_svg_tag }}
+          {%- endif -%}
+          {%- if section.settings.pair_tile != blank -%}<span>{{ section.settings.pair_tile }}</span>{%- endif -%}
+        </a>
+      </div>
+
+      <div class="mp26-kombin__content">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="mp26-h2" id="mp26-kombin-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="mp26-kombin__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if main != blank and pair != blank and main.id != pair.id -%}
+          {%- assign total = main.price_min | plus: pair.price_min -%}
+          <div class="mpk__card" data-mpk-box data-money-format="{{ shop.money_format | escape }}">
+            {% render 'mispati-kombin-item', p: main, tag: section.settings.main_tag, toggle: true, preselect: false, is_main: true %}
+            {% render 'mispati-kombin-item', p: pair, tag: section.settings.pair_tag, toggle: true, preselect: false, is_main: false %}
+            {%- if section.settings.deal_label != blank -%}
+              <div class="mpk__deal is-active" data-mpk-deal>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+                <div>
+                  <strong data-mpk-deal-title data-on="{{ section.settings.deal_label | escape }}" data-off="{{ section.settings.deal_off | default: section.settings.deal_label | escape }}">{{ section.settings.deal_label }}</strong>
+                  {%- if section.settings.deal_note != blank -%}<span data-mpk-deal-note data-on="{{ section.settings.deal_note | escape }}" data-off="{{ section.settings.deal_off_note | escape }}">{{ section.settings.deal_note }}</span>{%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+            <div class="mpk__total"><span>{{ section.settings.total_label }}</span><strong data-mpk-total>{{ total | money }}</strong></div>
+            <button type="button" class="mpk__btn" data-mpk-add data-label-multi="{{ section.settings.button_label | escape }}" data-label-single="{{ section.settings.button_single | escape }}" data-label-done="{{ section.settings.button_done | escape }}">
+              <span data-mpk-label>{{ section.settings.button_label }}</span>
+            </button>
+            <p class="mpk__error" data-mpk-error hidden></p>
+            {%- if section.settings.note != blank -%}<p class="mpk__note">{{ section.settings.note }}</p>{%- endif -%}
+          </div>
+        {%- elsif request.design_mode -%}
+          <p class="mp26-kombin__text">Kombin kartı için bölüm ayarlarından iki farklı ürün seçin.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati 2026 Kombin",
+  "tag": "div",
+  "settings": [
+    { "type": "product", "id": "main_product", "label": "Birinci ürün" },
+    { "type": "image_picker", "id": "main_image", "label": "Birinci ürün görseli", "info": "Boş bırakılırsa ürünün ana görseli kullanılır." },
+    { "type": "text", "id": "main_tile", "label": "Birinci görsel etiketi", "default": "Gövde için" },
+    { "type": "text", "id": "main_tag", "label": "Birinci ürün satır etiketi", "default": "Gövde için" },
+    { "type": "product", "id": "pair_product", "label": "İkinci ürün" },
+    { "type": "image_picker", "id": "pair_image", "label": "İkinci ürün görseli" },
+    { "type": "text", "id": "pair_tile", "label": "İkinci görsel etiketi", "default": "Patiler için" },
+    { "type": "text", "id": "pair_tag", "label": "İkinci ürün satır etiketi", "default": "Patiler için" },
+    { "type": "header", "content": "Metin" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Tepeden patiye hazır." },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "header", "content": "Kombin indirimi" },
+    { "type": "text", "id": "deal_label", "label": "İndirim başlığı", "default": "Kombini Tamamla İndirimi Yakala", "info": "Tutar yazmayın; indirim sepette otomatik uygulanır." },
+    { "type": "text", "id": "deal_note", "label": "İndirim açıklaması", "default": "İki ürünü birlikte aldığında indirim sepette otomatik uygulanır." },
+    { "type": "text", "id": "deal_off", "label": "Tek ürün seçiliyken başlık", "default": "Kombini tamamla, indirimi kaçırma" },
+    { "type": "text", "id": "deal_off_note", "label": "Tek ürün seçiliyken açıklama", "default": "İndirimden yararlanmak için iki ürünü de seçili bırak." },
+    { "type": "header", "content": "Toplam ve buton" },
+    { "type": "text", "id": "total_label", "label": "Toplam etiketi", "default": "Kombin toplamı" },
+    { "type": "text", "id": "button_label", "label": "Buton metni (iki ürün)", "default": "Kombini sepete ekle" },
+    { "type": "text", "id": "button_single", "label": "Buton metni (tek ürün)", "default": "Sepete ekle" },
+    { "type": "text", "id": "button_done", "label": "Eklendi mesajı", "default": "Sepete eklendi" },
+    { "type": "text", "id": "note", "label": "Buton altı not", "default": "Kapıda ödeme • Vade farksız taksit • 30 gün değişim" }
+  ],
+  "presets": [{ "name": "Mispati 2026 Kombin" }]
+}
+{% endschema %}

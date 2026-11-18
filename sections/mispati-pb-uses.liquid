@@ -1,0 +1,48 @@
+<section class="pb pb--paper" style="padding-top:{{ section.settings.pt }}px;padding-bottom:{{ section.settings.pb }}px">
+  <div class="pb__wrap">
+    <div class="pb__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="pb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="pb__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="pb__lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="pb-uses">
+      {%- for block in section.blocks -%}
+        <article class="pb-use" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="pb-use__media">{{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 80vw', alt: block.settings.title }}</div>
+          {%- elsif request.design_mode -%}
+            <div class="pb-use__media pb__ph" style="padding-bottom:60%">Görsel ekleyin</div>
+          {%- endif -%}
+          <div class="pb-use__body">
+            {%- if block.settings.tag != blank -%}<span class="pb-use__tag">{{ block.settings.tag }}</span>{%- endif -%}
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Kullanım Alanları",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Dört mevsim, dört pati" },
+    { "type": "richtext", "id": "text", "label": "Açıklama" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    { "type": "use", "name": "Kart", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Görsel" },
+      { "type": "text", "id": "tag", "label": "Etiket" },
+      { "type": "text", "id": "title", "label": "Başlık", "default": "Başlık" },
+      { "type": "textarea", "id": "text", "label": "Metin" }
+    ] }
+  ],
+  "presets": [{ "name": "Premium Kullanım Alanları", "blocks": [{ "type": "use" }, { "type": "use" }, { "type": "use" }, { "type": "use" }] }]
+}
+{% endschema %}
