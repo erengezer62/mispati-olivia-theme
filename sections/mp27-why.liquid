@@ -1,0 +1,89 @@
+{%- assign img = section.settings.image -%}
+<section
+  class="mp27 mp27-why mp27--{{ section.settings.bg }} mp27-pad{% if section.settings.flip %} mp27-why--flip{% endif %}"
+  style="--mp27-pt: {{ section.settings.pt }}px; --mp27-pb: {{ section.settings.pb }}px;"
+>
+  <div class="mp26-wrap">
+    <div class="mp27-why__grid">
+      <div class="mp27-why__media">
+        {%- if img != blank -%}
+          {{ img | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy', alt: img.alt, style: section.settings.position_style }}
+        {%- elsif product.featured_media -%}
+          {{ product.featured_media | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy', alt: '' }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="mp27-why__body">
+        {%- if section.settings.kicker != blank -%}<p class="mp27-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="mp27-why__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.story != blank -%}<p class="mp27-why__story">{{ section.settings.story }}</p>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <ul class="mp27-why__list" role="list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="mp27-why__icon">{% render 'mispati-icon', name: block.settings.icon %}</span>
+                <div>
+                  <h3>{{ block.settings.title }}</h3>
+                  {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati 27 Neden bu ürün",
+  "tag": "div",
+  "settings": [
+    { "type": "select", "id": "bg", "label": "Arka plan", "default": "paper", "options": [
+      { "value": "paper", "label": "Kağıt" },
+      { "value": "sand", "label": "Kum" },
+      { "value": "white", "label": "Beyaz" }
+    ] },
+    { "type": "checkbox", "id": "flip", "label": "Görseli sağa al", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Görsel (boşsa ürün görseli)" },
+    { "type": "text", "id": "position_style", "label": "Görsel konumu (CSS)", "default": "object-position: 50% 50%" },
+    { "type": "text", "id": "kicker", "label": "Üst etiket" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Başlık" },
+    { "type": "textarea", "id": "story", "label": "Duygusal metin" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Fayda",
+      "limit": 5,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Simge", "default": "check", "options": [
+          { "value": "check", "label": "Onay" },
+          { "value": "rain", "label": "Yağmur" },
+          { "value": "drop", "label": "Damla" },
+          { "value": "snow", "label": "Kar" },
+          { "value": "moon", "label": "Gece" },
+          { "value": "reflect", "label": "Reflektör" },
+          { "value": "strap", "label": "Askı" },
+          { "value": "sole", "label": "Taban" },
+          { "value": "leg", "label": "Bacak" },
+          { "value": "adjust", "label": "Ayar" },
+          { "value": "arrows-h", "label": "Esneme" },
+          { "value": "shield", "label": "Kalkan" },
+          { "value": "paw", "label": "Pati" },
+          { "value": "gift", "label": "Hediye" },
+          { "value": "mountain", "label": "Doğa" }
+        ] },
+        { "type": "text", "id": "title", "label": "Başlık", "default": "Fayda" },
+        { "type": "textarea", "id": "text", "label": "Metin" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati 27 Neden bu ürün" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

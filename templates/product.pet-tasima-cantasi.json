@@ -326,7 +326,8 @@
         "cream": false,
         "pt": 56,
         "pb": 56
-      }
+      },
+      "disabled": true
     },
     "mp_media_slider_2": {
       "type": "mispati-media-slider",
@@ -834,17 +835,63 @@
         "pt": 64,
         "pb": 64
       }
+    },
+    "mp27_why": {
+      "type": "mp27-why",
+      "settings": {
+        "bg": "paper",
+        "flip": false,
+        "image": "shopify://shop_images/ChatGPT_Image_22_Tem_2026_14_11_34.png",
+        "position_style": "object-position: 50% 50%",
+        "kicker": "Neden Freewalk",
+        "heading": "Tasmayı tutmayı bırak, <em>onunla yürümeye başla.</em>",
+        "story": "Bir elinde tasma, diğerinde telefon ya da kahve. Her ani çekişte bileğin sarsılıyor, aklın yürüyüşte değil dengede kalmakta. Freewalk tasmayı beline taşır; ellerin serbest kalır, sen de onunla geçirdiğin zamana dönersin.",
+        "pt": 88,
+        "pb": 88
+      },
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "arrows-h",
+            "title": "Çekişler yumuşar",
+            "text": "Şok emici esnek kordon, ani atılmalarda bileğine ve omzuna gelen sarsıntıyı azaltır."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "adjust",
+            "title": "Dolanma azalır",
+            "text": "Bel çevresinde 360° dönen metal kanca, yön değiştirdiğinizde kordonun dolanmasını azaltır."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "paw",
+            "title": "İhtiyaçların yanında",
+            "text": "Fermuarlı bel çantası telefon, anahtar ve kaka poşetlerini taşır; istersen çıkarıp onsuz da kullanırsın."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     }
   },
   "order": [
     "main",
-    "mp_columns_1",
+    "mp27_why",
     "mp_media_slider_2",
+    "mp_reviews_6",
     "mp_columns_3",
     "mp_feature_rows_4",
-    "related-products",
     "mp_compare_5",
-    "mp_reviews_6",
+    "mp_columns_1",
+    "related-products",
     "mp_faq_7",
     "mp_products_8"
   ]

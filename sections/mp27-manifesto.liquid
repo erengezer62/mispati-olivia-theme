@@ -1,0 +1,89 @@
+{%- liquid
+  assign has_media = false
+  if section.settings.image_1 != blank or section.settings.image_2 != blank or section.settings.image_3 != blank
+    assign has_media = true
+  endif
+-%}
+<section
+  id="{{ section.settings.anchor | default: section.id }}"
+  class="mp27 mp27-mani mp27--{{ section.settings.bg }} mp27-pad"
+  style="--mp27-pt: {{ section.settings.pt }}px; --mp27-pb: {{ section.settings.pb }}px;"
+>
+  <div class="mp26-wrap">
+    <div class="mp27-mani__inner">
+      {%- if section.settings.kicker != blank -%}
+        <p class="mp27-kicker">{{ section.settings.kicker }}</p>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="mp27-mani__text{% if section.settings.small %} mp27-mani__text--sm{% endif %}">{{ section.settings.text }}</p>
+      {%- endif -%}
+      {%- if section.settings.sign != blank -%}
+        <p class="mp27-mani__sign">{{ section.settings.sign }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank or section.settings.button2_label != blank -%}
+        <div class="mp27-mani__actions">
+          {%- if section.settings.button_label != blank -%}
+            <a class="mp26-btn{% if section.settings.bg == 'forest' %} mp26-btn--light{% endif %}" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+              {{- section.settings.button_label -}}
+              {% render 'mispati-icon', name: 'arrow-right' %}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button2_label != blank -%}
+            <a class="mp26-btn mp26-btn--ghost" href="{{ section.settings.button2_link | default: routes.all_products_collection_url }}">
+              {{- section.settings.button2_label -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if has_media -%}
+      <div class="mp27-mani__media">
+        {%- for i in (1..3) -%}
+          {%- liquid
+            case i
+              when 1
+                assign im = section.settings.image_1
+              when 2
+                assign im = section.settings.image_2
+              else
+                assign im = section.settings.image_3
+            endcase
+          -%}
+          {%- if im != blank -%}
+            {{ im | image_url: width: 700 | image_tag: widths: '300, 500, 700', sizes: '(min-width: 990px) 250px, 33vw', loading: 'lazy', alt: im.alt }}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati 27 Duygusal metin",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Bölüm kimliği (isteğe bağlı)" },
+    { "type": "select", "id": "bg", "label": "Arka plan", "default": "paper", "options": [
+      { "value": "paper", "label": "Kağıt" },
+      { "value": "sand", "label": "Kum" },
+      { "value": "white", "label": "Beyaz" },
+      { "value": "forest", "label": "Orman yeşili" }
+    ] },
+    { "type": "text", "id": "kicker", "label": "Üst etiket" },
+    { "type": "textarea", "id": "text", "label": "Metin", "default": "Sen kapıya yaklaştığında o çoktan oradadır." },
+    { "type": "checkbox", "id": "small", "label": "Metni biraz küçült", "default": false },
+    { "type": "text", "id": "sign", "label": "İmza" },
+    { "type": "text", "id": "button_label", "label": "Buton" },
+    { "type": "url", "id": "button_link", "label": "Buton bağlantısı" },
+    { "type": "text", "id": "button2_label", "label": "İkinci buton" },
+    { "type": "url", "id": "button2_link", "label": "İkinci buton bağlantısı" },
+    { "type": "image_picker", "id": "image_1", "label": "Görsel 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Görsel 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Görsel 3" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 }
+  ],
+  "presets": [{ "name": "Mispati 27 Duygusal metin" }]
+}
+{% endschema %}

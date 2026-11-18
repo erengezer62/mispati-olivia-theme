@@ -1,0 +1,98 @@
+{%- liquid
+  assign img = section.settings.image
+  assign mimg = section.settings.mobile_image | default: img
+  assign heading_tag = 'h2'
+  if section.index == 1
+    assign heading_tag = 'h1'
+  endif
+  assign trust = section.settings.trust | split: '|'
+  assign rating = section.settings.rating | default: '5'
+-%}
+<section class="mp27 mp27-hero" aria-label="{{ section.settings.heading | strip_html | escape }}">
+  <div class="mp26-wrap mp27-hero__grid">
+    <div class="mp27-hero__copy">
+      {%- if section.settings.kicker != blank -%}
+        <p class="mp27-kicker">{{ section.settings.kicker }}</p>
+      {%- endif -%}
+      <{{ heading_tag }} class="mp27-hero__title">{{ section.settings.heading }}</{{ heading_tag }}>
+      {%- if section.settings.text != blank -%}
+        <p class="mp27-hero__sub">{{ section.settings.text }}</p>
+      {%- endif -%}
+      <div class="mp27-hero__actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="mp26-btn" href="{% if section.settings.button_anchor != blank %}#{{ section.settings.button_anchor }}{% else %}{{ section.settings.button_link | default: routes.all_products_collection_url }}{% endif %}">
+            {{- section.settings.button_label -}}
+            {% render 'mispati-icon', name: 'arrow-right' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="mp26-btn mp26-btn--ghost" href="{{ section.settings.button2_link | default: routes.all_products_collection_url }}">
+            {{- section.settings.button2_label -}}
+          </a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.trust != blank -%}
+        <ul class="mp27-hero__trust" role="list">
+          {%- for t in trust -%}
+            <li>{% render 'mispati-icon', name: 'check' %}{{ t | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="mp27-hero__media">
+      {%- if img != blank -%}
+        <picture>
+          {%- if section.settings.mobile_image != blank -%}
+            <source media="(max-width: 989px)" srcset="{{ mimg | image_url: width: 600 }} 600w, {{ mimg | image_url: width: 900 }} 900w, {{ mimg | image_url: width: 1200 }} 1200w" sizes="100vw">
+          {%- endif -%}
+          {%- if section.index == 1 -%}
+            {{ img | image_url: width: 1800 | image_tag: widths: '500, 700, 900, 1200, 1500, 1800', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: img.alt, style: section.settings.position_style }}
+          {%- else -%}
+            {{ img | image_url: width: 1800 | image_tag: widths: '500, 700, 900, 1200, 1500, 1800', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy', alt: img.alt, style: section.settings.position_style }}
+          {%- endif -%}
+        </picture>
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
+      {%- endif -%}
+
+      {%- if section.settings.quote != blank -%}
+        <figure class="mp27-hero__note">
+          <span class="mp27-stars">
+            {% render 'mispati-stars', rating: rating %}
+            {%- if section.settings.rating_label != blank -%}<span>{{ section.settings.rating_label }}</span>{%- endif -%}
+          </span>
+          <blockquote style="margin:0"><p>{{ section.settings.quote }}</p></blockquote>
+          {%- if section.settings.quote_name != blank -%}<figcaption><span>{{ section.settings.quote_name }}</span></figcaption>{%- endif -%}
+        </figure>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati 2027 Hero",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Görsel" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobil görsel (isteğe bağlı)" },
+    { "type": "text", "id": "position_style", "label": "Görsel konumu (CSS)", "default": "object-position: 50% 50%" },
+    { "type": "text", "id": "kicker", "label": "Üst etiket", "default": "Köpeğiyle yürümeyi sevenler için" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "info": "İtalik yazmak istediğiniz kelimeyi italik yapın; serif yazıyla ve turuncu görünür.", "default": "Günün en güzel anı, <em>birlikte</em> yürüdüğünüz an." },
+    { "type": "textarea", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "button_label", "label": "Buton", "default": "Ürünleri keşfet" },
+    { "type": "text", "id": "button_anchor", "label": "Buton: sayfadaki bölüme kaydır", "info": "Bir bölümün kimliği (ör. urunler). Boşsa aşağıdaki bağlantı kullanılır." },
+    { "type": "url", "id": "button_link", "label": "Buton bağlantısı" },
+    { "type": "text", "id": "button2_label", "label": "İkinci buton" },
+    { "type": "url", "id": "button2_link", "label": "İkinci buton bağlantısı" },
+    { "type": "text", "id": "trust", "label": "Güven satırı", "info": "Maddeleri | ile ayırın.", "default": "Ücretsiz kargo | Kapıda ödeme | 30 gün değişim" },
+    { "type": "header", "content": "Görsel üstündeki yorum" },
+    { "type": "text", "id": "quote", "label": "Yorum" },
+    { "type": "text", "id": "quote_name", "label": "Yorum sahibi" },
+    { "type": "text", "id": "rating", "label": "Puan (ör. 4.7)" },
+    { "type": "text", "id": "rating_label", "label": "Puan yazısı" }
+  ],
+  "presets": [{ "name": "Mispati 2027 Hero" }]
+}
+{% endschema %}

@@ -379,7 +379,8 @@
         "image": "shopify://shop_images/golden_retriever_winter_gear_realistic.png",
         "pt": 88,
         "pb": 88
-      }
+      },
+      "disabled": true
     },
     "pb_video": {
       "type": "mispati-video",
@@ -1124,20 +1125,66 @@
         "pt": 64,
         "pb": 80
       }
+    },
+    "mp27_why": {
+      "type": "mp27-why",
+      "settings": {
+        "bg": "paper",
+        "flip": false,
+        "image": "shopify://shop_images/golden_retriever_winter_gear_realistic.png",
+        "position_style": "object-position: 50% 50%",
+        "kicker": "Neden askılı bot",
+        "heading": "Kapıdan girince başlayan <em>pati yıkama telaşı kısalsın.</em>",
+        "story": "Yağmurlu bir yürüyüşün asıl yorucu kısmı eve dönünce başlar: çamurlu patiler, ıslak zemin, banyoya koşturma. Askılı bot patilerle yol arasına bir katman koyar. Kapıdan girdiğinizde yapmanız gereken tek şey botları çıkarmak olur.",
+        "pt": 88,
+        "pb": 88
+      },
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "strap",
+            "title": "Yürürken yerinde kalır",
+            "text": "Sırttan geçen ayarlanabilir askılar, botların birkaç adımda çıkıp kaybolmasının önüne geçer."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "title": "Patiler kuru ve temiz",
+            "text": "Botların su geçirmez TPE dış yüzeyi ve kaymaz kauçuk tabanı yağmurda, karda ve çamurda patileri korur."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "reflect",
+            "title": "Gece yürüyüşlerine hazır",
+            "text": "Bilekteki reflektör detaylar, karanlıkta onu görünür kılar."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     }
   },
   "order": [
     "main",
-    "pb_kombin",
-    "pb_intro",
+    "mp27_why",
     "pb_video",
+    "pb_reviews",
     "pb_steps",
     "pb_features",
-    "pb_compare",
-    "pb_uses",
     "pb_size",
+    "pb_uses",
     "pb_adapt",
-    "pb_reviews",
+    "pb_kombin",
+    "pb_compare",
+    "pb_intro",
     "pb_faq",
     "pb_guarantee",
     "pb_products"

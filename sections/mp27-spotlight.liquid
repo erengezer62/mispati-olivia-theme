@@ -1,0 +1,118 @@
+<section
+  id="{{ section.settings.anchor | default: section.id }}"
+  class="mp27 mp27-spotlight mp27--{{ section.settings.bg }} mp27-pad"
+  style="--mp27-pt: {{ section.settings.pt }}px; --mp27-pb: {{ section.settings.pb }}px;"
+>
+  <div class="mp26-wrap">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="mp27-head mp27-head--center">
+        {%- if section.settings.kicker != blank -%}<p class="mp27-kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="mp26-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p class="mp26-lead">{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="mp27-spots">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign p = block.settings.product
+          assign img = block.settings.image
+          if img == blank and p != blank
+            assign img = p.featured_media.preview_image
+          endif
+          assign url = '#'
+          if p != blank
+            assign url = p.url
+          endif
+          assign rating = block.settings.rating | default: '5'
+        -%}
+        <article class="mp27-spot" {{ block.shopify_attributes }}>
+          <a class="mp27-spot__media" href="{{ url }}" tabindex="-1" aria-hidden="true">
+            {%- if img != blank -%}
+              {{ img | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy', alt: '', style: block.settings.position_style }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {%- endif -%}
+            {%- if block.settings.badge != blank -%}<span class="mp27-spot__badge">{{ block.settings.badge }}</span>{%- endif -%}
+          </a>
+          <div class="mp27-spot__body">
+            {%- if block.settings.kicker != blank -%}<p class="mp27-kicker">{{ block.settings.kicker }}</p>{%- endif -%}
+            <h3 class="mp27-spot__title">{{ block.settings.title }}</h3>
+            {%- if p != blank -%}<p class="mp27-spot__name">{{ p.title }}</p>{%- endif -%}
+            {%- if block.settings.rating != blank -%}
+              <span class="mp27-stars">
+                {% render 'mispati-stars', rating: rating %}
+                <strong>{{ block.settings.rating | replace: '.', ',' }}</strong>
+                {%- if block.settings.rating_label != blank -%}<span>{{ block.settings.rating_label }}</span>{%- endif -%}
+              </span>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}<p class="mp27-spot__text">{{ block.settings.text }}</p>{%- endif -%}
+            {%- if block.settings.f1 != blank or block.settings.f2 != blank or block.settings.f3 != blank -%}
+              <ul class="mp27-spot__list" role="list">
+                {%- if block.settings.f1 != blank -%}<li>{% render 'mispati-icon', name: 'check' %}<span>{{ block.settings.f1 }}</span></li>{%- endif -%}
+                {%- if block.settings.f2 != blank -%}<li>{% render 'mispati-icon', name: 'check' %}<span>{{ block.settings.f2 }}</span></li>{%- endif -%}
+                {%- if block.settings.f3 != blank -%}<li>{% render 'mispati-icon', name: 'check' %}<span>{{ block.settings.f3 }}</span></li>{%- endif -%}
+              </ul>
+            {%- endif -%}
+            <div class="mp27-spot__buy">
+              {%- if p != blank -%}
+                <span class="mp27-spot__price">
+                  {{- p.price_min | money -}}
+                  {%- if p.compare_at_price_min > p.price_min -%}<s>{{ p.compare_at_price_min | money }}</s>{%- endif -%}
+                </span>
+              {%- endif -%}
+              <a class="mp26-btn" href="{{ url }}">
+                {{- block.settings.button_label | default: 'İncele' -}}
+                {% render 'mispati-icon', name: 'arrow-right' %}
+              </a>
+              {%- if section.settings.fine != blank -%}<p class="mp27-spot__fine">{{ section.settings.fine }}</p>{%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mispati 2027 Ürün vitrini",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Bölüm kimliği", "default": "urunler" },
+    { "type": "select", "id": "bg", "label": "Arka plan", "default": "white", "options": [
+      { "value": "paper", "label": "Kağıt" },
+      { "value": "sand", "label": "Kum" },
+      { "value": "white", "label": "Beyaz" }
+    ] },
+    { "type": "text", "id": "kicker", "label": "Üst etiket" },
+    { "type": "text", "id": "heading", "label": "Başlık" },
+    { "type": "textarea", "id": "text", "label": "Açıklama" },
+    { "type": "text", "id": "fine", "label": "Fiyat altı küçük yazı", "default": "Kapıda ödeme · Ücretsiz kargo · 30 gün değişim" },
+    { "type": "range", "id": "pt", "label": "Üst boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 104 },
+    { "type": "range", "id": "pb", "label": "Alt boşluk", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 104 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Ürün",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Ürün" },
+        { "type": "image_picker", "id": "image", "label": "Görsel (boşsa ürün görseli)" },
+        { "type": "text", "id": "position_style", "label": "Görsel konumu (CSS)", "default": "object-position: 50% 50%" },
+        { "type": "text", "id": "badge", "label": "Görsel etiketi" },
+        { "type": "text", "id": "kicker", "label": "Üst etiket" },
+        { "type": "inline_richtext", "id": "title", "label": "Başlık", "default": "Başlık" },
+        { "type": "textarea", "id": "text", "label": "Metin" },
+        { "type": "text", "id": "f1", "label": "Özellik 1" },
+        { "type": "text", "id": "f2", "label": "Özellik 2" },
+        { "type": "text", "id": "f3", "label": "Özellik 3" },
+        { "type": "text", "id": "rating", "label": "Puan (ör. 4.7)" },
+        { "type": "text", "id": "rating_label", "label": "Puan yazısı" },
+        { "type": "text", "id": "button_label", "label": "Buton", "default": "İncele" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mispati 2027 Ürün vitrini" }]
+}
+{% endschema %}

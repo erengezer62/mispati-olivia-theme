@@ -692,15 +692,61 @@
         "pt": 64,
         "pb": 64
       }
+    },
+    "mp27_why": {
+      "type": "mp27-why",
+      "settings": {
+        "bg": "paper",
+        "flip": false,
+        "image": "shopify://shop_images/9E582CDB-551F-410E-A0F0-5D41982132F7_8c7b14be-ab3a-4cb9-bcf0-9d77a22fe9f4.jpg",
+        "position_style": "object-position: 50% 50%",
+        "kicker": "Neden bu ceket",
+        "heading": "Yağmur başladığında <em>eve dönmek zorunda değilsiniz.</em>",
+        "story": "Eskiden yağmurun ilk damlası yürüyüşün sonu demekti. Sen kalın montunun içinde rahattın, o ise birkaç dakikada ıslanıp üşümeye başlıyordu. Bu ceket o farkı kapatmak için var: yürüyüş artık havaya göre değil, onun enerjisine göre bitiyor.",
+        "pt": 88,
+        "pb": 88
+      },
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "rain",
+            "title": "Yağmuru dışarıda bırakır",
+            "text": "Su geçirmez dış yüzey ve bantlı dikişler, suyun dikiş yerlerinden içeri sızmasını zorlaştırır."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "snow",
+            "title": "Ayazda sıcak tutar",
+            "text": "Polar astar ve yüksek yaka, soğuk havada boynu ve göğsü sarar."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "moon",
+            "title": "Karanlıkta görünür",
+            "text": "Yanlardaki reflektif biyeler, erken kararan akşamlarda onu araç ışığında fark edilir kılar."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     }
   },
   "order": [
     "main",
-    "mp_kombin",
+    "mp27_why",
     "mp_video",
+    "mp_reviews",
     "mp_rows",
     "mp_compare",
-    "mp_reviews",
+    "mp_kombin",
     "mp_faq",
     "mp_products"
   ]
